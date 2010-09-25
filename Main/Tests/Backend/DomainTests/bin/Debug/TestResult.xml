@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="I:\Hayman\Main\Tests\Backend\DomainTests\bin\Debug\DomainTests.dll" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-08-29" time="00:18:43">
+  <environment nunit-version="2.5.5.10112" clr-version="4.0.30319.1" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Windows\system32" machine-name="MICHEL" user="admin" user-domain="michel" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="I:\Hayman\Main\Tests\Backend\DomainTests\bin\Debug\DomainTests.dll" executed="True" result="Success" success="True" time="0.178" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="DomainTests" executed="True" result="Success" success="True" time="0.175" asserts="0">
+        <results>
+          <test-suite type="ParameterizedFixture" name="When_creating_a_new_MetaModel" executed="True" result="Success" success="True" time="0.174" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="When_creating_a_new_MetaModel" executed="True" result="Success" success="True" time="0.163" asserts="0">
+                <results>
+                  <test-case name="DomainTests.When_creating_a_new_MetaModel.Then_one_event_NewProjectCreated_should_have_been_published" executed="True" result="Success" success="True" time="0.027" asserts="0" />
+                  <test-case name="DomainTests.When_creating_a_new_MetaModel.Then_project_id_and_name_should_be_published_as_given_at_construct" executed="True" result="Success" success="True" time="0.003" asserts="0" />
+                  <test-case name="DomainTests.When_creating_a_new_MetaModel.Then_the_EventSourceId_should_be_set_to_the_ProjectId" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="When_creating_a_new_MetaModel" executed="True" result="Success" success="True" time="0.008" asserts="0">
+                <results>
+                  <test-case name="DomainTests.When_creating_a_new_MetaModel.Then_one_event_NewProjectCreated_should_have_been_published" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                  <test-case name="DomainTests.When_creating_a_new_MetaModel.Then_project_id_and_name_should_be_published_as_given_at_construct" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                  <test-case name="DomainTests.When_creating_a_new_MetaModel.Then_the_EventSourceId_should_be_set_to_the_ProjectId" executed="True" result="Success" success="True" time="0.005" asserts="0" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

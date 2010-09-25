@@ -1,0 +1,14 @@
+I:\Hayman\Main\Hayman.Domain\bin\Debug\CodeContracts\noReferenceAssembly
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Hayman.Domain.dll
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Hayman.Domain.pdb
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Hayman.Events.dll
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Ncqrs.dll
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Newtonsoft.Json.dll
+I:\Hayman\Main\Hayman.Domain\bin\Debug\log4net.dll
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Hayman.Events.pdb
+I:\Hayman\Main\Hayman.Domain\obj\Debug\ResolveAssemblyReference.cache
+I:\Hayman\Main\Hayman.Domain\obj\Debug\Hayman.Domain.dll
+I:\Hayman\Main\Hayman.Domain\obj\Debug\Hayman.Domain.pdb
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Ncqrs.pdb
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Newtonsoft.Json.pdb
+I:\Hayman\Main\Hayman.Domain\bin\Debug\Ncqrs.xml

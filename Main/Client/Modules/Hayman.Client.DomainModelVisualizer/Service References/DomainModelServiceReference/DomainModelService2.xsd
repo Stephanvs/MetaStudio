@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DomainModelService.ServiceInterface.DataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DomainModelService.ServiceInterface.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="MetaModelDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RootItem" nillable="true" type="tns:MetaitemDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MetaModelDto" nillable="true" type="tns:MetaModelDto" />
+  <xs:complexType name="MetaitemDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Associations" nillable="true" type="tns:MetaAssociationDtoList" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MetaitemDto" nillable="true" type="tns:MetaitemDto" />
+  <xs:complexType name="MetaAssociationDtoList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MetaAssociationDto" nillable="true" type="tns:MetaAssociationDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MetaAssociationDtoList" nillable="true" type="tns:MetaAssociationDtoList" />
+  <xs:complexType name="MetaAssociationDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Target" nillable="true" type="tns:MetaitemDto" />
+      <xs:element minOccurs="0" name="Type" type="tns:MetaAssociationTypeDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MetaAssociationDto" nillable="true" type="tns:MetaAssociationDto" />
+  <xs:simpleType name="MetaAssociationTypeDto">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Subtyping" />
+      <xs:enumeration value="Reference" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MetaAssociationTypeDto" nillable="true" type="tns:MetaAssociationTypeDto" />
+</xs:schema>

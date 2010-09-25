@@ -1,0 +1,6 @@
+I:\Hayman\Main\Services\DomainModelService\bin\CodeContracts\noReferenceAssembly
+I:\Hayman\Main\Services\DomainModelService\bin\DomainModelService.dll
+I:\Hayman\Main\Services\DomainModelService\bin\DomainModelService.pdb
+I:\Hayman\Main\Services\DomainModelService\obj\Debug\ResolveAssemblyReference.cache
+I:\Hayman\Main\Services\DomainModelService\obj\Debug\DomainModelService.dll
+I:\Hayman\Main\Services\DomainModelService\obj\Debug\DomainModelService.pdb

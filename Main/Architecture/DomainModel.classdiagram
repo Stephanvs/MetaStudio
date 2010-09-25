@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="1833abad-b44a-47fe-99b0-8e2e9ec76620" name="DomainModel" linkedPackageId="8db3c773-1550-4f12-876b-b1b03d6e586d" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a122110f-d813-4b95-94e0-d5a9cf48ec14" name="Model" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <description>Is the root class of the domain model, everything else is contained within a model.
+One instance of the system can contain multiple models.
+A model can be merged or integrated with another model.</description>
+        <elementDefinition Id="fecc853f-ebbd-4b4a-95de-25c3292d54e5" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b3470576-3028-44c7-a302-cd0a3f68e08a" name="Metaitem" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <description>A metaitem gives context to an item, it describes the meaning of something concrete.
+Metaitems can be related to other metaitems. Which means that eg. the English word 'Couch' in one model can relate to the Dutch word 'Bank'.</description>
+        <elementDefinition Id="8a321a6d-a3d0-44f1-9b37-3f594b8e425a" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f3f22d90-4bce-491b-8e8b-838ee45ae197" name="Item" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="64e837c5-a168-4081-954e-a6cc67e6b8c7" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9f298b51-a075-430e-af34-687b71adbe81" name="Aspect" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <description>An aspect represents a logical grouping of meanings (metaitem) in a given context.
+For instance a department within a company can be represent as an aspect which in turn is descibed by its metaitems.
+</description>
+        <elementDefinition Id="06b8fb85-9f3d-4d34-befb-a01a50adc4c8" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="8db3c773-1550-4f12-876b-b1b03d6e586d" name="Architecture">
+    <elementDefinition Id="ec557b3f-948f-4509-bf33-ebdda755a5f2" />
+    <profileInstances>
+      <packageHasProfileInstances Id="567fabc2-42df-4474-ac33-3591bf22d325">
+        <profileInstance Id="70fe2117-f728-4efa-a83c-3765d24b78df" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="78f73bcb-71cc-473f-ae40-189ec7eaae05">
+        <profileInstance Id="1cf8a14f-33b7-41ad-b3ec-884ad006bc23" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

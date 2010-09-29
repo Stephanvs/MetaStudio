@@ -71,7 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddMetaAssociationExecutor.cs" />
     <Compile Include="AddMetaitemExecutor.cs" />
     <Compile Include="RemoveMetaitemExecutor.cs" />
     <Compile Include="CreateMetaModelExecutor.cs" />

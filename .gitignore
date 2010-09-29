@@ -1,6 +1,8 @@
 # Standard VS.NET
 obj
 bin
+Obj
+Bin
 *.csproj.user
 
 # Resharper

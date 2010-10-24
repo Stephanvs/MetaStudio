@@ -57,7 +57,7 @@ namespace Hayman.Domain
             metaModelName = e.NewMetaModelName;
         }
 
-		private void OnMetaitemAdded(MetaitemAdded e)
+        private void OnMetaitemAdded(MetaitemAdded e)
 		{
             metaitems.Add(new Metaitem(this, e.MetaitemId, e.MetaitemName));
 		}

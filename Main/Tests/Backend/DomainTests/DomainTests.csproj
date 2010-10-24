@@ -102,7 +102,7 @@
       <Project>{ADB9913F-1453-4BB5-9870-76038CB1FFC4}</Project>
       <Name>Hayman.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Backend\Core\Hayman.Events\Hayman.Events.csproj">
+    <ProjectReference Include="..\..\..\Hayman.Events\Hayman.Events.csproj">
       <Project>{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}</Project>
       <Name>Hayman.Events</Name>
     </ProjectReference>

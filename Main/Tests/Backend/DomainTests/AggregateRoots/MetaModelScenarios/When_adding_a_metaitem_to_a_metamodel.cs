@@ -38,13 +38,13 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         [And]
         public void And_should_be_of_type_StoryAddedToProductBacklog()
         {
-            PublishedEvents.First().Should().BeOfType<MetaAssociationCreated>();
+            PublishedEvents.First().Should().BeOfType<MetaitemAdded>();
         }
 
         [And]
         public void And_event_info_should_contain_given_details()
         {
-            var e = PublishedEvents.First().As<MetaAssociationCreated>();
+            var e = PublishedEvents.First().As<MetaitemAdded>();
             e.MetaitemId.Should().Be(TheMetaitemId);
             e.MetaitemName.Should().Be(TheMetaitemName);
         }
@@ -52,7 +52,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         [And]
         public void And_the_owner_should_be_the_metamodel_containing_the_metamitem()
         {
-            var e = PublishedEvents.First().As<MetaAssociationCreated>();
+            var e = PublishedEvents.First().As<MetaitemAdded>();
             e.MetaModelId.Should().Be(AggregateRoot.EventSourceId);
             AggregateRoot.ContainsMetaitem(e.MetaitemId).Should().BeTrue();
         }

@@ -21,7 +21,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
             return Prepare.Events
             (
                 new MetaModelCreated(TheMetaModelId, "My metamodel"),
-                new MetaAssociationCreated(TheMetaitemId, "My metaitem", TheMetaModelId)
+                new MetaitemAdded(TheMetaitemId, "My metaitem", TheMetaModelId)
 
             ).ForSource(Guid.NewGuid());
         }

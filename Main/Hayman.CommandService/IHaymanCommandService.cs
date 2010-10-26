@@ -11,9 +11,9 @@ namespace Hayman.CommandService
 		void CreateModel(CreateMetaModel command);
 
 		[OperationContract]
-		void CreateMetaitem(AddMetaitem command);
+		void CreateMetaItem(AddMetaItem command);
 
 		[OperationContract]
-		void AddAssociationToMetaitem(CreateMetaAssociation command);
+		void AddAssociationToMetaItem(CreateMetaAssociation command);
 	}
 }

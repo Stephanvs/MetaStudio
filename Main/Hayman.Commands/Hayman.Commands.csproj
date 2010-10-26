@@ -71,9 +71,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeleteMetaAssociation.cs" />
     <Compile Include="CreateMetaAssociation.cs" />
-    <Compile Include="AddMetaitem.cs" />
-    <Compile Include="RemoveMetaitem.cs" />
+    <Compile Include="AddMetaItem.cs" />
+    <Compile Include="RemoveMetaItem.cs" />
     <Compile Include="RenameMetaModel.cs" />
     <Compile Include="CreateMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

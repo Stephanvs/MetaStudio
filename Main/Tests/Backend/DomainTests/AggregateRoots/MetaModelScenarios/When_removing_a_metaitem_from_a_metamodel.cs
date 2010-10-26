@@ -32,19 +32,19 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [Then]
-        public void Then_only_event_event_should_be_published()
+        public void Then_there_should_be_one_event_be_published()
         {
             PublishedEvents.Should().HaveCount(1);
         }
 
         [And]
-        public void And_should_be_of_type_StoryAddedToProductBacklog()
+        public void And_should_be_of_type_MetaitemRemoved()
         {
             PublishedEvents.First().Should().BeOfType<MetaitemRemoved>();
         }
 
         [And]
-        public void And_event_info_should_contain_given_details()
+        public void And_metamodel_id_should_be_published_as_given_at_construct()
         {
             var e = PublishedEvents.First().As<MetaitemRemoved>();
             e.MetaitemId.Should().Be(TheMetaitemId);

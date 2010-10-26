@@ -10,6 +10,6 @@ namespace DomainModelService.ServiceInterface.DataContracts
         public string Name { get; set; }
 
         [DataMember()]
-        public MetaitemDto RootItem { get; set; }
+        public MetaItemDto RootItem { get; set; }
     }
 }

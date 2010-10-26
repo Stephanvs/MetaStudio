@@ -35,8 +35,8 @@ namespace Hayman.CommandService
             //service.RegisterExecutor(new AttributeMappedCommandExecutor<CreateModelCommand>());
 
             //service.RegisterExecutor<CreateMetaModelCommand>(new CreateMetaModelCommandExecutor());
-            //service.RegisterExecutor<CreateMetaitemCommand>(new CreateMetaitemCommandExecutor());
-            //service.RegisterExecutor<AddMetaitemToModelCommand>(new AddMetaitemToModelCommandExecutor());
+            //service.RegisterExecutor<CreateMetaItemCommand>(new CreateMetaItemCommandExecutor());
+            //service.RegisterExecutor<AddMetaItemToModelCommand>(new AddMetaItemToModelCommandExecutor());
             //service.RegisterExecutor<AddMetaAssociationCommand>(new AddMetaAssociationCommandExecutor());
 			//TODO: service.RegisterExecutorForAllMappedCommandsInAssembly(typeof(CreateNewNote).Assembly);
 

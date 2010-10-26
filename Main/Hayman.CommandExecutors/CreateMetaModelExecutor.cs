@@ -10,7 +10,7 @@ namespace Hayman.CommandExecutors
 	{
 		protected override void ExecuteInContext(IUnitOfWorkContext context, CreateMetaModel command)
 		{
-			var model = new MetaModel(command.MetaModelId, command.MetaModelName);
+			var metaModel = new MetaModel(command.MetaModelId, command.MetaModelName);
 			context.Accept();
 		}
 	}

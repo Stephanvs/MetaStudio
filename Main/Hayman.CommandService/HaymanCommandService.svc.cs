@@ -20,12 +20,12 @@ namespace Hayman.CommandService
 			_service.Execute(command);
 		}
 
-		public void CreateMetaitem(AddMetaitem command)
+		public void CreateMetaItem(AddMetaItem command)
 		{
 			_service.Execute(command);
 		}
 
-        public void AddAssociationToMetaitem(CreateMetaAssociation command)
+        public void AddAssociationToMetaItem(CreateMetaAssociation command)
 		{
 			_service.Execute(command);
 		}

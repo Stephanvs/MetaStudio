@@ -6,21 +6,21 @@ using System.Linq;
 
 namespace Hayman.Domain
 {
-    public class Metaitem : EntityMappedByConvention
+    public class MetaItem : EntityMappedByConvention
 	{
         public MetaModel MetaModel { get; set; }
-        public string MetaitemName { get; set; }
+        public string MetaItemName { get; set; }
 
-        public Metaitem(MetaModel metaModel, Guid metaitemid, string metaitemName)
-            : base(metaModel, metaitemid)
+        public MetaItem(MetaModel metaModel, Guid metaItemId, string metaItemName)
+            : base(metaModel, metaItemId)
         {
-            MetaitemName = metaitemName;
+            MetaItemName = metaItemName;
             MetaModel = metaModel;
         }
 
-        private void OnMetaitemAdded(MetaitemAdded e)
+        private void OnMetaItemAdded(MetaItemAdded e)
         {
-            MetaitemName = e.MetaitemName;
+            MetaItemName = e.MetaItemName;
         }
 	}
 }

@@ -5,17 +5,17 @@ namespace Hayman.Commands
 {
 	[Serializable]
     //[MapsToAggregateRootConstructor("Hayman.Domain.MetaModel, Hayman.Domain")]
-	public class AddMetaitem : CommandBase
+	public class AddMetaItem : CommandBase
 	{
         public Guid MetaModelId { get; private set; }
-        public Guid MetaitemId { get; private set; }
-        public string MetaitemName { get; private set; }
+        public Guid MetaItemId { get; private set; }
+        public string MetaItemName { get; private set; }
         
-        public AddMetaitem(Guid metaModelId, Guid metaItemId, string metaitemName)
+        public AddMetaItem(Guid metaModelId, Guid metaItemId, string metaItemName)
         {
             MetaModelId = metaModelId;
-            MetaitemId = metaItemId;
-            MetaitemName = metaitemName;
+            MetaItemId = metaItemId;
+            MetaItemName = metaItemName;
         }
 	}
 }

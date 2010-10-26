@@ -4,15 +4,15 @@ using Ncqrs.Commanding;
 namespace Hayman.Commands
 {
 	[Serializable]
-	public class RemoveMetaitem : CommandBase
+	public class RemoveMetaItem : CommandBase
 	{
         public Guid MetaModelId { get; private set; }
-        public Guid MetaitemId { get; private set; }
+        public Guid MetaItemId { get; private set; }
 
-        public RemoveMetaitem(Guid metaModelId, Guid metaitemId)
+        public RemoveMetaItem(Guid metaModelId, Guid metaItemId)
         {
             MetaModelId = metaModelId;
-            MetaitemId = metaitemId;
+            MetaItemId = metaItemId;
         }
 	}
 }

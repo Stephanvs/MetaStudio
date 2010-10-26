@@ -11,24 +11,24 @@ using System.Linq;
 namespace DomainTests.AggregateRoots.MetaModelScenarios
 {
     [Specification]
-    public class When_removing_a_metaitem_from_a_metamodel : AggregateRootTestFixture<MetaModel>
+    public class When_removing_a_MetaItem_from_a_MetaModel : AggregateRootTestFixture<MetaModel>
     {
         private Guid TheMetaModelId = Guid.NewGuid();
-        private Guid TheMetaitemId = Guid.NewGuid();
+        private Guid TheMetaItemId = Guid.NewGuid();
 
         protected override IEnumerable<SourcedEvent> Given()
         {
             return Prepare.Events
             (
                 new MetaModelCreated(TheMetaModelId, "My metamodel"),
-                new MetaitemAdded(TheMetaitemId, "My metaitem", TheMetaModelId)
+                new MetaItemAdded(TheMetaItemId, "My MetaItem", TheMetaModelId)
 
             ).ForSource(Guid.NewGuid());
         }
 
         protected override void When()
         {
-            AggregateRoot.RemoveMetaitem(TheMetaitemId);
+            AggregateRoot.RemoveMetaItem(TheMetaItemId);
         }
 
         [Then]
@@ -38,22 +38,22 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [And]
-        public void And_should_be_of_type_MetaitemRemoved()
+        public void And_should_be_of_type_MetaItemRemoved()
         {
-            PublishedEvents.First().Should().BeOfType<MetaitemRemoved>();
+            PublishedEvents.First().Should().BeOfType<MetaItemRemoved>();
         }
 
         [And]
-        public void And_metamodel_id_should_be_published_as_given_at_construct()
+        public void And_MetaModel_id_should_be_published_as_given_at_construct()
         {
-            var e = PublishedEvents.First().As<MetaitemRemoved>();
-            e.MetaitemId.Should().Be(TheMetaitemId);
+            var e = PublishedEvents.First().As<MetaItemRemoved>();
+            e.MetaItemId.Should().Be(TheMetaItemId);
         }
 
         [And]
-        public void And_the_owner_should_be_the_metamodel_not_containing_the_metaitem()
+        public void And_the_owner_should_be_the_MetaModel_not_containing_the_MetaItem()
         {
-            var e = PublishedEvents.First().As<MetaitemRemoved>();
+            var e = PublishedEvents.First().As<MetaItemRemoved>();
             e.MetaModelId.Should().Be(AggregateRoot.EventSourceId);
         }
     }

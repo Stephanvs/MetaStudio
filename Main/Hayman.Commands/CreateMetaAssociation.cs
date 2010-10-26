@@ -8,14 +8,14 @@ namespace Hayman.Commands
 	public class CreateMetaAssociation : CommandBase
 	{
         public Guid MetaAssociationId { get; private set; }
-        public Guid MetaitemSourceId { get; private set; }
-        public Guid MetaitemTargetId { get; private set; }
+        public Guid MetaItemSourceId { get; private set; }
+        public Guid MetaItemTargetId { get; private set; }
 
-        public CreateMetaAssociation(Guid metaModelId, Guid metaAssociationId, Guid metaitemSourceId, Guid metaItemTargetId)
+        public CreateMetaAssociation(Guid metaAssociationId, Guid metaItemSourceId, Guid metaItemTargetId)
 		{
             MetaAssociationId = metaAssociationId;
-            MetaitemSourceId = metaitemSourceId;
-			MetaitemTargetId = metaItemTargetId;
+            MetaItemSourceId = metaItemSourceId;
+			MetaItemTargetId = metaItemTargetId;
 		}
 	}
 }

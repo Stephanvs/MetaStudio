@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Ncqrs.Domain;
 using Hayman.Events;
-using System.Linq;
 
 namespace Hayman.Domain
 {

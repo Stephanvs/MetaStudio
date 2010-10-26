@@ -6,9 +6,9 @@ namespace Hayman.Domain
 {
     public class MetaAssociation : AggregateRootMappedByConvention
 	{
-        public Guid MetaItemSourceId { get; set; }
-        public Guid MetaItemTargetId { get; set; }
-        public bool Deleted { get; private set; }
+        private Guid metaItemSourceId { get; set; }
+        private Guid metaItemTargetId { get; set; }
+        private bool deleted { get; set; }
 
         protected MetaAssociation()
         { 
@@ -17,7 +17,7 @@ namespace Hayman.Domain
         public MetaAssociation(Guid metaAssociationId, Guid metaItemSourceId, Guid metaItemTargetId)
             : base(metaAssociationId)
 		{
-            if (Deleted)
+            if (deleted)
             {
                 throw new MetaAssociationDeletedException();
             }
@@ -27,7 +27,7 @@ namespace Hayman.Domain
 
         public void Delete()
         {
-            if (Deleted)
+            if (deleted)
             {
                 throw new MetaAssociationDeletedException();
             }
@@ -37,13 +37,13 @@ namespace Hayman.Domain
 
         private void OnMetaAssociationCreated(MetaAssociationCreated e)
 		{
-			MetaItemSourceId = e.MetaItemSourceId;
-            MetaItemTargetId = e.MetaItemTargetId;
+			metaItemSourceId = e.MetaItemSourceId;
+            metaItemTargetId = e.MetaItemTargetId;
 		}
 
         private void OnMetaAssociationDeleted(MetaAssociationDeleted e)
         {
-            Deleted = true;
+            deleted = true;
         }
 	}
 }

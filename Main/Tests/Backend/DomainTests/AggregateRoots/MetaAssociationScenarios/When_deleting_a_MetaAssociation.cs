@@ -4,19 +4,29 @@ using Ncqrs.Spec;
 using Hayman.Events;
 using FluentAssertions;
 using Hayman.Domain;
+using System.Collections.Generic;
+using Ncqrs.Eventing.Sourcing;
 
 namespace DomainTests.AggregateRoots.MetaAssociationScenarios
 {
     [Specification]
-    public class When_creating_a_MetaAssociation : AggregateRootTestFixture<MetaAssociation>
+    public class When_deleting_a_MetaAssociation : AggregateRootTestFixture<MetaAssociation>
     {
         private Guid theId = Guid.NewGuid();
         private Guid theSourceId = Guid.NewGuid();
         private Guid theTargetId = Guid.NewGuid();
 
+        protected override IEnumerable<SourcedEvent> Given()
+        {
+            return Prepare.Events
+            (
+                new MetaAssociationCreated(theId, theSourceId, theTargetId)
+            ).ForSource(Guid.NewGuid());
+        }
+
         protected override void When()
         {
-            AggregateRoot = new MetaAssociation(theId, theSourceId, theTargetId);
+            AggregateRoot.Delete();
         }
 
         [Then]
@@ -26,26 +36,19 @@ namespace DomainTests.AggregateRoots.MetaAssociationScenarios
         }
 
         [And]
-        public void And_should_be_of_type_MetaAssociationCreated()
+        public void And_should_be_of_type_MetaAssociationDeleted()
         {
-            PublishedEvents.First().Should().BeOfType<MetaAssociationCreated>();
+            PublishedEvents.First().Should().BeOfType<MetaAssociationDeleted>();
         }
 
         [And]
         public void And_the_EventSourceId_should_be_set_to_the_MetaAssociationId()
         {
-            var e = (MetaAssociationCreated)PublishedEvents.First();
+            var e = (MetaAssociationDeleted)PublishedEvents.First();
             AggregateRoot.EventSourceId.Should().Be(e.MetaAssociationId);
         }
 
-        [And]
-        public void And_MetaAssociation_id_source_and_target_should_be_published_as_given_at_construct()
-        {
-            var e = PublishedEvents.First().As<MetaAssociationCreated>();
-            e.MetaAssociationId.Should().Be(theId);
-            e.MetaItemSourceId.Should().Be(theSourceId);
-            e.MetaItemTargetId.Should().Be(theTargetId);
-        }
+        // Any operation on MetaAssociation should fail
     }
 }
 

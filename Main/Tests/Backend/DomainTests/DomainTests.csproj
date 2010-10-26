@@ -87,7 +87,12 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregateRoots\MetaAssociationScenarios\When_deleting_a_MetaAssociation.cs" />
     <Compile Include="AggregateRoots\MetaAssociationScenarios\When_creating_a_MetaAssociation.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_renaming_a_deleted_MetaModel.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_removing_a_MetaItem_from_a_deleted_MetaModel.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_adding_a_MetaItem_to_a_deleted_MetaModel.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_deleting_a_MetaModel.cs" />
     <Compile Include="AggregateRoots\MetaModelScenarios\When_adding_a_MetaItem_to_a_MetaModel.cs" />
     <Compile Include="AggregateRoots\MetaModelScenarios\When_removing_a_MetaItem_from_a_MetaModel.cs" />
     <Compile Include="AggregateRoots\MetaModelScenarios\When_renaming_a_MetaModel.cs" />

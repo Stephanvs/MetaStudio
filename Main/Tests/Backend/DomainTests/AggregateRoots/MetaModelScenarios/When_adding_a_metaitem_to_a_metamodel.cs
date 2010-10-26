@@ -12,20 +12,21 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
     [Specification]
     public class When_adding_a_MetaItem_to_a_MetaModel : AggregateRootTestFixture<MetaModel>
     {
-        private Guid TheMetaItemId = Guid.NewGuid();
-        private string TheMetaItemName = "MetaItem";
+        private Guid theMetaModelId = Guid.NewGuid();
+        private Guid theMetaItemId = Guid.NewGuid();
+        private string theMetaItemName = "MetaItem";
 
         protected override IEnumerable<SourcedEvent> Given()
         {
             return Prepare.Events
             (
-                new MetaModelCreated(Guid.NewGuid(), "My metamodel")
-            ).ForSource(Guid.NewGuid());
+                new MetaModelCreated(theMetaModelId, "My metamodel")
+            ).ForSource(theMetaModelId);
         }
 
         protected override void When()
         {
-            AggregateRoot.AddMetaItem(TheMetaItemId, TheMetaItemName);
+            AggregateRoot.AddMetaItem(theMetaItemId, theMetaItemName);
         }
 
         [Then]
@@ -44,8 +45,8 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         public void And_the_MetaItem_id_and_name_should_be_published_as_given_at_construct()
         {
             var e = PublishedEvents.First().As<MetaItemAdded>();
-            e.MetaItemId.Should().Be(TheMetaItemId);
-            e.MetaItemName.Should().Be(TheMetaItemName);
+            e.MetaItemId.Should().Be(theMetaItemId);
+            e.MetaItemName.Should().Be(theMetaItemName);
         }
 
         [And]

@@ -4,14 +4,14 @@ using Ncqrs.Eventing.Sourcing;
 namespace Hayman.Events
 {
 	[Serializable]
-	public class MetaitemRemoved : SourcedEntityEvent
+	public class MetaItemRemoved : SourcedEntityEvent
 	{
-        public Guid MetaitemId { get; set; }
+        public Guid MetaItemId { get; set; }
         public Guid MetaModelId { get; set; }
 
-        public MetaitemRemoved(Guid metaitemId, Guid metaModelId)
+        public MetaItemRemoved(Guid metaItemId, Guid metaModelId)
         {
-            MetaitemId = metaitemId;
+            MetaItemId = metaItemId;
             MetaModelId = metaModelId;
         }
 	}

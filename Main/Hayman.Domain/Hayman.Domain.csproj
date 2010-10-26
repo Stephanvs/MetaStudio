@@ -73,8 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MetaAssociation.cs" />
-    <Compile Include="Metaitem.cs" />
+    <Compile Include="MetaAssociationDeletedException.cs" />
+    <Compile Include="MetaItem.cs" />
     <Compile Include="MetaModel.cs" />
+    <Compile Include="MetaModelDeletedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

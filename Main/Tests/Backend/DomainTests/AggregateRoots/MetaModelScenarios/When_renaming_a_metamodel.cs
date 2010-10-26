@@ -10,7 +10,7 @@ using Ncqrs.Eventing.Sourcing;
 namespace DomainTests.AggregateRoots.MetaModelScenarios
 {
     [Specification]
-    public class When_renaming_a_metamodel : AggregateRootTestFixture<MetaModel>
+    public class When_renaming_a_MetaModel : AggregateRootTestFixture<MetaModel>
     {
         private Guid TheId = Guid.NewGuid();
         private String newName = "My old name";
@@ -46,7 +46,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [And]
-        public void And_metamodel_newname_should_be_published_as_given_at_construct()
+        public void And_MetaModel_newname_should_be_published_as_given_at_construct()
         {
             var e = PublishedEvents.First().As<MetaModelRenamed>();
             e.NewMetaModelName.Should().Be(newName);

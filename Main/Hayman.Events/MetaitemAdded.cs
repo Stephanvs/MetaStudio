@@ -3,16 +3,16 @@ using Ncqrs.Eventing.Sourcing;
 
 namespace Hayman.Events
 {
-	public class MetaitemAdded : SourcedEntityEvent
+	public class MetaItemAdded : SourcedEntityEvent
 	{
-        public Guid MetaitemId { get; set; }
-        public String MetaitemName { get; set; }
+        public Guid MetaItemId { get; set; }
+        public String MetaItemName { get; set; }
         public Guid MetaModelId { get; set; }
 
-        public MetaitemAdded(Guid metaitemId, String metaitemName, Guid metaModelId)
+        public MetaItemAdded(Guid metaItemId, String metaItemName, Guid metaModelId)
         {
-            MetaitemId = metaitemId;
-            MetaitemName = metaitemName;
+            MetaItemId = metaItemId;
+            MetaItemName = metaItemName;
             MetaModelId = metaModelId;
         }
     }

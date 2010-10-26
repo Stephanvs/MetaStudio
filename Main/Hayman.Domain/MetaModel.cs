@@ -9,7 +9,8 @@ namespace Hayman.Domain
     public class MetaModel : AggregateRootMappedByConvention
 	{
         private string metaModelName;
-        private IList<Metaitem> metaitems;
+        private IList<MetaItem> metaItems;
+        private bool deleted;
         
         protected MetaModel()
         { 
@@ -21,51 +22,82 @@ namespace Hayman.Domain
 		}
 
         public void Rename(string newMetaModelName)
-        { 
+        {
+            if (deleted)
+            {
+                throw new MetaModelDeletedException();
+            }
+
             ApplyEvent(new MetaModelRenamed(newMetaModelName)); 
         }
 
-		public void AddMetaitem(Guid metaitemId, string metaitemName)
-		{
-            if (!metaitems.Any(i => i.EntityId == metaitemId))
+        public void Delete()
+        {
+            if (deleted)
             {
-                ApplyEvent(new MetaitemAdded(metaitemId, metaitemName, EventSourceId));
+                throw new MetaModelDeletedException();
+            }
+
+            ApplyEvent(new MetaModelDeleted(EventSourceId)); 
+        }
+
+		public void AddMetaItem(Guid metaItemId, string metaItemName)
+		{
+            if (deleted)
+            {
+                throw new MetaModelDeletedException();
+            }
+
+            if (!metaItems.Any(i => i.EntityId == metaItemId))
+            {
+                ApplyEvent(new MetaItemAdded(metaItemId, metaItemName, EventSourceId));
             }
 		}
 
-        public void RemoveMetaitem(Guid metaitemId)
+        public void RemoveMetaItem(Guid metaItemId)
         {
-            if (metaitems.Any(i => i.EntityId == metaitemId))
+            if (deleted)
             {
-                ApplyEvent(new MetaitemRemoved(metaitemId, EventSourceId));
+                throw new MetaModelDeletedException();
+            }
+
+            if (metaItems.Any(i => i.EntityId == metaItemId))
+            {
+                ApplyEvent(new MetaItemRemoved(metaItemId, EventSourceId));
             }
         }
 
-        public bool ContainsMetaitem(Guid metaitemId)
+        public bool ContainsMetaItem(Guid metaItemId)
         {
-            return metaitems.Any(i => i.EntityId == metaitemId);
+            return metaItems.Any(i => i.EntityId == metaItemId);
         }
 
         private void OnMetaModelCreated(MetaModelCreated e)
 		{
 			metaModelName = e.MetaModelName;
-            metaitems = new List<Metaitem>();
+            metaItems = new List<MetaItem>();
+            deleted = false;
 		}
+
+        private void OnMetaModelDeleted(MetaModelDeleted e)
+        {
+            deleted = true;
+        }
 
         private void OnMetaModelRenamed(MetaModelRenamed e)
         {
             metaModelName = e.NewMetaModelName;
         }
 
-        private void OnMetaitemAdded(MetaitemAdded e)
+        private void OnMetaItemAdded(MetaItemAdded e)
 		{
-            metaitems.Add(new Metaitem(this, e.MetaitemId, e.MetaitemName));
+            metaItems.Add(new MetaItem(this, e.MetaItemId, e.MetaItemName));
 		}
 
-        private void OnMetaitemRemoved(MetaitemRemoved e)
+        private void OnMetaItemRemoved(MetaItemRemoved e)
         {
-            Metaitem metaitem = metaitems.Where(m => m.EntityId == e.MetaitemId).SingleOrDefault();
-            metaitems.Remove(metaitem);
+            MetaItem metaItem = metaItems.Where(m => m.EntityId == e.MetaItemId).SingleOrDefault();
+            metaItems.Remove(metaItem);
         }
 	}
 }

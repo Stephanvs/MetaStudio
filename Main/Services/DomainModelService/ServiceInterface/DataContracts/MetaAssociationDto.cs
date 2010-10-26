@@ -10,9 +10,9 @@ namespace DomainModelService.ServiceInterface.DataContracts
         public MetaAssociationTypeDto Type { get; set; }
 
         //[DataMember()]
-        //public MetaitemDto Source { get; set; }
+        //public MetaItemDto Source { get; set; }
 
         [DataMember()]
-        public MetaitemDto Target { get; set; }
+        public MetaItemDto Target { get; set; }
     }
 }

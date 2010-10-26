@@ -87,11 +87,12 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregateRoots\MetaModelScenarios\When_adding_a_metaitem_to_a_metamodel.cs" />
-    <Compile Include="AggregateRoots\MetaModelScenarios\When_removing_a_metaitem_from_a_metamodel.cs" />
-    <Compile Include="AggregateRoots\MetaModelScenarios\When_renaming_a_metamodel.cs" />
+    <Compile Include="AggregateRoots\MetaAssociationScenarios\When_creating_a_MetaAssociation.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_adding_a_MetaItem_to_a_MetaModel.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_removing_a_MetaItem_from_a_MetaModel.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_renaming_a_MetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AggregateRoots\MetaModelScenarios\When_creating_a_metamodel.cs" />
+    <Compile Include="AggregateRoots\MetaModelScenarios\When_creating_a_MetaModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Hayman.Commands\Hayman.Commands.csproj">

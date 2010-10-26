@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddMetaItemExecutor.cs" />
+    <Compile Include="DeleteMetaAssociationExecutor.cs" />
+    <Compile Include="DeleteMetaModelExecutor.cs" />
     <Compile Include="CreateMetaAssociationExecutor.cs" />
     <Compile Include="RenameMetaModelExecutor.cs" />
     <Compile Include="RemoveMetaItemExecutor.cs" />

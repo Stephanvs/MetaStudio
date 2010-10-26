@@ -4,18 +4,28 @@ using Ncqrs.Spec;
 using Hayman.Events;
 using FluentAssertions;
 using Hayman.Domain;
+using System.Collections.Generic;
+using Ncqrs.Eventing.Sourcing;
 
 namespace DomainTests.AggregateRoots.MetaModelScenarios
 {
     [Specification]
-    public class When_creating_a_MetaModel : AggregateRootTestFixture<MetaModel>
+    public class When_deleting_a_MetaModel : AggregateRootTestFixture<MetaModel>
     {
         private Guid theId = Guid.NewGuid();
         private String theName = "My MetaModel";
 
+        protected override IEnumerable<SourcedEvent> Given()
+        {
+            return Prepare.Events
+            (
+                new MetaModelCreated(theId, theName)
+            ).ForSource(theId);
+        }
+
         protected override void When()
         {
-            AggregateRoot = new MetaModel(theId, theName);
+            AggregateRoot.Delete();
         }
 
         [Then]
@@ -25,24 +35,16 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [And]
-        public void And_should_be_of_type_MetaModelCreated()
+        public void And_should_be_of_type_MetaModelDeleted()
         {
-            PublishedEvents.First().Should().BeOfType<MetaModelCreated>();
+            PublishedEvents.First().Should().BeOfType<MetaModelDeleted>();
         }
 
         [And]
         public void And_the_EventSourceId_should_be_set_to_the_MetaModelId()
         {
-            var e = (MetaModelCreated)PublishedEvents.First();
+            var e = (MetaModelDeleted)PublishedEvents.First();
             AggregateRoot.EventSourceId.Should().Be(e.MetaModelId);
-        }
-
-        [And]
-        public void And_MetaModel_id_and_name_should_be_published_as_given_at_construct()
-        {
-            var e = PublishedEvents.First().As<MetaModelCreated>();
-            e.MetaModelId.Should().Be(theId);
-            e.MetaModelName.Should().Be(theName);
         }
     }
 }

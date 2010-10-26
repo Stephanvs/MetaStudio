@@ -13,22 +13,22 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
     [Specification]
     public class When_removing_a_MetaItem_from_a_MetaModel : AggregateRootTestFixture<MetaModel>
     {
-        private Guid TheMetaModelId = Guid.NewGuid();
-        private Guid TheMetaItemId = Guid.NewGuid();
+        private Guid theMetaModelId = Guid.NewGuid();
+        private Guid theMetaItemId = Guid.NewGuid();
 
         protected override IEnumerable<SourcedEvent> Given()
         {
             return Prepare.Events
             (
-                new MetaModelCreated(TheMetaModelId, "My metamodel"),
-                new MetaItemAdded(TheMetaItemId, "My MetaItem", TheMetaModelId)
+                new MetaModelCreated(theMetaModelId, "My metamodel"),
+                new MetaItemAdded(theMetaItemId, "My MetaItem", theMetaModelId)
 
-            ).ForSource(Guid.NewGuid());
+            ).ForSource(theMetaModelId);
         }
 
         protected override void When()
         {
-            AggregateRoot.RemoveMetaItem(TheMetaItemId);
+            AggregateRoot.RemoveMetaItem(theMetaItemId);
         }
 
         [Then]
@@ -47,7 +47,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         public void And_MetaModel_id_should_be_published_as_given_at_construct()
         {
             var e = PublishedEvents.First().As<MetaItemRemoved>();
-            e.MetaItemId.Should().Be(TheMetaItemId);
+            e.MetaItemId.Should().Be(theMetaItemId);
         }
 
         [And]

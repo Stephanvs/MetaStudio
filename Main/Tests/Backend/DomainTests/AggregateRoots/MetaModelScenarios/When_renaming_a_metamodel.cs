@@ -27,11 +27,29 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [Then]
-        public void Then_the_ProjectRenamed_event_been_published() {
-            PublishedEvents.Count().Should().Be(1); 
-            var evnt = (MetaModelRenamed)PublishedEvents.First(); 
-            evnt.EventSourceId.Should().Be(TheId);
-            evnt.NewMetaModelName.Should().Be(newName);
+        public void Then_there_should_be_only_one_event_be_published()
+        {
+            PublishedEvents.Should().HaveCount(1);
+        }
+
+        [And]
+        public void And_should_be_of_type_MetaModelRenamed()
+        {
+            PublishedEvents.First().Should().BeOfType<MetaModelRenamed>();
+        }
+
+        [And]
+        public void And_the_EventSourceId_should_be_set_to_the_MetaModelId()
+        {
+            var e = (MetaModelRenamed)PublishedEvents.First();
+            e.EventSourceId.Should().Be(TheId);
+        }
+
+        [And]
+        public void And_metamodel_newname_should_be_published_as_given_at_construct()
+        {
+            var e = PublishedEvents.First().As<MetaModelRenamed>();
+            e.NewMetaModelName.Should().Be(newName);
         }
     }
 }

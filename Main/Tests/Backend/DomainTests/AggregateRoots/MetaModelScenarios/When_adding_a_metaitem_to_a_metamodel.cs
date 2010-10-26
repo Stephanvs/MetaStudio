@@ -2,7 +2,6 @@
 using Ncqrs.Spec;
 using System.Collections.Generic;
 using Ncqrs.Eventing.Sourcing;
-using Ncqrs.Domain;
 using Hayman.Events;
 using Hayman.Domain;
 using FluentAssertions;
@@ -30,19 +29,19 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [Then]
-        public void Then_only_event_event_should_be_published()
+        public void Then_there_should_be_one_event_be_published()
         {
             PublishedEvents.Should().HaveCount(1);
         }
 
         [And]
-        public void And_should_be_of_type_StoryAddedToProductBacklog()
+        public void And_should_be_of_type_MetaitemAdded()
         {
             PublishedEvents.First().Should().BeOfType<MetaitemAdded>();
         }
 
         [And]
-        public void And_event_info_should_contain_given_details()
+        public void And__the_metaitem_id_and_name_should_be_published_as_given_at_construct()
         {
             var e = PublishedEvents.First().As<MetaitemAdded>();
             e.MetaitemId.Should().Be(TheMetaitemId);
@@ -50,7 +49,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [And]
-        public void And_the_owner_should_be_the_metamodel_containing_the_metamitem()
+        public void And_the_owner_should_be_the_metamodel_containing_the_metaitem()
         {
             var e = PublishedEvents.First().As<MetaitemAdded>();
             e.MetaModelId.Should().Be(AggregateRoot.EventSourceId);

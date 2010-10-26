@@ -10,10 +10,10 @@ using System.Linq;
 namespace DomainTests.AggregateRoots.MetaModelScenarios
 {
     [Specification]
-    public class When_adding_a_metaitem_to_a_metamodel : AggregateRootTestFixture<MetaModel>
+    public class When_adding_a_MetaItem_to_a_MetaModel : AggregateRootTestFixture<MetaModel>
     {
-        private Guid TheMetaitemId = Guid.NewGuid();
-        private string TheMetaitemName = "metaitem";
+        private Guid TheMetaItemId = Guid.NewGuid();
+        private string TheMetaItemName = "MetaItem";
 
         protected override IEnumerable<SourcedEvent> Given()
         {
@@ -25,7 +25,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
 
         protected override void When()
         {
-            AggregateRoot.AddMetaitem(TheMetaitemId, TheMetaitemName);
+            AggregateRoot.AddMetaItem(TheMetaItemId, TheMetaItemName);
         }
 
         [Then]
@@ -35,25 +35,25 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [And]
-        public void And_should_be_of_type_MetaitemAdded()
+        public void And_should_be_of_type_MetaItemAdded()
         {
-            PublishedEvents.First().Should().BeOfType<MetaitemAdded>();
+            PublishedEvents.First().Should().BeOfType<MetaItemAdded>();
         }
 
         [And]
-        public void And__the_metaitem_id_and_name_should_be_published_as_given_at_construct()
+        public void And_the_MetaItem_id_and_name_should_be_published_as_given_at_construct()
         {
-            var e = PublishedEvents.First().As<MetaitemAdded>();
-            e.MetaitemId.Should().Be(TheMetaitemId);
-            e.MetaitemName.Should().Be(TheMetaitemName);
+            var e = PublishedEvents.First().As<MetaItemAdded>();
+            e.MetaItemId.Should().Be(TheMetaItemId);
+            e.MetaItemName.Should().Be(TheMetaItemName);
         }
 
         [And]
-        public void And_the_owner_should_be_the_metamodel_containing_the_metaitem()
+        public void And_the_owner_should_be_the_MetaModel_containing_the_MetaItem()
         {
-            var e = PublishedEvents.First().As<MetaitemAdded>();
+            var e = PublishedEvents.First().As<MetaItemAdded>();
             e.MetaModelId.Should().Be(AggregateRoot.EventSourceId);
-            AggregateRoot.ContainsMetaitem(e.MetaitemId).Should().BeTrue();
+            AggregateRoot.ContainsMetaItem(e.MetaItemId).Should().BeTrue();
         }
     }
 }

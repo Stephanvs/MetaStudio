@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace DomainModelService.ServiceInterface.DataContracts
 {
     [DataContract()]
-    public class MetaitemDto
+    public class MetaItemDto
     {
         [DataMember()]
         public string Name { get; set; }
@@ -13,7 +13,7 @@ namespace DomainModelService.ServiceInterface.DataContracts
         [DataMember]
         public MetaAssociationDtoList Associations { get; set; }
 
-        public MetaitemDto()
+        public MetaItemDto()
         {
             Associations = new MetaAssociationDtoList();
         }

@@ -8,7 +8,7 @@ using Hayman.Domain;
 namespace DomainTests.AggregateRoots.MetaModelScenarios
 {
     [Specification]
-    public class When_creating_a_metamodel : AggregateRootTestFixture<MetaModel>
+    public class When_creating_a_MetaModel : AggregateRootTestFixture<MetaModel>
     {
         private Guid TheId = Guid.NewGuid();
         private String TheName = "My MetaModel";
@@ -38,7 +38,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         }
 
         [And]
-        public void And_metamodel_id_and_name_should_be_published_as_given_at_construct()
+        public void And_MetaModel_id_and_name_should_be_published_as_given_at_construct()
         {
             var e = PublishedEvents.First().As<MetaModelCreated>();
             e.MetaModelId.Should().Be(TheId);

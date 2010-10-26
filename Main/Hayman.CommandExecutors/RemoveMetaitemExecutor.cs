@@ -6,12 +6,12 @@ using Hayman.Domain;
 
 namespace Hayman.CommandExecutors
 {
-    public class RemoveMetaitemExecutor : CommandExecutorBase<RemoveMetaitem>
+    public class RemoveMetaItemExecutor : CommandExecutorBase<RemoveMetaItem>
 	{
-        protected override void ExecuteInContext(IUnitOfWorkContext context, RemoveMetaitem command)
+        protected override void ExecuteInContext(IUnitOfWorkContext context, RemoveMetaItem command)
 		{
-			var model = context.GetById<MetaModel>(command.MetaModelId);
-            model.RemoveMetaitem(command.MetaitemId);
+			var metaModel = context.GetById<MetaModel>(command.MetaModelId);
+            metaModel.RemoveMetaItem(command.MetaItemId);
 			context.Accept();
 		}
 	}

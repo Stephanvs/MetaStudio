@@ -5,7 +5,7 @@ using Ncqrs.Eventing.Storage;
 using Ncqrs.Eventing.Storage.SQL;
 using System;
 using Hayman.Commands;
-using Hayman.CommandExecutors;
+//using Hayman.CommandExecutors;
 using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 
 namespace Hayman.CommandService

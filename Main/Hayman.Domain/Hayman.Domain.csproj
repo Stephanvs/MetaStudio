@@ -72,11 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Association.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="MetaAssociation.cs" />
     <Compile Include="MetaAssociationDeletedException.cs" />
     <Compile Include="MetaItem.cs" />
     <Compile Include="MetaModel.cs" />
     <Compile Include="MetaModelDeletedException.cs" />
+    <Compile Include="Snapshotting\MetaAssociationSnapshot.cs" />
+    <Compile Include="Snapshotting\MetaModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

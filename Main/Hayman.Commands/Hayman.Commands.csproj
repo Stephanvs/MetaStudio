@@ -71,6 +71,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddItem.cs" />
+    <Compile Include="AddAssociation.cs" />
     <Compile Include="DeleteMetaModel.cs" />
     <Compile Include="DeleteMetaAssociation.cs" />
     <Compile Include="CreateMetaAssociation.cs" />

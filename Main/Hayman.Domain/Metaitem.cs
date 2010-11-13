@@ -1,24 +1,64 @@
 ﻿using System;
 using Ncqrs.Domain;
 using Hayman.Events;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hayman.Domain
 {
     public class MetaItem : EntityMappedByConvention
 	{
-        public MetaModel MetaModel { get; set; }
-        public string MetaItemName { get; set; }
+        private string metaItemName;
+        private List<Item> items = new List<Item>();
+        private Guid metaItemBranchId;
+        
 
-        public MetaItem(MetaModel metaModel, Guid metaItemId, string metaItemName)
+        public MetaItem(MetaModel metaModel, Guid metaItemId, string metaItemName, Guid metaItemBranchId)
             : base(metaModel, metaItemId)
         {
-            MetaItemName = metaItemName;
-            MetaModel = metaModel;
+            this.metaItemName = metaItemName;
+            this.metaItemBranchId = metaItemBranchId;
         }
 
-        private void OnMetaItemAdded(MetaItemAdded e)
+        public void AddItem(Guid itemId, string itemName)
         {
-            MetaItemName = e.MetaItemName;
+            if (((MetaModel)ParentAggregateRoot).IsDeleted())
+            {
+                throw new MetaModelDeletedException();
+            }
+
+            if (!items.Any(i => i.EntityId == itemId))
+            {
+                ApplyEvent(new ItemAdded(itemId, itemName));
+            }
         }
-	}
+
+        public void RemoveItem(Guid itemId)
+        {
+            if (((MetaModel)ParentAggregateRoot).IsDeleted())
+            {
+                throw new MetaModelDeletedException();
+            }
+
+            if (!items.Any(i => i.EntityId == itemId))
+            {
+                ApplyEvent(new ItemRemoved(itemId));
+            }
+        }
+
+        #region EventHandlers
+        
+        private void OnItemAdded(ItemAdded e)
+        {
+            items.Add(new Item((MetaModel)ParentAggregateRoot, this, e.ItemId, e.ItemName));
+        }
+
+        private void OnItemRemoved(ItemRemoved e)
+        {
+            Item item = items.Where(m => m.EntityId == e.ItemId).SingleOrDefault();
+            items.Remove(item);
+        }
+
+        #endregion
+    }
 }

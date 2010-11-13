@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssociationAdded.cs" />
+    <Compile Include="AssociationRemoved.cs" />
+    <Compile Include="MetaItemBranchRemoved.cs" />
+    <Compile Include="MetaItemBranchAdded.cs" />
+    <Compile Include="ItemRemoved.cs" />
+    <Compile Include="ItemAdded.cs" />
     <Compile Include="MetaModelDeleted.cs" />
     <Compile Include="MetaAssociationDeleted.cs" />
     <Compile Include="MetaAssociationCreated.cs" />

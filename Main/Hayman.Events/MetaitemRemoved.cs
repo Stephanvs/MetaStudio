@@ -6,13 +6,11 @@ namespace Hayman.Events
 	[Serializable]
 	public class MetaItemRemoved : SourcedEntityEvent
 	{
-        public Guid MetaItemId { get; set; }
-        public Guid MetaModelId { get; set; }
+        public Guid MetaItemId { get; private set; }
 
-        public MetaItemRemoved(Guid metaItemId, Guid metaModelId)
+        public MetaItemRemoved(Guid metaItemId)
         {
             MetaItemId = metaItemId;
-            MetaModelId = metaModelId;
         }
 	}
 }

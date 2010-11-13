@@ -21,7 +21,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
             return Prepare.Events
             (
                 new MetaModelCreated(theMetaModelId, "My metamodel"),
-                new MetaItemAdded(theMetaItemId, "My MetaItem", theMetaModelId)
+                new MetaItemAdded(theMetaItemId, "My MetaItem")
 
             ).ForSource(theMetaModelId);
         }
@@ -54,7 +54,8 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
         public void And_the_owner_should_be_the_MetaModel_not_containing_the_MetaItem()
         {
             var e = PublishedEvents.First().As<MetaItemRemoved>();
-            e.MetaModelId.Should().Be(AggregateRoot.EventSourceId);
+            //e.MetaModelId.Should().Be(AggregateRoot.EventSourceId);
+            AggregateRoot.ContainsMetaItem(e.MetaItemId).Should().BeFalse();
         }
     }
 }

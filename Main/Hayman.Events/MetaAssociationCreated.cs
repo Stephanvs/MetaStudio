@@ -5,9 +5,9 @@ namespace Hayman.Events
 {
 	public class MetaAssociationCreated : SourcedEvent
 	{
-        public Guid MetaAssociationId { get; set; }
-        public Guid MetaItemSourceId { get; set; }
-        public Guid MetaItemTargetId { get; set; }
+        public Guid MetaAssociationId { get; private set; }
+        public Guid MetaItemSourceId { get; private set; }
+        public Guid MetaItemTargetId { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MetaAssociationCreated class.

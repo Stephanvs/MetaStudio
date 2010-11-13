@@ -5,7 +5,7 @@ namespace Hayman.Events
 {
 	public class MetaAssociationDeleted : SourcedEvent
 	{
-        public Guid MetaAssociationId { get; set; }
+        public Guid MetaAssociationId { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MetaAssociationCreated class.

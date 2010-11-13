@@ -71,13 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddMetaItemExecutor.cs" />
-    <Compile Include="DeleteMetaAssociationExecutor.cs" />
-    <Compile Include="DeleteMetaModelExecutor.cs" />
-    <Compile Include="CreateMetaAssociationExecutor.cs" />
-    <Compile Include="RenameMetaModelExecutor.cs" />
-    <Compile Include="RemoveMetaItemExecutor.cs" />
-    <Compile Include="CreateMetaModelExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

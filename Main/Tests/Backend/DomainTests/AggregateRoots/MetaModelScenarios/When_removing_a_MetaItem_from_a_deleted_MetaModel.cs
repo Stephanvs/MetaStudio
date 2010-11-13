@@ -22,7 +22,7 @@ namespace DomainTests.AggregateRoots.MetaModelScenarios
             return Prepare.Events
             (
                 new MetaModelCreated(theMetaModelId, "My metamodel"),
-                new MetaItemAdded(theMetaItemId, "My MetaItem", theMetaModelId),
+                new MetaItemAdded(theMetaItemId, "My MetaItem"),
                 new MetaModelDeleted(theMetaModelId)
 
             ).ForSource(theMetaModelId);

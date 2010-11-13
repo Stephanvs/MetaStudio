@@ -5,15 +5,22 @@ namespace Hayman.Events
 {
 	public class MetaItemAdded : SourcedEntityEvent
 	{
-        public Guid MetaItemId { get; set; }
-        public String MetaItemName { get; set; }
-        public Guid MetaModelId { get; set; }
+        public Guid MetaItemId { get; private set; }
+        public String MetaItemName { get; private set; }
+        public Guid MetaItemBranchId { get; private set; }
 
-        public MetaItemAdded(Guid metaItemId, String metaItemName, Guid metaModelId)
+        public MetaItemAdded(Guid metaItemId, String metaItemName, Guid metaItemBranchId)
         {
             MetaItemId = metaItemId;
             MetaItemName = metaItemName;
-            MetaModelId = metaModelId;
+            MetaItemBranchId = metaItemBranchId;
+        }
+
+        public MetaItemAdded(Guid metaItemId, String metaItemName)
+        {
+            MetaItemId = metaItemId;
+            MetaItemName = metaItemName;
+            MetaItemBranchId = Guid.Empty;
         }
     }
 }

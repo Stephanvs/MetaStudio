@@ -6,7 +6,7 @@ namespace Hayman.Events
 	[Serializable]
 	public class MetaModelDeleted : SourcedEvent
     {
-        public Guid MetaModelId { get; set; }
+        public Guid MetaModelId { get; private set; }
 
         public MetaModelDeleted(Guid metaModelId)
         {

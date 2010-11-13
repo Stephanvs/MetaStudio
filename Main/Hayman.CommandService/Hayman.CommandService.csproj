@@ -107,10 +107,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hayman.CommandExecutors\Hayman.CommandExecutors.csproj">
-      <Project>{89933793-D16F-4B69-8B56-FE23769AA057}</Project>
-      <Name>Hayman.CommandExecutors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hayman.Commands\Hayman.Commands.csproj">
       <Project>{06998165-D331-4E21-8D38-CBE5A61BFEE7}</Project>
       <Name>Hayman.Commands</Name>

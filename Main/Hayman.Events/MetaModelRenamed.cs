@@ -6,7 +6,7 @@ namespace Hayman.Events
 	[Serializable]
 	public class MetaModelRenamed : SourcedEvent
     {
-        public String NewMetaModelName { get; set; }
+        public String NewMetaModelName { get; private set; }
 
         public MetaModelRenamed(String newMetaModelName)
         {

@@ -6,7 +6,7 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 namespace Hayman.Domain.Storage.Tests
 {
     [Specification]
-    public class BaseTests : BaseTestFixture
+    public abstract class BaseTests : BaseTestFixture
     {
         private IEventStore store;
         private IEventBus bus;

@@ -1,0 +1,233 @@
+﻿<Window x:Class="Hayman.Shell.Views.ShellView"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+		xmlns:cal="http://www.codeplex.com/CompositeWPF"
+        xmlns:controls="clr-namespace:Hayman.Shell.Controls"
+		xmlns:local="clr-namespace:Hayman.Client.Infrastructure.Regions;assembly=Hayman.Client.Infrastructure"
+        xmlns:infrastructurepresentation="clr-namespace:Hayman.Client.Presentation.Windows;assembly=Hayman.Client.Presentation.Windows"
+		xmlns:infrastructurepresentationcontrols="clr-namespace:Hayman.Client.Presentation.Windows.Controls;assembly=Hayman.Client.Presentation.Windows"
+		xmlns:vm="clr-namespace:Hayman.Shell.ViewModels"
+		Title="Hayman Shell"
+        WindowState="{Binding WindowState}"
+        ResizeMode="{Binding ResizeMode}"
+        ShowActivated="True"
+        WindowStyle="None"
+        Background="Transparent"
+        UseLayoutRounding="True"
+        AllowsTransparency="False"
+        WindowStartupLocation="CenterScreen" >
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo/>
+    </Window.TaskbarItemInfo>
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource GenericBackground01}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Grid x:Name="WindowHeader"
+			  Grid.Row="0"
+			  Height="35">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="50*" />
+				<ColumnDefinition Width="50*" />
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Grid.Column="0"
+						Margin="5,0,0,0"
+						Orientation="Horizontal"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Stretch">
+
+				<TextBlock x:Name="WindowTitle"
+						   Margin="0,2,0,0"
+						   IsHitTestVisible="False"
+						   VerticalAlignment="Center"
+						   Text="{Binding DisplayName, FallbackValue='Hayman Shell'}"
+						   HorizontalAlignment="Left"
+						   Foreground="White" />
+
+				<Line Margin="10,0,10,0"
+					  VerticalAlignment="Center"
+					  X1="0"
+					  Y1="0"
+					  X2="0"
+					  Y2="22"
+					  Height="22"
+					  StrokeThickness="1"
+                      RenderOptions.EdgeMode="Aliased"
+                      Opacity="0.25"
+                      Stroke="White">
+					<!--<Line.Stroke>
+						<LinearGradientBrush StartPoint="0.5,0"
+											 EndPoint="0.5,1">
+							<GradientStop Color="White"
+										  Offset="0" />
+							<GradientStop Color="WhiteSmoke"
+										  Offset="0.25" />
+						</LinearGradientBrush>
+					</Line.Stroke>-->
+				</Line>
+
+				<TextBlock x:Name="UserName"
+						   VerticalAlignment="Center"
+						   Text="{Binding UserName, FallbackValue=NoUser}"
+						   Margin="0,2,0,0"
+						   HorizontalAlignment="Left"
+						   Foreground="White"
+						   ToolTip="Active user" />
+                
+                <controls:SplitButton x:Name="ShutdownOptionsButton"
+                                      Content="Exit"
+                                      ShowIcon="True"
+                                      IconStyle="{StaticResource ShutdownIconStyle}"
+                                      VerticalAlignment="Center"
+                                      Padding="5,5,5,5"
+                                      Mode="Dropdown"
+                                      Height="30"
+                                      Placement="Bottom"
+                                      Margin="15,2,0,0"
+                                      Width="Auto"
+                                      ToolTip="Options to close session or exit Hayman">
+
+                    <MenuItem x:Name="ShutdownMenuItem"
+                              Header="Exit"
+                              Command="{Binding ShutdownCommand}"/>
+
+                    <!--<MenuItem x:Name="LogoffMenuItem"
+                              Header="Logoff"
+                              Command="{Binding CloseSessionCommand}"/>-->
+
+                </controls:SplitButton>
+                
+
+			</StackPanel>
+
+			<StackPanel Grid.Column="1"
+						Orientation="Horizontal"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						Margin="0,0,5,0">
+
+				<controls:SplitButton x:Name="ShowSplitButton"
+									  Content="Show"
+									  VerticalAlignment="Center"
+									  Padding="5,5,5,5"
+									  Mode="Dropdown"
+									  Height="30"
+									  Placement="Bottom"
+									  Margin="15,2,0,0"
+									  Width="Auto">
+
+					<MenuItem x:Name="ShowNavigationPanelMenuItem"
+							  Header="Navigation panel"
+                              Command="{Binding ShowNavigationPanelCommand}"
+							  />
+
+                    <MenuItem x:Name="ShowCalendarMenuItem"
+							  Header="Calendar"
+                              Command="{Binding ShowCalendarCommand}"
+							  />
+
+                    <MenuItem x:Name="ShowClockMenuItem"
+							  Header="Clock"
+                              Command="{Binding ShowClockCommand}"
+							  />
+
+                    <Separator />
+
+					<MenuItem x:Name="AboutBoxMenuItem"
+							  Header="About Hayman" />
+				</controls:SplitButton>
+
+				<Line Margin="10,0,10,0"
+					  VerticalAlignment="Center"
+					  X1="0"
+					  Y1="0"
+					  X2="0"
+					  Y2="22"
+					  Height="22"
+					  StrokeThickness="1"
+                      Stroke="White"
+                      Opacity="0.25"
+                      RenderOptions.EdgeMode="Aliased">
+					<!--<Line.Stroke>
+						<LinearGradientBrush StartPoint="0.5,0"
+											 EndPoint="0.5,1">
+							<GradientStop Color="White"
+										  Offset="0" />
+							<GradientStop Color="WhiteSmoke"
+										  Offset="0.25" />
+						</LinearGradientBrush>
+					</Line.Stroke>-->
+				</Line>
+
+				<Button x:Name="PART_MinimizeButton"
+						Style="{DynamicResource MinimizeButtonStyle}"
+						Width="22"
+						Height="22"
+						Command="{Binding MinimizeCommand}"
+						ToolTip="Minimize" />
+
+                <Button x:Name="PART_MaximizeButton"
+						Style="{DynamicResource MaximizeButtonStyle}"
+						Width="22"
+						Height="22"
+						Command="{Binding MaximizeCommand}"
+						ToolTip="Maximize" />
+
+                <Button x:Name="PART_CloseButton"
+						Style="{DynamicResource CloseButtonStyle}"
+						Width="22"
+						Height="22"
+						Command="{Binding ShutdownCommand}"
+						ToolTip="Close" />
+				
+			</StackPanel>
+		</Grid>
+
+		<Border Grid.Row="1"
+				Background="Transparent"
+				BorderBrush="#49FFFFFF"
+				BorderThickness="0,0,0,1">
+			<Border BorderBrush="#49000000"
+					BorderThickness="0,0,0,1" />
+		</Border>
+
+        <Grid x:Name="ActiveWindowZone" Grid.Row="2" Height="70">
+            <Border BorderBrush="#49FFFFFF" BorderThickness="0,0,0,1">
+                <Border BorderBrush="#49000000" BorderThickness="0,0,0,1">
+                    <ListBox x:Name="ActiveWindowList"
+    					     Background="Transparent"
+							 AllowDrop="False"
+    					     BorderThickness="0"
+    					     ItemsSource="{Binding ActiveWindows}"
+    					     ItemsPanel="{StaticResource ActiveWindowsPanelTemplate}"
+    					     ItemContainerStyle="{StaticResource ActiveWindowContainerStyle}" 
+                             ScrollViewer.CanContentScroll="False"
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                             ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                </Border>
+            </Border>
+        </Grid>
+
+        <infrastructurepresentationcontrols:Desktop cal:RegionManager.RegionName="{x:Static Member=local:RegionNames.DesktopRegion}"
+					   Grid.Row="3"
+					   Id="94fa801f-bef7-437a-ba75-352f1ede6fb9"
+					   infrastructurepresentation:DesktopManager.IsDesktop="True"
+					   Visibility="Visible"
+					   Background="Transparent"
+					   AllowDrop="True"
+					   SnapsToDevicePixels="True"
+					   ClipToBounds="False">
+        </infrastructurepresentationcontrols:Desktop>
+
+        <infrastructurepresentationcontrols:Desktop x:Name="ModalContainer" Grid.RowSpan="4" infrastructurepresentation:DesktopManager.IsModalContainer="True" 
+                                 AllowDrop="False" 
+                                 Visibility="Collapsed" />
+    </Grid>
+</Window>

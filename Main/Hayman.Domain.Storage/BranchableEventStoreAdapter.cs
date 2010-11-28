@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Hayman.Domain.Storage
 {
-    class BranchableEventStoreAdapter : IEventStore
+    public class BranchableEventStoreAdapter : IEventStore
     {
         private IEventStore store;
 

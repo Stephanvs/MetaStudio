@@ -111,9 +111,17 @@
       <Project>{06998165-D331-4E21-8D38-CBE5A61BFEE7}</Project>
       <Name>Hayman.Commands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hayman.Domain.Storage\Hayman.Domain.Storage.csproj">
+      <Project>{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}</Project>
+      <Name>Hayman.Domain.Storage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hayman.Domain\Hayman.Domain.csproj">
       <Project>{ADB9913F-1453-4BB5-9870-76038CB1FFC4}</Project>
       <Name>Hayman.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hayman.ReadModel.Denormalizers\Hayman.ReadModel.Denormalizers.csproj">
+      <Project>{F1900DC9-B5D3-4372-A2AC-695035854D36}</Project>
+      <Name>Hayman.ReadModel.Denormalizers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

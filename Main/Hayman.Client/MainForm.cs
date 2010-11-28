@@ -1,22 +1,19 @@
 ﻿using System;
 using DevExpress.XtraEditors;
-using Hayman.ReadModel;
 
 namespace Hayman.Client
 {
     public partial class MainForm : XtraForm
     {
-        HaymanReadModelEntities db;
-
         public MainForm()
         {
             InitializeComponent();
+            metaModelListControl.MetaModelChanged += metaModelListControl_MetaModelChanged;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        void metaModelListControl_MetaModelChanged(HaymanReadModelServiceReference.MetaModel metaModel)
         {
-            db = new HaymanReadModelEntities();
-           
+            metaItemListControl.DataSource = metaModel;
         }
     }
 }

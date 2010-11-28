@@ -18,13 +18,13 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("Hayman.ReadModel", "FK_MetaAssociation_MetaItem", "MetaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Hayman.ReadModel.MetaItem), "MetaAssociation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Hayman.ReadModel.MetaAssociation), true)]
-[assembly: EdmRelationshipAttribute("Hayman.ReadModel", "FK_MetaAssociation_MetaItem1", "MetaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Hayman.ReadModel.MetaItem), "MetaAssociation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Hayman.ReadModel.MetaAssociation), true)]
-[assembly: EdmRelationshipAttribute("Hayman.ReadModel", "FK_MetaItem_MetaModel", "MetaModel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Hayman.ReadModel.MetaModel), "MetaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Hayman.ReadModel.MetaItem), true)]
+[assembly: EdmRelationshipAttribute("HaymanReadModelModel", "FK_MetaAssociation_MetaItemSource", "MetaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Hayman.ReadModel.Sql.MetaItem), "MetaAssociation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Hayman.ReadModel.Sql.MetaAssociation), true)]
+[assembly: EdmRelationshipAttribute("HaymanReadModelModel", "FK_MetaAssociation_MetaItemTarget", "MetaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Hayman.ReadModel.Sql.MetaItem), "MetaAssociation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Hayman.ReadModel.Sql.MetaAssociation), true)]
+[assembly: EdmRelationshipAttribute("HaymanReadModelModel", "FK_MetaItem_MetaModel", "MetaModel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Hayman.ReadModel.Sql.MetaModel), "MetaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Hayman.ReadModel.Sql.MetaItem), true)]
 
 #endregion
 
-namespace Hayman.ReadModel
+namespace Hayman.ReadModel.Sql
 {
     #region Contexts
     
@@ -158,7 +158,7 @@ namespace Hayman.ReadModel
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Hayman.ReadModel", Name="MetaAssociation")]
+    [EdmEntityTypeAttribute(NamespaceName="HaymanReadModelModel", Name="MetaAssociation")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MetaAssociation : EntityObject
@@ -294,16 +294,16 @@ namespace Hayman.ReadModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Hayman.ReadModel", "FK_MetaAssociation_MetaItem", "MetaItem")]
-        public MetaItem MetaItem
+        [EdmRelationshipNavigationPropertyAttribute("HaymanReadModelModel", "FK_MetaAssociation_MetaItemSource", "MetaItem")]
+        public MetaItem MetaItemSource
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem", "MetaItem").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemSource", "MetaItem").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem", "MetaItem").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemSource", "MetaItem").Value = value;
             }
         }
         /// <summary>
@@ -311,17 +311,17 @@ namespace Hayman.ReadModel
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<MetaItem> MetaItemReference
+        public EntityReference<MetaItem> MetaItemSourceReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem", "MetaItem");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemSource", "MetaItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem", "MetaItem", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemSource", "MetaItem", value);
                 }
             }
         }
@@ -332,16 +332,16 @@ namespace Hayman.ReadModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Hayman.ReadModel", "FK_MetaAssociation_MetaItem1", "MetaItem")]
-        public MetaItem MetaItem1
+        [EdmRelationshipNavigationPropertyAttribute("HaymanReadModelModel", "FK_MetaAssociation_MetaItemTarget", "MetaItem")]
+        public MetaItem MetaItemTarget
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem1", "MetaItem").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget", "MetaItem").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem1", "MetaItem").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget", "MetaItem").Value = value;
             }
         }
         /// <summary>
@@ -349,17 +349,17 @@ namespace Hayman.ReadModel
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<MetaItem> MetaItem1Reference
+        public EntityReference<MetaItem> MetaItemTargetReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem1", "MetaItem");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget", "MetaItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetaItem>("Hayman.ReadModel.FK_MetaAssociation_MetaItem1", "MetaItem", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetaItem>("HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget", "MetaItem", value);
                 }
             }
         }
@@ -370,7 +370,7 @@ namespace Hayman.ReadModel
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Hayman.ReadModel", Name="MetaItem")]
+    [EdmEntityTypeAttribute(NamespaceName="HaymanReadModelModel", Name="MetaItem")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MetaItem : EntityObject
@@ -480,18 +480,18 @@ namespace Hayman.ReadModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Hayman.ReadModel", "FK_MetaAssociation_MetaItem", "MetaAssociation")]
-        public EntityCollection<MetaAssociation> MetaAssociations
+        [EdmRelationshipNavigationPropertyAttribute("HaymanReadModelModel", "FK_MetaAssociation_MetaItemSource", "MetaAssociation")]
+        public EntityCollection<MetaAssociation> IncomingMetaAssociations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetaAssociation>("Hayman.ReadModel.FK_MetaAssociation_MetaItem", "MetaAssociation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetaAssociation>("HaymanReadModelModel.FK_MetaAssociation_MetaItemSource", "MetaAssociation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetaAssociation>("Hayman.ReadModel.FK_MetaAssociation_MetaItem", "MetaAssociation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetaAssociation>("HaymanReadModelModel.FK_MetaAssociation_MetaItemSource", "MetaAssociation", value);
                 }
             }
         }
@@ -502,18 +502,18 @@ namespace Hayman.ReadModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Hayman.ReadModel", "FK_MetaAssociation_MetaItem1", "MetaAssociation")]
-        public EntityCollection<MetaAssociation> MetaAssociations1
+        [EdmRelationshipNavigationPropertyAttribute("HaymanReadModelModel", "FK_MetaAssociation_MetaItemTarget", "MetaAssociation")]
+        public EntityCollection<MetaAssociation> OutgoingMetaAssociations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetaAssociation>("Hayman.ReadModel.FK_MetaAssociation_MetaItem1", "MetaAssociation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetaAssociation>("HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget", "MetaAssociation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetaAssociation>("Hayman.ReadModel.FK_MetaAssociation_MetaItem1", "MetaAssociation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetaAssociation>("HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget", "MetaAssociation", value);
                 }
             }
         }
@@ -524,16 +524,16 @@ namespace Hayman.ReadModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Hayman.ReadModel", "FK_MetaItem_MetaModel", "MetaModel")]
+        [EdmRelationshipNavigationPropertyAttribute("HaymanReadModelModel", "FK_MetaItem_MetaModel", "MetaModel")]
         public MetaModel MetaModel
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaModel>("Hayman.ReadModel.FK_MetaItem_MetaModel", "MetaModel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaModel>("HaymanReadModelModel.FK_MetaItem_MetaModel", "MetaModel").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaModel>("Hayman.ReadModel.FK_MetaItem_MetaModel", "MetaModel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaModel>("HaymanReadModelModel.FK_MetaItem_MetaModel", "MetaModel").Value = value;
             }
         }
         /// <summary>
@@ -545,13 +545,13 @@ namespace Hayman.ReadModel
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaModel>("Hayman.ReadModel.FK_MetaItem_MetaModel", "MetaModel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetaModel>("HaymanReadModelModel.FK_MetaItem_MetaModel", "MetaModel");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetaModel>("Hayman.ReadModel.FK_MetaItem_MetaModel", "MetaModel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetaModel>("HaymanReadModelModel.FK_MetaItem_MetaModel", "MetaModel", value);
                 }
             }
         }
@@ -562,7 +562,7 @@ namespace Hayman.ReadModel
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Hayman.ReadModel", Name="MetaModel")]
+    [EdmEntityTypeAttribute(NamespaceName="HaymanReadModelModel", Name="MetaModel")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MetaModel : EntityObject
@@ -672,18 +672,18 @@ namespace Hayman.ReadModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Hayman.ReadModel", "FK_MetaItem_MetaModel", "MetaItem")]
+        [EdmRelationshipNavigationPropertyAttribute("HaymanReadModelModel", "FK_MetaItem_MetaModel", "MetaItem")]
         public EntityCollection<MetaItem> MetaItems
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetaItem>("Hayman.ReadModel.FK_MetaItem_MetaModel", "MetaItem");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetaItem>("HaymanReadModelModel.FK_MetaItem_MetaModel", "MetaItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetaItem>("Hayman.ReadModel.FK_MetaItem_MetaModel", "MetaItem", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetaItem>("HaymanReadModelModel.FK_MetaItem_MetaModel", "MetaItem", value);
                 }
             }
         }

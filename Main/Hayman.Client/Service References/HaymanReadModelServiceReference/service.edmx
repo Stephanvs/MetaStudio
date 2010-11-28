@@ -1,0 +1,93 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+    <Schema Namespace="HaymanReadModelModel" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="MetaAssociation">
+        <Key>
+          <PropertyRef Name="MetaAssociationId" />
+        </Key>
+        <Property Name="MetaAssociationId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="MetaItemSourceId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="MetaItemTargetId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="MetaItemSource" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemSource" FromRole="MetaAssociation" ToRole="MetaItem" />
+        <NavigationProperty Name="MetaItemTarget" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget" FromRole="MetaAssociation" ToRole="MetaItem" />
+      </EntityType>
+      <EntityType Name="MetaItem">
+        <Key>
+          <PropertyRef Name="MetaItemId" />
+        </Key>
+        <Property Name="MetaItemId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="MetaItemName" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        <Property Name="MetaModelId" Type="Edm.Guid" Nullable="false" />
+        <NavigationProperty Name="IncomingMetaAssociations" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemSource" FromRole="MetaItem" ToRole="MetaAssociation" />
+        <NavigationProperty Name="OutgoingMetaAssociations" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget" FromRole="MetaItem" ToRole="MetaAssociation" />
+        <NavigationProperty Name="MetaModel" Relationship="HaymanReadModelModel.FK_MetaItem_MetaModel" FromRole="MetaItem" ToRole="MetaModel" />
+      </EntityType>
+      <EntityType Name="MetaModel">
+        <Key>
+          <PropertyRef Name="MetaModelId" />
+        </Key>
+        <Property Name="MetaModelId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="MetaModelName" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="MetaItems" Relationship="HaymanReadModelModel.FK_MetaItem_MetaModel" FromRole="MetaModel" ToRole="MetaItem" />
+      </EntityType>
+      <Association Name="FK_MetaAssociation_MetaItemSource">
+        <End Role="MetaItem" Type="HaymanReadModelModel.MetaItem" Multiplicity="1" />
+        <End Role="MetaAssociation" Type="HaymanReadModelModel.MetaAssociation" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MetaItem">
+            <PropertyRef Name="MetaItemId" />
+          </Principal>
+          <Dependent Role="MetaAssociation">
+            <PropertyRef Name="MetaItemSourceId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MetaAssociation_MetaItemTarget">
+        <End Role="MetaItem" Type="HaymanReadModelModel.MetaItem" Multiplicity="1" />
+        <End Role="MetaAssociation" Type="HaymanReadModelModel.MetaAssociation" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MetaItem">
+            <PropertyRef Name="MetaItemId" />
+          </Principal>
+          <Dependent Role="MetaAssociation">
+            <PropertyRef Name="MetaItemTargetId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MetaItem_MetaModel">
+        <End Role="MetaModel" Type="HaymanReadModelModel.MetaModel" Multiplicity="1" />
+        <End Role="MetaItem" Type="HaymanReadModelModel.MetaItem" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MetaModel">
+            <PropertyRef Name="MetaModelId" />
+          </Principal>
+          <Dependent Role="MetaItem">
+            <PropertyRef Name="MetaModelId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+    </Schema>
+    <Schema Namespace="Hayman.ReadModel.Sql" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="HaymanReadModelEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <FunctionImport Name="GetMetaModels" EntitySet="MetaModels" ReturnType="Collection(HaymanReadModelModel.MetaModel)" m:HttpMethod="GET" />
+        <EntitySet Name="MetaAssociations" EntityType="HaymanReadModelModel.MetaAssociation" />
+        <EntitySet Name="MetaItems" EntityType="HaymanReadModelModel.MetaItem" />
+        <EntitySet Name="MetaModels" EntityType="HaymanReadModelModel.MetaModel" />
+        <AssociationSet Name="FK_MetaAssociation_MetaItemSource" Association="HaymanReadModelModel.FK_MetaAssociation_MetaItemSource">
+          <End Role="MetaItem" EntitySet="MetaItems" />
+          <End Role="MetaAssociation" EntitySet="MetaAssociations" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MetaAssociation_MetaItemTarget" Association="HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget">
+          <End Role="MetaItem" EntitySet="MetaItems" />
+          <End Role="MetaAssociation" EntitySet="MetaAssociations" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MetaItem_MetaModel" Association="HaymanReadModelModel.FK_MetaItem_MetaModel">
+          <End Role="MetaModel" EntitySet="MetaModels" />
+          <End Role="MetaItem" EntitySet="MetaItems" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

@@ -1,6 +1,6 @@
 ﻿using System;
-using Hayman.Commands;
 using Ncqrs.Commanding.ServiceModel;
+using Ncqrs.Commanding;
 
 namespace Hayman.CommandService
 {
@@ -11,23 +11,12 @@ namespace Hayman.CommandService
 		static HaymanCommandService()
 		{
 			Bootstrapper.BootUp();
-
 			_service = Ncqrs.NcqrsEnvironment.Get<ICommandService>();
 		}
 
-		public void CreateModel(CreateMetaModel command)
-		{
-			_service.Execute(command);
-		}
-
-		public void CreateMetaItem(AddMetaItem command)
-		{
-			_service.Execute(command);
-		}
-
-        public void AddAssociationToMetaItem(CreateMetaAssociation command)
-		{
-			_service.Execute(command);
-		}
-	}
+        public void ExecuteCommand(ICommand command)
+        {
+            _service.Execute(command);
+        }
+    }
 }

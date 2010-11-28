@@ -31,7 +31,7 @@ namespace Hayman.Domain
                 throw new MetaModelDeletedException();
             }
 
-            ApplyEvent(new MetaModelRenamed(newMetaModelName));
+            ApplyEvent(new MetaModelRenamed(EventSourceId, newMetaModelName));
         }
 
         public void Delete()

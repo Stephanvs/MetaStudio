@@ -43,9 +43,6 @@
             </summary>
       <value>a <see cref="T:System.DateTime" /> UTC value that represents the point
             in time where this event occurred.</value>
-      <getter>
-        <ensures description="The event time stamp should always be in a UTC kind.">Contract.Result&lt;DateTime&gt;().Kind == DateTimeKind.Utc</ensures>
-      </getter>
     </member>
     <member name="P:Ncqrs.Eventing.IEvent.EventVersion">
       <summary>
@@ -69,9 +66,6 @@
             </summary>
       <value>a <see cref="T:System.DateTime" /> UTC value that represents the point
             in time where this event occurred.</value>
-      <getter>
-        <ensures description="The event time stamp should always be in a UTC kind." inheritedFrom="M:Ncqrs.Eventing.IEvent.get_EventTimeStamp" inheritedFromTypeName="IEvent">Contract.Result&lt;DateTime&gt;().Kind == DateTimeKind.Utc</ensures>
-      </getter>
     </member>
     <member name="P:Ncqrs.Eventing.Event.EventVersion">
       <summary>
@@ -90,7 +84,7 @@
             Gets the event sequence number.
             </summary>
       <remarks>
-            An sequence of events always starts with <c>0</c>. So the first event in a sequence has the <see cref="P:Ncqrs.Eventing.Sourcing.ISourcedEvent.EventSequence" /> value of <c>0</c>.
+            An sequence of events always starts with <c>1</c>. So the first event in a sequence has the <see cref="P:Ncqrs.Eventing.Sourcing.ISourcedEvent.EventSequence" /> value of <c>1</c>.
             </remarks>
       <value>A number that represents the order of where this events occurred in the sequence.</value>
     </member>
@@ -205,6 +199,49 @@
       <param name="evnttData">The event data.</param>
       <returns>
         <c>true</c> when this event should be handled; otherwise, <c>false</c>.</returns>
+    </member>
+    <member name="T:Ncqrs.Eventing.Storage.IEventStore">
+      <summary>
+            A event store. Can store and load events from an <see cref="T:Ncqrs.Eventing.Sourcing.IEventSource" />.
+            </summary>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.IEventStore.GetAllEvents(System.Guid)">
+      <summary>
+            Get all events provided by an specified event provider.
+            </summary>
+      <param name="id">The id of the event source that owns the events.</param>
+      <returns>All the events from the event source.</returns>
+      <ensures description="Result should never be null.">Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;() != null</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.IEventStore.GetAllEventsSinceVersion(System.Guid,System.Int64)">
+      <summary>
+            Get all events provided by an specified event source.
+            </summary>
+      <param name="eventSourceId">The id of the event source that owns the events.</param>
+      <returns>All the events from the event source.</returns>
+      <ensures>Contract.ForAll(Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;(), e =&gt; e.EventSequence &gt; version)</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.IEventStore.Save(Ncqrs.Eventing.Sourcing.IEventSource)">
+      <summary>
+            Save all events from a specific event provider.
+            </summary>
+      <exception cref="T:Ncqrs.Eventing.Storage.ConcurrencyException">Occurs when there is already a newer version of the event provider stored in the event store.</exception>
+      <param name="source">The source that should be saved.</param>
+      <requires description="source cannot be null." exception="T:System.ArgumentNullException">source != null</requires>
+      <exception cref="T:System.ArgumentNullException">source == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.ISnapshotStore.SaveShapshot(Ncqrs.Eventing.Sourcing.Snapshotting.ISnapshot)">
+      <summary>
+            Saves a snapshot of the specified event source.
+            </summary>
+      <requires description="The source cannot be null." exception="T:System.ArgumentNullException">source != null</requires>
+      <exception cref="T:System.ArgumentNullException">source == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.ISnapshotStore.GetSnapshot(System.Guid)">
+      <summary>
+            Gets a snapshot of a particular event source, if one exists. Otherwise, returns <c>null</c>.
+            </summary>
+      <ensures>Contract.Result&lt;ISnapshot&gt;() != null ? Contract.Result&lt;ISnapshot&gt;().EventSourceId == eventSourceId : true</ensures>
     </member>
     <member name="T:Ncqrs.GuidCombGenerator">
       <summary>
@@ -647,12 +684,17 @@
              </code>
       <typeparam name="TCommand">The type of the commands to execute.</typeparam>
     </member>
+    <member name="F:Ncqrs.Commanding.CommandExecution.CommandExecutorBase`1._factory">
+      <summary>
+            Holds the <see cref="T:Ncqrs.Domain.IUnitOfWorkFactory" />. This instance should never be null.
+            </summary>
+    </member>
     <member name="M:Ncqrs.Commanding.CommandExecution.CommandExecutorBase`1.Execute(`0)">
       <summary>
             Executes the command.
             </summary>
       <param name="command">The command to execute. This should not be null.</param>
-      <exception cref="!:ArgumentNullException">Occurs when <i>command</i> is null.</exception>
+      <exception cref="T:System.ArgumentNullException">Occurs when <i>command</i> is null.</exception>
     </member>
     <member name="M:Ncqrs.Commanding.CommandExecution.CommandExecutorBase`1.ExecuteInContext(Ncqrs.Domain.IUnitOfWorkContext,`0)">
       <summary>
@@ -1749,19 +1791,6 @@
             no more available on the current version of the object.
             </param>
     </member>
-    <member name="M:Ncqrs.Eventing.Storage.ISnapshotStore.SaveShapshot(Ncqrs.Eventing.Sourcing.Snapshotting.ISnapshot)">
-      <summary>
-            Saves a snapshot of the specified event source.
-            </summary>
-      <requires description="The source cannot be null." exception="T:System.ArgumentNullException">source != null</requires>
-      <exception cref="T:System.ArgumentNullException">source == null</exception>
-    </member>
-    <member name="M:Ncqrs.Eventing.Storage.ISnapshotStore.GetSnapshot(System.Guid)">
-      <summary>
-            Gets a snapshot of a particular event source, if one exists. Otherwise, returns <c>null</c>.
-            </summary>
-      <ensures>Contract.Result&lt;ISnapshot&gt;() != null ? Contract.Result&lt;ISnapshot&gt;().EventSourceId == eventSourceId : true</ensures>
-    </member>
     <member name="T:Ncqrs.Eventing.Storage.Serialization.EventConverter">
       <summary>
             Aggregates multiple type specific event converters into a single
@@ -2452,36 +2481,6 @@
             </summary>
       <value>The event source version.</value>
     </member>
-    <member name="T:Ncqrs.Eventing.Storage.IEventStore">
-      <summary>
-            A event store. Can store and load events from an <see cref="T:Ncqrs.Eventing.Sourcing.IEventSource" />.
-            </summary>
-    </member>
-    <member name="M:Ncqrs.Eventing.Storage.IEventStore.GetAllEvents(System.Guid)">
-      <summary>
-            Get all events provided by an specified event provider.
-            </summary>
-      <param name="id">The id of the event source that owns the events.</param>
-      <returns>All the events from the event source.</returns>
-      <ensures description="Result should never be null.">Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;() != null</ensures>
-    </member>
-    <member name="M:Ncqrs.Eventing.Storage.IEventStore.GetAllEventsSinceVersion(System.Guid,System.Int64)">
-      <summary>
-            Get all events provided by an specified event source.
-            </summary>
-      <param name="eventSourceId">The id of the event source that owns the events.</param>
-      <returns>All the events from the event source.</returns>
-      <ensures>Contract.ForAll(Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;(), e =&gt; e.EventSequence &gt; version)</ensures>
-    </member>
-    <member name="M:Ncqrs.Eventing.Storage.IEventStore.Save(Ncqrs.Eventing.Sourcing.IEventSource)">
-      <summary>
-            Save all events from a specific event provider.
-            </summary>
-      <exception cref="T:Ncqrs.Eventing.Storage.ConcurrencyException">Occurs when there is already a newer version of the event provider stored in the event store.</exception>
-      <param name="source">The source that should be saved.</param>
-      <requires description="source cannot be null." exception="T:System.ArgumentNullException">source != null</requires>
-      <exception cref="T:System.ArgumentNullException">source == null</exception>
-    </member>
     <member name="T:Ncqrs.Eventing.Storage.InMemoryEventStore">
       <summary>
             An in memory event store that can be used for unit testing purpose. We can't
@@ -2596,17 +2595,42 @@
       <remarks>This returns the content of the TableCreationScript.sql that is embedded as resource.</remarks>
       <returns>Queries that contain the <i>create table</i> statements.</returns>
     </member>
-    <member name="M:Ncqrs.Eventing.ServiceModel.Bus.InProcessEventBus.TransactionallyPublishToHandlers(Ncqrs.Eventing.IEvent,System.Type,System.Collections.Generic.IEnumerable{System.Action{Ncqrs.Eventing.IEvent}})">
-      <requires exception="T:System.ArgumentNullException">handlers != null</requires>
-      <exception cref="T:System.ArgumentNullException">handlers == null</exception>
+    <member name="M:Ncqrs.Eventing.ServiceModel.Bus.RegisterAllHandlersInAssemblyExtension.CreateInstance(System.Type)">
+      <requires exception="T:System.ArgumentNullException">type != null</requires>
+      <exception cref="T:System.ArgumentNullException">type == null</exception>
     </member>
     <member name="M:Ncqrs.Eventing.ServiceModel.Bus.InProcessEventBus.PublishToHandlers(Ncqrs.Eventing.IEvent,System.Type,System.Collections.Generic.IEnumerable{System.Action{Ncqrs.Eventing.IEvent}})">
       <requires exception="T:System.ArgumentNullException">handlers != null</requires>
       <exception cref="T:System.ArgumentNullException">handlers == null</exception>
     </member>
-    <member name="M:Ncqrs.Eventing.ServiceModel.Bus.RegisterAllHandlersInAssemblyExtension.CreateInstance(System.Type)">
-      <requires exception="T:System.ArgumentNullException">type != null</requires>
-      <exception cref="T:System.ArgumentNullException">type == null</exception>
+    <member name="M:Ncqrs.Eventing.ServiceModel.Bus.InProcessEventBus.TransactionallyPublishToHandlers(Ncqrs.Eventing.IEvent,System.Type,System.Collections.Generic.IEnumerable{System.Action{Ncqrs.Eventing.IEvent}})">
+      <requires exception="T:System.ArgumentNullException">handlers != null</requires>
+      <exception cref="T:System.ArgumentNullException">handlers == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.MappedAggregateRoot.#ctor(Ncqrs.Eventing.Sourcing.Mapping.IEventHandlerMappingStrategy)">
+      <requires description="The strategy cannot be null." exception="T:System.ArgumentNullException">strategy != null</requires>
+      <exception cref="T:System.ArgumentNullException">strategy == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.MappedAggregateRoot.#ctor(System.Guid,Ncqrs.Eventing.Sourcing.Mapping.IEventHandlerMappingStrategy)">
+      <requires description="The strategy cannot be null." exception="T:System.ArgumentNullException">strategy != null</requires>
+      <exception cref="T:System.ArgumentNullException">strategy == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.ConventionBasedEventHandlerMappingStrategy.GetEventHandlers(System.Object)">
+      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
+      <exception cref="T:System.ArgumentNullException">target == null</exception>
+      <ensures description="The result should never be null.">Contract.Result&lt;IEnumerable&lt;ISourcedEventHandler&gt;&gt;() != null</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.AttributeBasedEventHandlerMappingStrategy.IsMarkedAsEventHandler(System.Reflection.MethodInfo,Ncqrs.Eventing.Sourcing.Mapping.EventHandlerAttribute@)">
+      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
+      <exception cref="T:System.ArgumentNullException">target == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.AttributeBasedEventHandlerMappingStrategy.NumberOfParameters(System.Reflection.MethodInfo)">
+      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
+      <exception cref="T:System.ArgumentNullException">target == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.AttributeBasedEventHandlerMappingStrategy.FirstParameterType(System.Reflection.MethodInfo)">
+      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
+      <exception cref="T:System.ArgumentNullException">target == null</exception>
     </member>
     <member name="T:Ncqrs.Eventing.Sourcing.SourcedEventStream">
       <invariant>_sequenceOffset &gt;= 0</invariant>
@@ -2617,16 +2641,20 @@
       <ensures inheritedFrom="M:System.Collections.Generic.IEnumerable`1.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&lt;T&gt;&gt;() != null</ensures>
       <ensures inheritedFrom="M:System.Collections.Generic.IEnumerable`1.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&lt;T&gt;&gt;().Model == ((IEnumerable)this).Model</ensures>
     </member>
-    <member name="M:Ncqrs.Eventing.Sourcing.SourcedEventStream.#ctor(System.Guid,System.Int64)">
-      <requires>sequenceOffset &gt;= 0</requires>
-    </member>
     <member name="M:Ncqrs.Eventing.Sourcing.SourcedEventStream.System#Collections#IEnumerable#GetEnumerator">
       <ensures inheritedFrom="M:System.Collections.IEnumerable.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&gt;() != null</ensures>
       <ensures inheritedFrom="M:System.Collections.IEnumerable.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&gt;().Model == this.Model</ensures>
       <ensures inheritedFrom="M:System.Collections.IEnumerable.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&gt;().CurrentIndex == -1</ensures>
     </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.SourcedEventStream.#ctor(System.Guid,System.Int64)">
+      <requires>sequenceOffset &gt;= 0</requires>
+    </member>
     <member name="T:Ncqrs.Eventing.Sourcing.EventSource">
       <invariant description="The member _unacceptedEvents should never be null.">_uncommittedEvents != null</invariant>
+    </member>
+    <member name="M:Ncqrs.Eventing.Sourcing.EventSource.HandleEvent(Ncqrs.Eventing.Sourcing.SourcedEvent)">
+      <requires description="The Event cannot be null." exception="T:System.ArgumentNullException">evnt != null</requires>
+      <exception cref="T:System.ArgumentNullException">evnt == null</exception>
     </member>
     <member name="M:Ncqrs.Eventing.Sourcing.EventSource.GetUncommittedEvents">
       <ensures description="The result of this method should never be null.">Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;() != null</ensures>
@@ -2635,42 +2663,9 @@
       <requires description="The handler cannot be null." exception="T:System.ArgumentNullException">handler != null</requires>
       <exception cref="T:System.ArgumentNullException">handler == null</exception>
     </member>
-    <member name="M:Ncqrs.Eventing.Sourcing.EventSource.HandleEvent(Ncqrs.Eventing.Sourcing.SourcedEvent)">
-      <requires description="The Event cannot be null." exception="T:System.ArgumentNullException">evnt != null</requires>
-      <exception cref="T:System.ArgumentNullException">evnt == null</exception>
-    </member>
     <member name="M:Ncqrs.Eventing.Sourcing.SourcedEventHander`1.Ncqrs#Eventing#Sourcing#ISourcedEventHandler#HandleEvent(Ncqrs.Eventing.Sourcing.SourcedEvent)">
       <requires description="The sourcedEvent cannot be null." inheritedFrom="M:Ncqrs.Eventing.Sourcing.ISourcedEventHandler.HandleEvent(Ncqrs.Eventing.Sourcing.SourcedEvent)" inheritedFromTypeName="ISourcedEventHandler" exception="T:System.ArgumentNullException">sourcedEvent != null</requires>
       <exception cref="T:System.ArgumentNullException">sourcedEvent == null</exception>
-    </member>
-    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.AttributeBasedEventHandlerMappingStrategy.FirstParameterType(System.Reflection.MethodInfo)">
-      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
-      <exception cref="T:System.ArgumentNullException">target == null</exception>
-    </member>
-    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.AttributeBasedEventHandlerMappingStrategy.NumberOfParameters(System.Reflection.MethodInfo)">
-      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
-      <exception cref="T:System.ArgumentNullException">target == null</exception>
-    </member>
-    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.AttributeBasedEventHandlerMappingStrategy.IsMarkedAsEventHandler(System.Reflection.MethodInfo,Ncqrs.Eventing.Sourcing.Mapping.EventHandlerAttribute@)">
-      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
-      <exception cref="T:System.ArgumentNullException">target == null</exception>
-    </member>
-    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.MappedAggregateRoot.#ctor(Ncqrs.Eventing.Sourcing.Mapping.IEventHandlerMappingStrategy)">
-      <requires description="The strategy cannot be null." exception="T:System.ArgumentNullException">strategy != null</requires>
-      <exception cref="T:System.ArgumentNullException">strategy == null</exception>
-    </member>
-    <member name="M:Ncqrs.Eventing.Sourcing.Mapping.ConventionBasedEventHandlerMappingStrategy.GetEventHandlers(System.Object)">
-      <requires description="The target cannot be null." exception="T:System.ArgumentNullException">target != null</requires>
-      <exception cref="T:System.ArgumentNullException">target == null</exception>
-      <ensures description="The result should never be null.">Contract.Result&lt;IEnumerable&lt;ISourcedEventHandler&gt;&gt;() != null</ensures>
-    </member>
-    <member name="M:Ncqrs.Eventing.Storage.SimpleEventTypeResolver.ResolveType(System.String)">
-      <requires inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.ResolveType(System.String)" inheritedFromTypeName="IEventTypeResolver">eventName != null</requires>
-      <ensures inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.ResolveType(System.String)" inheritedFromTypeName="IEventTypeResolver">Contract.Result&lt;Type&gt;() != null</ensures>
-    </member>
-    <member name="M:Ncqrs.Eventing.Storage.SimpleEventTypeResolver.EventNameFor(System.Type)">
-      <requires inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.EventNameFor(System.Type)" inheritedFromTypeName="IEventTypeResolver">type != null</requires>
-      <ensures inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.EventNameFor(System.Type)" inheritedFromTypeName="IEventTypeResolver">Contract.Result&lt;string&gt;() != null</ensures>
     </member>
     <member name="M:Ncqrs.Eventing.Storage.InMemoryEventStore.Save(Ncqrs.Eventing.Sourcing.IEventSource)">
       <requires description="source cannot be null." inheritedFrom="M:Ncqrs.Eventing.Storage.IEventStore.Save(Ncqrs.Eventing.Sourcing.IEventSource)" inheritedFromTypeName="IEventStore" exception="T:System.ArgumentNullException">source != null</requires>
@@ -2678,6 +2673,10 @@
     </member>
     <member name="M:Ncqrs.Eventing.Storage.InMemoryEventStore.GetAllEvents(System.Guid)">
       <ensures description="Result should never be null." inheritedFrom="M:Ncqrs.Eventing.Storage.IEventStore.GetAllEvents(System.Guid)" inheritedFromTypeName="IEventStore">Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;() != null</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.Serialization.NullEventConverter.Upgrade(Ncqrs.Eventing.Storage.StoredEvent{Newtonsoft.Json.Linq.JObject})">
+      <requires description="theEvent" inheritedFrom="M:Ncqrs.Eventing.Storage.Serialization.IEventConverter.Upgrade(Ncqrs.Eventing.Storage.StoredEvent{Newtonsoft.Json.Linq.JObject})" inheritedFromTypeName="IEventConverter" exception="T:System.ArgumentNullException">theEvent != null</requires>
+      <exception cref="T:System.ArgumentNullException">theEvent == null</exception>
     </member>
     <member name="M:Ncqrs.Eventing.Storage.AttributeEventTypeResolver.ResolveType(System.String)">
       <requires inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.ResolveType(System.String)" inheritedFromTypeName="IEventTypeResolver">eventName != null</requires>
@@ -2687,9 +2686,30 @@
       <requires inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.EventNameFor(System.Type)" inheritedFromTypeName="IEventTypeResolver">type != null</requires>
       <ensures inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.EventNameFor(System.Type)" inheritedFromTypeName="IEventTypeResolver">Contract.Result&lt;string&gt;() != null</ensures>
     </member>
-    <member name="M:Ncqrs.Eventing.Storage.Serialization.NullEventConverter.Upgrade(Ncqrs.Eventing.Storage.StoredEvent{Newtonsoft.Json.Linq.JObject})">
-      <requires description="theEvent" inheritedFrom="M:Ncqrs.Eventing.Storage.Serialization.IEventConverter.Upgrade(Ncqrs.Eventing.Storage.StoredEvent{Newtonsoft.Json.Linq.JObject})" inheritedFromTypeName="IEventConverter" exception="T:System.ArgumentNullException">theEvent != null</requires>
-      <exception cref="T:System.ArgumentNullException">theEvent == null</exception>
+    <member name="M:Ncqrs.Eventing.Storage.NoDB.NoDBEventStore.GetAllEvents(System.Guid)">
+      <ensures description="Result should never be null." inheritedFrom="M:Ncqrs.Eventing.Storage.IEventStore.GetAllEvents(System.Guid)" inheritedFromTypeName="IEventStore">Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;() != null</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.NoDB.NoDBEventStore.Save(Ncqrs.Eventing.Sourcing.IEventSource)">
+      <requires description="source cannot be null." inheritedFrom="M:Ncqrs.Eventing.Storage.IEventStore.Save(Ncqrs.Eventing.Sourcing.IEventSource)" inheritedFromTypeName="IEventStore" exception="T:System.ArgumentNullException">source != null</requires>
+      <exception cref="T:System.ArgumentNullException">source == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.NoDB.NoDBEventStore.GetAllEventsSinceVersion(System.Guid,System.Int64)">
+      <ensures inheritedFrom="M:Ncqrs.Eventing.Storage.IEventStore.GetAllEventsSinceVersion(System.Guid,System.Int64)" inheritedFromTypeName="IEventStore">Contract.ForAll(Contract.Result&lt;IEnumerable&lt;SourcedEvent&gt;&gt;(), e =&gt; e.EventSequence &gt; version)</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.NoDB.NoDBSnapshotStore.SaveShapshot(Ncqrs.Eventing.Sourcing.Snapshotting.ISnapshot)">
+      <requires description="The source cannot be null." inheritedFrom="M:Ncqrs.Eventing.Storage.ISnapshotStore.SaveShapshot(Ncqrs.Eventing.Sourcing.Snapshotting.ISnapshot)" inheritedFromTypeName="ISnapshotStore" exception="T:System.ArgumentNullException">source != null</requires>
+      <exception cref="T:System.ArgumentNullException">source == null</exception>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.NoDB.NoDBSnapshotStore.GetSnapshot(System.Guid)">
+      <ensures inheritedFrom="M:Ncqrs.Eventing.Storage.ISnapshotStore.GetSnapshot(System.Guid)" inheritedFromTypeName="ISnapshotStore">Contract.Result&lt;ISnapshot&gt;() != null ? Contract.Result&lt;ISnapshot&gt;().EventSourceId == eventSourceId : true</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.SimpleEventTypeResolver.ResolveType(System.String)">
+      <requires inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.ResolveType(System.String)" inheritedFromTypeName="IEventTypeResolver">eventName != null</requires>
+      <ensures inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.ResolveType(System.String)" inheritedFromTypeName="IEventTypeResolver">Contract.Result&lt;Type&gt;() != null</ensures>
+    </member>
+    <member name="M:Ncqrs.Eventing.Storage.SimpleEventTypeResolver.EventNameFor(System.Type)">
+      <requires inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.EventNameFor(System.Type)" inheritedFromTypeName="IEventTypeResolver">type != null</requires>
+      <ensures inheritedFrom="M:Ncqrs.Eventing.Storage.IEventTypeResolver.EventNameFor(System.Type)" inheritedFromTypeName="IEventTypeResolver">Contract.Result&lt;string&gt;() != null</ensures>
     </member>
     <member name="M:Ncqrs.Domain.Storage.DomainRepository.#ctor(Ncqrs.Eventing.Storage.IEventStore,Ncqrs.Eventing.ServiceModel.Bus.IEventBus,Ncqrs.Eventing.Storage.ISnapshotStore,Ncqrs.Domain.Storage.IAggregateRootCreationStrategy)">
       <requires exception="T:System.ArgumentNullException">store != null</requires>
@@ -2705,6 +2725,21 @@
       <requires exception="T:System.ArgumentOutOfRangeException">typeof(TCommand).IsAssignableFrom(commandType)</requires>
       <exception cref="T:System.ArgumentOutOfRangeException">!(typeof(TCommand).IsAssignableFrom(commandType))</exception>
     </member>
+    <member name="M:Ncqrs.Commanding.CommandExecution.CreatingCommandExecutor`2.#ctor(System.Func{`0,`1},Ncqrs.Domain.IUnitOfWorkFactory)">
+      <requires description="The action cannot be null." exception="T:System.ArgumentNullException">create != null</requires>
+      <exception cref="T:System.ArgumentNullException">create == null</exception>
+    </member>
+    <member name="M:Ncqrs.Commanding.CommandExecution.Mapping.PropertiesToMethodMapper.MakeSureAllPropertieOrdinalsAreUnique(System.Collections.Generic.List{Ncqrs.Commanding.CommandExecution.Mapping.PropertyToParameterMappingInfo})">
+      <requires exception="T:System.ArgumentNullException">propertiesToMap != null</requires>
+      <exception cref="T:System.ArgumentNullException">propertiesToMap == null</exception>
+    </member>
+    <member name="M:Ncqrs.Commanding.CommandExecution.Mapping.PropertiesToMethodMapper.MakeSureAllPropertiesToMapOnNameHaveUniqueNames(System.Collections.Generic.List{Ncqrs.Commanding.CommandExecution.Mapping.PropertyToParameterMappingInfo})">
+      <requires exception="T:System.ArgumentNullException">propertiesToMap != null</requires>
+      <exception cref="T:System.ArgumentNullException">propertiesToMap == null</exception>
+    </member>
+    <member name="M:Ncqrs.Commanding.CommandExecution.Mapping.Attributes.AttributeBasedMappingFactory.CreateExecutorForCommand``1">
+      <ensures>Contract.Result &lt;ICommandExecutor&lt;TCommand&gt;&gt;() != null</ensures>
+    </member>
     <member name="M:Ncqrs.Commanding.CommandExecution.DirectActionCommandExecutor`2.#ctor(System.Func{`0,System.Guid},System.Action{`1,`0})">
       <requires description="The getId parameter cannot be null." exception="T:System.ArgumentNullException">getId != null</requires>
       <exception cref="T:System.ArgumentNullException">getId == null</exception>
@@ -2718,21 +2753,6 @@
       <exception cref="T:System.ArgumentNullException">action == null</exception>
       <requires description="The uowFactory parameter cannot be null." exception="T:System.ArgumentNullException">uowFactory != null</requires>
       <exception cref="T:System.ArgumentNullException">uowFactory == null</exception>
-    </member>
-    <member name="M:Ncqrs.Commanding.CommandExecution.Mapping.PropertiesToMethodMapper.MakeSureAllPropertieOrdinalsAreUnique(System.Collections.Generic.List{Ncqrs.Commanding.CommandExecution.Mapping.PropertyToParameterMappingInfo})">
-      <requires exception="T:System.ArgumentNullException">propertiesToMap != null</requires>
-      <exception cref="T:System.ArgumentNullException">propertiesToMap == null</exception>
-    </member>
-    <member name="M:Ncqrs.Commanding.CommandExecution.Mapping.PropertiesToMethodMapper.MakeSureAllPropertiesToMapOnNameHaveUniqueNames(System.Collections.Generic.List{Ncqrs.Commanding.CommandExecution.Mapping.PropertyToParameterMappingInfo})">
-      <requires exception="T:System.ArgumentNullException">propertiesToMap != null</requires>
-      <exception cref="T:System.ArgumentNullException">propertiesToMap == null</exception>
-    </member>
-    <member name="M:Ncqrs.Commanding.CommandExecution.Mapping.Attributes.AttributeBasedMappingFactory.CreateExecutorForCommand``1">
-      <ensures>Contract.Result &lt;ICommandExecutor&lt;TCommand&gt;&gt;() != null</ensures>
-    </member>
-    <member name="M:Ncqrs.Commanding.CommandExecution.CreatingCommandExecutor`2.#ctor(System.Func{`0,`1},Ncqrs.Domain.IUnitOfWorkFactory)">
-      <requires description="The action cannot be null." exception="T:System.ArgumentNullException">create != null</requires>
-      <exception cref="T:System.ArgumentNullException">create == null</exception>
     </member>
   </members>
 </doc>

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{18538C46-07A4-4D50-9F97-167328577FED}</ProjectGuid>
+    <ProjectGuid>{F1900DC9-B5D3-4372-A2AC-695035854D36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hayman.ReadModel</RootNamespace>
-    <AssemblyName>Hayman.ReadModel</AssemblyName>
+    <RootNamespace>Hayman.ReadModel.Denormalizers</RootNamespace>
+    <AssemblyName>Hayman.ReadModel.Denormalizers</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,11 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ncqrs">
+      <HintPath>..\Libraries\ncqrs\Ncqrs.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\Libraries\nservicebus\NServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,21 +47,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hayman.ReadModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Hayman.ReadModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="MetaModelDenormalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Hayman.ReadModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Hayman.ReadModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <ProjectReference Include="..\Hayman.Events\Hayman.Events.csproj">
+      <Project>{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}</Project>
+      <Name>Hayman.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hayman.ReadModel\Hayman.ReadModel.Sql.csproj">
+      <Project>{18538C46-07A4-4D50-9F97-167328577FED}</Project>
+      <Name>Hayman.ReadModel.Sql</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

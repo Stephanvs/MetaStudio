@@ -9,11 +9,11 @@
           <EntitySet Name="MetaAssociation" EntityType="HaymanReadModelModel.Store.MetaAssociation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MetaItem" EntityType="HaymanReadModelModel.Store.MetaItem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MetaModel" EntityType="HaymanReadModelModel.Store.MetaModel" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_MetaAssociation_MetaItem" Association="HaymanReadModelModel.Store.FK_MetaAssociation_MetaItem">
+          <AssociationSet Name="FK_MetaAssociation_MetaItemSource" Association="HaymanReadModelModel.Store.FK_MetaAssociation_MetaItemSource">
             <End Role="MetaItem" EntitySet="MetaItem" />
             <End Role="MetaAssociation" EntitySet="MetaAssociation" />
           </AssociationSet>
-          <AssociationSet Name="FK_MetaAssociation_MetaItem1" Association="HaymanReadModelModel.Store.FK_MetaAssociation_MetaItem1">
+          <AssociationSet Name="FK_MetaAssociation_MetaItemTarget" Association="HaymanReadModelModel.Store.FK_MetaAssociation_MetaItemTarget">
             <End Role="MetaItem" EntitySet="MetaItem" />
             <End Role="MetaAssociation" EntitySet="MetaAssociation" />
           </AssociationSet>
@@ -47,7 +47,7 @@
           <Property Name="MetaModelName" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_MetaAssociation_MetaItem">
+        <Association Name="FK_MetaAssociation_MetaItemSource">
           <End Role="MetaItem" Type="HaymanReadModelModel.Store.MetaItem" Multiplicity="1" />
           <End Role="MetaAssociation" Type="HaymanReadModelModel.Store.MetaAssociation" Multiplicity="*" />
           <ReferentialConstraint>
@@ -59,7 +59,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MetaAssociation_MetaItem1">
+        <Association Name="FK_MetaAssociation_MetaItemTarget">
           <End Role="MetaItem" Type="HaymanReadModelModel.Store.MetaItem" Multiplicity="1" />
           <End Role="MetaAssociation" Type="HaymanReadModelModel.Store.MetaAssociation" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,20 +87,20 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Hayman.ReadModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="HaymanReadModelModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="HaymanReadModelEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MetaAssociations" EntityType="Hayman.ReadModel.MetaAssociation" />
-          <EntitySet Name="MetaItems" EntityType="Hayman.ReadModel.MetaItem" />
-          <EntitySet Name="MetaModels" EntityType="Hayman.ReadModel.MetaModel" />
-          <AssociationSet Name="FK_MetaAssociation_MetaItem" Association="Hayman.ReadModel.FK_MetaAssociation_MetaItem">
+          <EntitySet Name="MetaAssociations" EntityType="HaymanReadModelModel.MetaAssociation" />
+          <EntitySet Name="MetaItems" EntityType="HaymanReadModelModel.MetaItem" />
+          <EntitySet Name="MetaModels" EntityType="HaymanReadModelModel.MetaModel" />
+          <AssociationSet Name="FK_MetaAssociation_MetaItemSource" Association="HaymanReadModelModel.FK_MetaAssociation_MetaItemSource">
             <End Role="MetaItem" EntitySet="MetaItems" />
             <End Role="MetaAssociation" EntitySet="MetaAssociations" />
           </AssociationSet>
-          <AssociationSet Name="FK_MetaAssociation_MetaItem1" Association="Hayman.ReadModel.FK_MetaAssociation_MetaItem1">
+          <AssociationSet Name="FK_MetaAssociation_MetaItemTarget" Association="HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget">
             <End Role="MetaItem" EntitySet="MetaItems" />
             <End Role="MetaAssociation" EntitySet="MetaAssociations" />
           </AssociationSet>
-          <AssociationSet Name="FK_MetaItem_MetaModel" Association="Hayman.ReadModel.FK_MetaItem_MetaModel">
+          <AssociationSet Name="FK_MetaItem_MetaModel" Association="HaymanReadModelModel.FK_MetaItem_MetaModel">
             <End Role="MetaModel" EntitySet="MetaModels" />
             <End Role="MetaItem" EntitySet="MetaItems" />
           </AssociationSet>
@@ -113,8 +113,8 @@
           <Property Name="MetaItemSourceId" Type="Guid" Nullable="false" />
           <Property Name="MetaItemTargetId" Type="Guid" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="MetaItem" Relationship="Hayman.ReadModel.FK_MetaAssociation_MetaItem" FromRole="MetaAssociation" ToRole="MetaItem" />
-          <NavigationProperty Name="MetaItem1" Relationship="Hayman.ReadModel.FK_MetaAssociation_MetaItem1" FromRole="MetaAssociation" ToRole="MetaItem" />
+          <NavigationProperty Name="MetaItemSource" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemSource" FromRole="MetaAssociation" ToRole="MetaItem" />
+          <NavigationProperty Name="MetaItemTarget" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget" FromRole="MetaAssociation" ToRole="MetaItem" />
         </EntityType>
         <EntityType Name="MetaItem">
           <Key>
@@ -123,9 +123,9 @@
           <Property Name="MetaItemId" Type="Guid" Nullable="false" />
           <Property Name="MetaItemName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="MetaModelId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="MetaAssociations" Relationship="Hayman.ReadModel.FK_MetaAssociation_MetaItem" FromRole="MetaItem" ToRole="MetaAssociation" />
-          <NavigationProperty Name="MetaAssociations1" Relationship="Hayman.ReadModel.FK_MetaAssociation_MetaItem1" FromRole="MetaItem" ToRole="MetaAssociation" />
-          <NavigationProperty Name="MetaModel" Relationship="Hayman.ReadModel.FK_MetaItem_MetaModel" FromRole="MetaItem" ToRole="MetaModel" />
+          <NavigationProperty Name="IncomingMetaAssociations" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemSource" FromRole="MetaItem" ToRole="MetaAssociation" />
+          <NavigationProperty Name="OutgoingMetaAssociations" Relationship="HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget" FromRole="MetaItem" ToRole="MetaAssociation" />
+          <NavigationProperty Name="MetaModel" Relationship="HaymanReadModelModel.FK_MetaItem_MetaModel" FromRole="MetaItem" ToRole="MetaModel" />
         </EntityType>
         <EntityType Name="MetaModel">
           <Key>
@@ -134,11 +134,11 @@
           <Property Name="MetaModelId" Type="Guid" Nullable="false" />
           <Property Name="MetaModelName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="MetaItems" Relationship="Hayman.ReadModel.FK_MetaItem_MetaModel" FromRole="MetaModel" ToRole="MetaItem" />
+          <NavigationProperty Name="MetaItems" Relationship="HaymanReadModelModel.FK_MetaItem_MetaModel" FromRole="MetaModel" ToRole="MetaItem" />
         </EntityType>
-        <Association Name="FK_MetaAssociation_MetaItem">
-          <End Role="MetaItem" Type="Hayman.ReadModel.MetaItem" Multiplicity="1" />
-          <End Role="MetaAssociation" Type="Hayman.ReadModel.MetaAssociation" Multiplicity="*" />
+        <Association Name="FK_MetaAssociation_MetaItemSource">
+          <End Role="MetaItem" Type="HaymanReadModelModel.MetaItem" Multiplicity="1" />
+          <End Role="MetaAssociation" Type="HaymanReadModelModel.MetaAssociation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MetaItem">
               <PropertyRef Name="MetaItemId" />
@@ -148,9 +148,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MetaAssociation_MetaItem1">
-          <End Role="MetaItem" Type="Hayman.ReadModel.MetaItem" Multiplicity="1" />
-          <End Role="MetaAssociation" Type="Hayman.ReadModel.MetaAssociation" Multiplicity="*" />
+        <Association Name="FK_MetaAssociation_MetaItemTarget">
+          <End Role="MetaItem" Type="HaymanReadModelModel.MetaItem" Multiplicity="1" />
+          <End Role="MetaAssociation" Type="HaymanReadModelModel.MetaAssociation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MetaItem">
               <PropertyRef Name="MetaItemId" />
@@ -161,8 +161,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MetaItem_MetaModel">
-          <End Role="MetaModel" Type="Hayman.ReadModel.MetaModel" Multiplicity="1" />
-          <End Role="MetaItem" Type="Hayman.ReadModel.MetaItem" Multiplicity="*" />
+          <End Role="MetaModel" Type="HaymanReadModelModel.MetaModel" Multiplicity="1" />
+          <End Role="MetaItem" Type="HaymanReadModelModel.MetaItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MetaModel">
               <PropertyRef Name="MetaModelId" />
@@ -178,18 +178,18 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HaymanReadModelModelStoreContainer" CdmEntityContainer="HaymanReadModelEntities">
-          <EntitySetMapping Name="MetaAssociations"><EntityTypeMapping TypeName="Hayman.ReadModel.MetaAssociation"><MappingFragment StoreEntitySet="MetaAssociation">
+          <EntitySetMapping Name="MetaAssociations"><EntityTypeMapping TypeName="HaymanReadModelModel.MetaAssociation"><MappingFragment StoreEntitySet="MetaAssociation">
             <ScalarProperty Name="MetaAssociationId" ColumnName="MetaAssociationId" />
             <ScalarProperty Name="MetaItemSourceId" ColumnName="MetaItemSourceId" />
             <ScalarProperty Name="MetaItemTargetId" ColumnName="MetaItemTargetId" />
             <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MetaItems"><EntityTypeMapping TypeName="Hayman.ReadModel.MetaItem"><MappingFragment StoreEntitySet="MetaItem">
+          <EntitySetMapping Name="MetaItems"><EntityTypeMapping TypeName="HaymanReadModelModel.MetaItem"><MappingFragment StoreEntitySet="MetaItem">
             <ScalarProperty Name="MetaItemId" ColumnName="MetaItemId" />
             <ScalarProperty Name="MetaItemName" ColumnName="MetaItemName" />
             <ScalarProperty Name="MetaModelId" ColumnName="MetaModelId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MetaModels"><EntityTypeMapping TypeName="Hayman.ReadModel.MetaModel"><MappingFragment StoreEntitySet="MetaModel">
+          <EntitySetMapping Name="MetaModels"><EntityTypeMapping TypeName="HaymanReadModelModel.MetaModel"><MappingFragment StoreEntitySet="MetaModel">
             <ScalarProperty Name="MetaModelId" ColumnName="MetaModelId" />
             <ScalarProperty Name="MetaModelName" ColumnName="MetaModelName" />
             <ScalarProperty Name="Deleted" ColumnName="Deleted" />
@@ -214,19 +214,19 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Hayman.ReadModel">
-        <EntityTypeShape EntityType="Hayman.ReadModel.MetaAssociation" Width="1.5" PointX="5.25" PointY="0.875" Height="2.1725878906250005" IsExpanded="true" />
-        <EntityTypeShape EntityType="Hayman.ReadModel.MetaItem" Width="1.5" PointX="3" PointY="0.875" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="Hayman.ReadModel.MetaModel" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7879850260416665" IsExpanded="true" />
-        <AssociationConnector Association="Hayman.ReadModel.FK_MetaAssociation_MetaItem" ManuallyRouted="false">
+      <Diagram Name="HaymanReadModel">
+        <EntityTypeShape EntityType="HaymanReadModelModel.MetaAssociation" Width="1.5" PointX="5.25" PointY="0.875" Height="2.1725878906250005" IsExpanded="true" />
+        <EntityTypeShape EntityType="HaymanReadModelModel.MetaItem" Width="1.5" PointX="3" PointY="0.875" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="HaymanReadModelModel.MetaModel" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7879850260416665" IsExpanded="true" />
+        <AssociationConnector Association="HaymanReadModelModel.FK_MetaAssociation_MetaItemSource" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="1.9612939453124998" />
           <ConnectorPoint PointX="5.25" PointY="1.9612939453124998" />
         </AssociationConnector>
-        <AssociationConnector Association="Hayman.ReadModel.FK_MetaAssociation_MetaItem1" ManuallyRouted="false">
+        <AssociationConnector Association="HaymanReadModelModel.FK_MetaAssociation_MetaItemTarget" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="1.35564697265625" />
           <ConnectorPoint PointX="5.25" PointY="1.35564697265625" />
         </AssociationConnector>
-        <AssociationConnector Association="Hayman.ReadModel.FK_MetaItem_MetaModel" ManuallyRouted="false">
+        <AssociationConnector Association="HaymanReadModelModel.FK_MetaItem_MetaModel" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="2.0189925130208333" />
           <ConnectorPoint PointX="3" PointY="2.0189925130208333" />
         </AssociationConnector>

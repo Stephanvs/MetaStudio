@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Hayman.Commands" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Hayman.Commands" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:16922/HaymanCommandService.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:16922/HaymanCommandService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" />
+  <xs:complexType name="CreateMetaModel">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q1:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_MetaModelId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_MetaModelName_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreateMetaModel" nillable="true" type="tns:CreateMetaModel" />
+  <xs:complexType name="DeleteMetaAssociation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q2:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_MetaAssociationId_x003E_k__BackingField" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeleteMetaAssociation" nillable="true" type="tns:DeleteMetaAssociation" />
+  <xs:complexType name="CreateMetaAssociation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q3:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_MetaAssociationId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_MetaItemSourceId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_MetaItemTargetId_x003E_k__BackingField" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreateMetaAssociation" nillable="true" type="tns:CreateMetaAssociation" />
+  <xs:complexType name="RemoveMetaItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q4:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_MetaItemId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_MetaModelId_x003E_k__BackingField" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RemoveMetaItem" nillable="true" type="tns:RemoveMetaItem" />
+  <xs:complexType name="AddItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q5:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_ItemId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_ItemName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MetaItemId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_MetaModelId_x003E_k__BackingField" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddItem" nillable="true" type="tns:AddItem" />
+  <xs:complexType name="AddAssociation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q6:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_AssociationId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_AssociationName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MetaAssociationId_x003E_k__BackingField" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddAssociation" nillable="true" type="tns:AddAssociation" />
+  <xs:complexType name="AddMetaItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q7:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_MetaItemId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_MetaItemName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MetaModelId_x003E_k__BackingField" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddMetaItem" nillable="true" type="tns:AddMetaItem" />
+  <xs:complexType name="RenameMetaModel">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q8:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_MetaModelId_x003E_k__BackingField" type="ser:guid" />
+          <xs:element name="_x003C_NewMetaModelName_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RenameMetaModel" nillable="true" type="tns:RenameMetaModel" />
+  <xs:complexType name="DeleteMetaModel">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Ncqrs.Commanding" base="q9:CommandBase">
+        <xs:sequence>
+          <xs:element name="_x003C_MetaModelId_x003E_k__BackingField" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeleteMetaModel" nillable="true" type="tns:DeleteMetaModel" />
+</xs:schema>

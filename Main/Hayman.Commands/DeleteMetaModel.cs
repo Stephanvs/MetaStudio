@@ -1,17 +1,19 @@
 ﻿using System;
 using Ncqrs.Commanding;
+using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 
 namespace Hayman.Commands
 {
 	[Serializable]
-	//[MapsToAggregateRootConstructor("Hayman.Domain.MetaModel, Hayman.Domain")]
+    [MapsToAggregateRootMethod("Hayman.Domain.MetaModel, Hayman.Domain", "Delete")]
 	public class DeleteMetaModel : CommandBase
 	{
+        [AggregateRootId]
         public Guid MetaModelId { get; private set; }
 
         public DeleteMetaModel(Guid metaModelId)
-		{
+        {
             MetaModelId = metaModelId;
-		}
+        }
 	}
 }

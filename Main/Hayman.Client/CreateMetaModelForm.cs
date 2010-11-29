@@ -28,17 +28,9 @@ namespace Hayman.Client
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            try
+            using (var service = new HaymanCommandServiceReference.HaymanCommandServiceClient())
             {
-                using (var service = new HaymanCommandServiceReference.HaymanCommandServiceClient())
-                {
-                    service.ExecuteCommand(new CreateMetaModel(Guid.Parse(MetaModelIdTextEdit.Text), MetaModelNameTextEdit.Text));
-                }
-
-            }
-            catch (Exception)
-            {
-                throw;
+                service.ExecuteCommand(new CreateMetaModel(Guid.Parse(MetaModelIdTextEdit.Text), MetaModelNameTextEdit.Text));
             }
 
             DialogResult = System.Windows.Forms.DialogResult.OK;

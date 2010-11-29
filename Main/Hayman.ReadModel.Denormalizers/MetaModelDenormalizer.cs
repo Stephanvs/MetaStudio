@@ -23,7 +23,7 @@ namespace Hayman.ReadModel.Denormalizers
             using (var db = new HaymanReadModelEntities())
             {
                 MetaModel metaModel = db.MetaModels.SingleOrDefault(m => m.MetaModelId == e.MetaModelId);
-                db.MetaModels.DeleteObject(metaModel);
+                metaModel.Deleted = true;
                 db.SaveChanges();
             }
         }

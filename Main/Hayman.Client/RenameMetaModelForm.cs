@@ -1,4 +1,6 @@
 ﻿using System;
+using Hayman.Commands;
+using Hayman.Client.HaymanReadModelServiceReference;
 
 namespace Hayman.Client
 {
@@ -26,6 +28,11 @@ namespace Hayman.Client
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            using (var service = new HaymanCommandServiceReference.HaymanCommandServiceClient())
+            {
+                service.ExecuteCommand(new RenameMetaModel(((MetaModel)datasource).MetaModelId, MetaModelNameTextEdit.Text));
+            }
+
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Close();
         }

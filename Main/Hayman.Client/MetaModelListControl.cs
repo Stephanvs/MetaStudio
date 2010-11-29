@@ -1,6 +1,7 @@
 ﻿using System;
 using Hayman.Client.HaymanReadModelServiceReference;
 using System.Windows.Forms;
+using Hayman.Commands;
 
 namespace Hayman.Client
 {
@@ -79,6 +80,11 @@ namespace Hayman.Client
 
         private void deleteMetaModelButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            using (var service = new HaymanCommandServiceReference.HaymanCommandServiceClient())
+            {
+                service.ExecuteCommand(new DeleteMetaModel(((MetaModel)metaModelBindingSource.Current).MetaModelId));
+            }
+
             MetaModel metaModel = (MetaModel)metaModelBindingSource.Current;
             metaModel.Deleted = true;
         }

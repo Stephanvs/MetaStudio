@@ -29,7 +29,8 @@ namespace Hayman.CommandService
 
 		private static IEventStore InitializeEventStore()
 		{
-            var store = new BranchableEventStoreAdapter(new MsSqlServerEventStore(@"Data Source=MICHEL;Initial Catalog=HaymanEventStore;Integrated Security=True;MultipleActiveResultSets=True"));
+            //var store = new BranchableEventStoreAdapter(new MsSqlServerEventStore(@"Data Source=MICHEL;Initial Catalog=HaymanEventStore;Integrated Security=True;MultipleActiveResultSets=True"));
+            var store = new MsSqlServerEventStore(@"Data Source=MICHEL;Initial Catalog=HaymanEventStore;Integrated Security=True;MultipleActiveResultSets=True");
 			return store;
 		}
 

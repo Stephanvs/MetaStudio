@@ -1,11 +1,15 @@
 ﻿using System;
 using DevExpress.XtraEditors;
 using Hayman.Commands;
+using System.ServiceModel;
+using Ncqrs.CommandService.Contracts;
+using Ncqrs.CommandService;
 
 namespace Hayman.Client
 {
     public partial class CreateMetaModelForm : XtraForm
     {
+        private static ChannelFactory<ICommandWebServiceClient> channelFactory;
         private Object datasource;
 
         public Object DataSource
@@ -21,6 +25,11 @@ namespace Hayman.Client
             }
         }
 
+        static CreateMetaModelForm()
+        {
+            channelFactory = new ChannelFactory<ICommandWebServiceClient>("CommandWebServiceClient");
+        }
+
         public CreateMetaModelForm()
         {
             InitializeComponent();
@@ -28,12 +37,19 @@ namespace Hayman.Client
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            using (var service = new HaymanCommandServiceReference.HaymanCommandServiceClient())
-            {
-                service.ExecuteCommand(new CreateMetaModel(Guid.Parse(MetaModelIdTextEdit.Text), MetaModelNameTextEdit.Text));
-            }
+            var command = new CreateMetaModel(Guid.Parse(MetaModelIdTextEdit.Text), MetaModelNameTextEdit.Text);
 
-            DialogResult = System.Windows.Forms.DialogResult.OK;
+            try
+            {
+                ChannelHelper.Use(channelFactory.CreateChannel(), (client) => client.Execute(new ExecuteRequest(command)));
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+                DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            }
+            
             Close();
         }
 

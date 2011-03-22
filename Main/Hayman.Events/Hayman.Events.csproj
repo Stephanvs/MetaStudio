@@ -77,6 +77,7 @@
     <Compile Include="MetaItemBranchAdded.cs" />
     <Compile Include="ItemRemoved.cs" />
     <Compile Include="ItemAdded.cs" />
+    <Compile Include="MetaModelAlreadyDeleted.cs" />
     <Compile Include="MetaModelDeleted.cs" />
     <Compile Include="MetaAssociationDeleted.cs" />
     <Compile Include="MetaAssociationCreated.cs" />

@@ -100,7 +100,6 @@
     <Compile Include="HaymanCommandService.svc.cs">
       <DependentUpon>HaymanCommandService.svc</DependentUpon>
     </Compile>
-    <Compile Include="IHaymanCommandService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

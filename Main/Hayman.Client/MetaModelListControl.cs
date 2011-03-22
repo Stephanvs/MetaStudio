@@ -1,13 +1,22 @@
 ﻿using System;
 using Hayman.Client.HaymanReadModelServiceReference;
-using System.Windows.Forms;
 using Hayman.Commands;
+using System.Linq;
+using Ncqrs.CommandService;
+using System.ServiceModel;
+using Ncqrs.CommandService.Contracts;
 
 namespace Hayman.Client
 {
     public partial class MetaModelListControl : DevExpress.XtraEditors.XtraUserControl
     {
         public delegate void MetaModelChangedEventHandler(MetaModel metaModel);
+        private static ChannelFactory<ICommandWebServiceClient> channelFactory;
+
+        static MetaModelListControl()
+        {
+            channelFactory = new ChannelFactory<ICommandWebServiceClient>("CommandWebServiceClient");
+        }
 
         public MetaModelListControl()
         {
@@ -21,7 +30,9 @@ namespace Hayman.Client
             var entities = new HaymanReadModelServiceReference.HaymanReadModelEntities(new Uri("http://localhost:20813/HaymanReadModelService.svc/"));
             metaModelBindingSource.DataSource = entities.MetaModels
                                                 .Expand("MetaItems/IncomingMetaAssociations")
-                                                .Expand("MetaItems/OutgoingMetaAssociations");
+                                                .Expand("MetaItems/OutgoingMetaAssociations")
+                //.Execute()
+                                                .ToList();
 
             if (MetaModelChanged != null)
             {
@@ -80,9 +91,15 @@ namespace Hayman.Client
 
         private void deleteMetaModelButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            using (var service = new HaymanCommandServiceReference.HaymanCommandServiceClient())
+            try
             {
-                service.ExecuteCommand(new DeleteMetaModel(((MetaModel)metaModelBindingSource.Current).MetaModelId));
+                var command = new DeleteMetaModel(((MetaModel)metaModelBindingSource.Current).MetaModelId);
+                ChannelHelper.Use(channelFactory.CreateChannel(), (client) => client.Execute(new ExecuteRequest(command)));
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                return;
             }
 
             MetaModel metaModel = (MetaModel)metaModelBindingSource.Current;

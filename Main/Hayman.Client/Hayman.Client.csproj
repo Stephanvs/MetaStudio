@@ -44,6 +44,12 @@
     <Reference Include="Ncqrs">
       <HintPath>..\Libraries\ncqrs\Ncqrs.dll</HintPath>
     </Reference>
+    <Reference Include="Ncqrs.CommandService">
+      <HintPath>..\Libraries\ncqrs\Ncqrs.CommandService.dll</HintPath>
+    </Reference>
+    <Reference Include="Ncqrs.CommandService.Contracts">
+      <HintPath>..\Libraries\ncqrs\Ncqrs.CommandService.Contracts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -185,6 +191,7 @@
     <None Include="Service References\HaymanCommandServiceReference\HaymanCommandService.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\HaymanCommandServiceReference\HaymanCommandService1.wsdl" />
     <None Include="Service References\HaymanCommandServiceReference\HaymanCommandService1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -192,6 +199,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\HaymanCommandServiceReference\HaymanCommandService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HaymanCommandServiceReference\HaymanCommandService4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\HaymanReadModelServiceReference\service.edmx" />
@@ -211,10 +221,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hayman.CommandService\Hayman.CommandService.csproj">
-      <Project>{38694CD1-BECF-4A61-B1E0-78F24B58E59F}</Project>
-      <Name>Hayman.CommandService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hayman.Commands\Hayman.Commands.csproj">
       <Project>{06998165-D331-4E21-8D38-CBE5A61BFEE7}</Project>
       <Name>Hayman.Commands</Name>

@@ -12,30 +12,31 @@ namespace Hayman.Client.HaymanCommandServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HaymanCommandServiceReference.IHaymanCommandService")]
-    public interface IHaymanCommandService {
+    [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="HaymanCommandServiceReference.HaymanCommandService")]
+    public interface HaymanCommandService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHaymanCommandService/ExecuteCommand", ReplyAction="http://tempuri.org/IHaymanCommandService/ExecuteCommandResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Ncqrs.Commanding.CommandBase))]
+        [System.ServiceModel.OperationContractAttribute(Action="urn:HaymanCommandService/Execute", ReplyAction="urn:HaymanCommandService/ExecuteResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.CreateMetaModel))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.DeleteMetaAssociation))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.CreateMetaAssociation))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.RemoveMetaItem))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.AddItem))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.AddAssociation))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.DeleteMetaModel))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.CreateMetaAssociation))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.DeleteMetaAssociation))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.RemoveMetaItem))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.AddMetaItem))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.RenameMetaModel))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.DeleteMetaModel))]
-        void ExecuteCommand(object command);
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Hayman.Commands.AddItem))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Ncqrs.Commanding.CommandBase))]
+        void Execute(object[] commands);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IHaymanCommandServiceChannel : Hayman.Client.HaymanCommandServiceReference.IHaymanCommandService, System.ServiceModel.IClientChannel {
+    public interface HaymanCommandServiceChannel : Hayman.Client.HaymanCommandServiceReference.HaymanCommandService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class HaymanCommandServiceClient : System.ServiceModel.ClientBase<Hayman.Client.HaymanCommandServiceReference.IHaymanCommandService>, Hayman.Client.HaymanCommandServiceReference.IHaymanCommandService {
+    public partial class HaymanCommandServiceClient : System.ServiceModel.ClientBase<Hayman.Client.HaymanCommandServiceReference.HaymanCommandService>, Hayman.Client.HaymanCommandServiceReference.HaymanCommandService {
         
         public HaymanCommandServiceClient() {
         }
@@ -56,8 +57,8 @@ namespace Hayman.Client.HaymanCommandServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public void ExecuteCommand(object command) {
-            base.Channel.ExecuteCommand(command);
+        public void Execute(object[] commands) {
+            base.Channel.Execute(commands);
         }
     }
 }

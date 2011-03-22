@@ -7,13 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Commands", "Hayman.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Domain", "Hayman.Domain\Hayman.Domain.csproj", "{ADB9913F-1453-4BB5-9870-76038CB1FFC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Server", "Hayman.Server\Hayman.Server.csproj", "{9AFF1100-D434-4621-BF45-02F671ABAFEE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.CommandService", "Hayman.CommandService\Hayman.CommandService.csproj", "{38694CD1-BECF-4A61-B1E0-78F24B58E59F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Service", "Hayman.Server\Hayman.Service.csproj", "{9AFF1100-D434-4621-BF45-02F671ABAFEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Domain.Storage", "Hayman.Domain.Storage\Hayman.Domain.Storage.csproj", "{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.CommandMappings", "Hayman.CommandMappings\Hayman.CommandMappings.csproj", "{1B714435-24D8-49C7-8EFA-AD3600CBC222}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Client", "Hayman.Client\Hayman.Client.csproj", "{7FD77D93-9752-4FF0-98BB-BA243A695427}"
 EndProject
@@ -142,16 +138,6 @@ Global
 		{9AFF1100-D434-4621-BF45-02F671ABAFEE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9AFF1100-D434-4621-BF45-02F671ABAFEE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9AFF1100-D434-4621-BF45-02F671ABAFEE}.Release|x86.ActiveCfg = Release|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{38694CD1-BECF-4A61-B1E0-78F24B58E59F}.Release|x86.ActiveCfg = Release|Any CPU
 		{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -162,16 +148,6 @@ Global
 		{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}.Release|x86.ActiveCfg = Release|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{1B714435-24D8-49C7-8EFA-AD3600CBC222}.Release|x86.ActiveCfg = Release|Any CPU
 		{7FD77D93-9752-4FF0-98BB-BA243A695427}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{7FD77D93-9752-4FF0-98BB-BA243A695427}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{7FD77D93-9752-4FF0-98BB-BA243A695427}.Debug|Mixed Platforms.Build.0 = Debug|x86

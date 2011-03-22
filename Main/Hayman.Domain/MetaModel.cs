@@ -38,10 +38,13 @@ namespace Hayman.Domain
         {
             if (deleted)
             {
-                throw new MetaModelDeletedException();
+                ApplyEvent(new MetaModelAlreadyDeleted(EventSourceId));
+                //throw new MetaModelDeletedException();
             }
-
-            ApplyEvent(new MetaModelDeleted(EventSourceId));
+            else
+            {
+                ApplyEvent(new MetaModelDeleted(EventSourceId));
+            }
         }
 
         public bool IsDeleted()
@@ -145,7 +148,7 @@ namespace Hayman.Domain
             metaModelName = snapshot.MetaModelName;
             metaItems = snapshot.MetaItems;
             deleted = snapshot.Deleted;
-        } 
+        }
 
         #endregion
     }

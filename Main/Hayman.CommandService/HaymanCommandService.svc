@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Hayman.CommandService.HaymanCommandService" CodeBehind="HaymanCommandService.svc.cs" %>

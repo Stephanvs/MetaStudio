@@ -1,15 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Commands", "Hayman.Ncqrs.Commands\Hayman.Ncqrs.Commands.csproj", "{06998165-D331-4E21-8D38-CBE5A61BFEE7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ncqrs", "Ncqrs", "{72C99BE3-1EE2-4A28-9266-B4B52788E0CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Domain", "Hayman.Ncqrs.Domain\Hayman.Ncqrs.Domain.csproj", "{ADB9913F-1453-4BB5-9870-76038CB1FFC4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blueprints", "Blueprints", "{FF70C4F1-7FB5-4110-95A4-7DC7EA1D9EA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Domain.Storage", "Hayman.Ncqrs.Domain.Storage\Hayman.Ncqrs.Domain.Storage.csproj", "{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{28992EEC-48E4-48A7-9043-4230125C714B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Events", "Hayman.Ncqrs.Events\Hayman.Ncqrs.Events.csproj", "{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E55FB5CD-3150-4690-8245-A92701895963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Service", "Hayman.Ncqrs.Service\Hayman.Ncqrs.Service.csproj", "{9AFF1100-D434-4621-BF45-02F671ABAFEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Commands", "Ncqrs\Hayman.Ncqrs.Commands\Hayman.Ncqrs.Commands.csproj", "{06998165-D331-4E21-8D38-CBE5A61BFEE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Domain", "Ncqrs\Hayman.Ncqrs.Domain\Hayman.Ncqrs.Domain.csproj", "{ADB9913F-1453-4BB5-9870-76038CB1FFC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Domain.Storage", "Ncqrs\Hayman.Ncqrs.Domain.Storage\Hayman.Ncqrs.Domain.Storage.csproj", "{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Events", "Ncqrs\Hayman.Ncqrs.Events\Hayman.Ncqrs.Events.csproj", "{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Service", "Ncqrs\Hayman.Ncqrs.Service\Hayman.Ncqrs.Service.csproj", "{9AFF1100-D434-4621-BF45-02F671ABAFEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Test", "Test\Hayman.Test\Hayman.Test.csproj", "{67DC3B50-06E2-4B36-9F1B-85F2CD5BFB6C}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -106,8 +116,20 @@ Global
 		{9AFF1100-D434-4621-BF45-02F671ABAFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFF1100-D434-4621-BF45-02F671ABAFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFF1100-D434-4621-BF45-02F671ABAFEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DC3B50-06E2-4B36-9F1B-85F2CD5BFB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DC3B50-06E2-4B36-9F1B-85F2CD5BFB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DC3B50-06E2-4B36-9F1B-85F2CD5BFB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DC3B50-06E2-4B36-9F1B-85F2CD5BFB6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06998165-D331-4E21-8D38-CBE5A61BFEE7} = {72C99BE3-1EE2-4A28-9266-B4B52788E0CF}
+		{ADB9913F-1453-4BB5-9870-76038CB1FFC4} = {72C99BE3-1EE2-4A28-9266-B4B52788E0CF}
+		{73C401E2-790D-4EC7-B2D6-9F33378E9CD8} = {72C99BE3-1EE2-4A28-9266-B4B52788E0CF}
+		{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65} = {72C99BE3-1EE2-4A28-9266-B4B52788E0CF}
+		{9AFF1100-D434-4621-BF45-02F671ABAFEE} = {72C99BE3-1EE2-4A28-9266-B4B52788E0CF}
+		{67DC3B50-06E2-4B36-9F1B-85F2CD5BFB6C} = {E55FB5CD-3150-4690-8245-A92701895963}
 	EndGlobalSection
 EndGlobal

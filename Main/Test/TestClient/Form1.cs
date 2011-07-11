@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.Serialization.Formatters;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Runtime.Serialization;
-using Hayman.MetaStudio.Core.Graph;
-using Hayman.MetaStudio.Core.Meta;
+using Hayman.Client.ReadModel.Blueprints.Meta;
 
 namespace TestClient
 {

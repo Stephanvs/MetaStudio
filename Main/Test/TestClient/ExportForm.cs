@@ -12,8 +12,8 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
 using System.Collections.ObjectModel;
-using Hayman.MetaStudio.Core.Graph;
-using Hayman.MetaStudio.Core.Meta;
+using Hayman.Client.ReadModel.Blueprints.Graph;
+using Hayman.Client.ReadModel.Blueprints.Meta;
 
 namespace TestClient
 {

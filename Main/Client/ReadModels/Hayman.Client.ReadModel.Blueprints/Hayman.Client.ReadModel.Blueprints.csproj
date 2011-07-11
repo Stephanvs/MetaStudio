@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="blueprints">
-      <HintPath>..\Libraries\Tinkerpop.NET\blueprints.dll</HintPath>
+      <HintPath>..\..\..\Libraries\blueprints\blueprints.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

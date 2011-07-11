@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="blueprints">
-      <HintPath>..\Libraries\Tinkerpop.NET\blueprints.dll</HintPath>
+      <HintPath>..\..\Libraries\blueprints\blueprints.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -55,9 +55,9 @@
     <Compile Include="Domain\ModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hayman.MetaStudio.Core\Hayman.MetaStudio.Core.csproj">
+    <ProjectReference Include="..\..\Client\ReadModels\Hayman.Client.ReadModel.Blueprints\Hayman.Client.ReadModel.Blueprints.csproj">
       <Project>{90962F38-E7AB-4E23-9C24-7998E05578A6}</Project>
-      <Name>Hayman.MetaStudio.Core</Name>
+      <Name>Hayman.Client.ReadModel.Blueprints</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

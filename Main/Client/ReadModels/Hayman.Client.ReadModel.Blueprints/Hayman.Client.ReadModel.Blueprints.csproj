@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}</ProjectGuid>
+    <ProjectGuid>{90962F38-E7AB-4E23-9C24-7998E05578A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hayman.Domain.Storage</RootNamespace>
-    <AssemblyName>Hayman.Domain.Storage</AssemblyName>
+    <RootNamespace>Hayman.MetaStudio.Core</RootNamespace>
+    <AssemblyName>Hayman.MetaStudio.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="blueprints">
+      <HintPath>..\Libraries\Tinkerpop.NET\blueprints.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,9 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBranchable.cs" />
+    <Compile Include="Meta\IModelGraphAdapter.cs" />
+    <Compile Include="Meta\Association.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\InstanceAssociation.cs" />
+    <Compile Include="Meta\Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\MetaAssociation.cs" />
+    <Compile Include="Meta\MetaItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\Model.cs" />
+    <Compile Include="Graph\VertexType.cs" />
+    <Compile Include="Graph\HaymanEdge.cs" />
+    <Compile Include="Graph\HaymanEdgeData.cs" />
+    <Compile Include="Graph\HaymanVertex.cs" />
+    <Compile Include="Graph\HaymanVertexData.cs" />
+    <Compile Include="Graph\IHaymanEdge.cs" />
+    <Compile Include="Graph\IHaymanGraph.cs" />
+    <Compile Include="Graph\IHaymanVertex.cs" />
+    <Compile Include="Graph\HaymanGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

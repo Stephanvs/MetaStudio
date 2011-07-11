@@ -61,42 +61,6 @@
     <StartupObject>Hayman.Service.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\Libraries\ncqrs\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Ncqrs">
-      <HintPath>..\Libraries\ncqrs\Ncqrs.dll</HintPath>
-    </Reference>
-    <Reference Include="Ncqrs.CommandService">
-      <HintPath>..\Libraries\ncqrs\Ncqrs.CommandService.dll</HintPath>
-    </Reference>
-    <Reference Include="Ncqrs.CommandService.Contracts">
-      <HintPath>..\Libraries\ncqrs\Ncqrs.CommandService.Contracts.dll</HintPath>
-    </Reference>
-    <Reference Include="Ncqrs.Config.StructureMap">
-      <HintPath>..\Libraries\ncqrs\Ncqrs.Config.StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="Ncqrs.EventBus">
-      <HintPath>..\Libraries\ncqrs\Ncqrs.EventBus.dll</HintPath>
-    </Reference>
-    <Reference Include="Ncqrs.Messaging">
-      <HintPath>..\Libraries\ncqrs\Ncqrs.Messaging.dll</HintPath>
-    </Reference>
-    <Reference Include="Ncqrs.NServiceBus">
-      <HintPath>..\Libraries\ncqrs\Ncqrs.NServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\Libraries\nservicebus\NServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\Libraries\nservicebus\NServiceBus.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Host">
-      <HintPath>..\Libraries\nservicebus\NServiceBus.Host.exe</HintPath>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\Libraries\ncqrs\StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />

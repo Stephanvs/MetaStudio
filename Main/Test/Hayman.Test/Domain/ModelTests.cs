@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Hayman.MetaStudio.Core.Meta;
+using Hayman.Client.ReadModel.Blueprints.Meta;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hayman.MetaStudio.Core.Test.Domain
+namespace Hayman.Client.ReadModel.Blueprints.Test.Domain
 {
 	[TestClass]
 	public class ModelTests

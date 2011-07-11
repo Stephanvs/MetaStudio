@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Hayman.MetaStudio.Core.Graph;
-using Hayman.MetaStudio.Core.Meta;
+using Hayman.Client.ReadModel.Blueprints.Meta;
+using Hayman.Client.ReadModel.Blueprints.Graph;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Hayman.MetaStudio.Core.Test.Domain
+namespace Hayman.Client.ReadModel.Blueprints.Test.Domain
 {
 	[TestClass]
 	public class AssociationTests

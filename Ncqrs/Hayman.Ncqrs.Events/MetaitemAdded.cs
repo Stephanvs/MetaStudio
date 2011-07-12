@@ -1,9 +1,9 @@
 ﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
-namespace Hayman.Ncqrs.Events
+namespace Hayman.Events
 {
-	public class MetaItemAdded : SourcedEntityEvent
+	public class MetaItemAdded : SourcedEvent
 	{
         public Guid MetaItemId { get; private set; }
         public String MetaItemName { get; private set; }

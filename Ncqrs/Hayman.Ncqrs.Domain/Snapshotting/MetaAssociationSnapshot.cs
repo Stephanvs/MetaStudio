@@ -2,7 +2,7 @@
 using Ncqrs.Eventing.Sourcing.Snapshotting;
 using System.Collections.Generic;
 
-namespace Hayman.Ncqrs.Domain.Snapshotting
+namespace Hayman.Domain.Snapshotting
 {
     public class MetaAssociationSnapshot : Snapshot
     {

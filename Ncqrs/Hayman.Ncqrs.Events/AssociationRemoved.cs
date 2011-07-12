@@ -1,10 +1,10 @@
 ﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
-namespace Hayman.Ncqrs.Events
+namespace Hayman.Events
 {
 	[Serializable]
-	public class AssociationRemoved : SourcedEntityEvent
+	public class AssociationRemoved : SourcedEvent
 	{
         public Guid AssociationId { get; private set; }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hayman.Ncqrs.Domain.Storage
+namespace Hayman.Domain.Storage
 {
     public interface IBranchable
     {

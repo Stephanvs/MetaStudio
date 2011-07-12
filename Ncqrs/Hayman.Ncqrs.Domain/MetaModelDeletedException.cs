@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hayman.Ncqrs.Domain
+namespace Hayman.Domain
 {
     public class MetaModelDeletedException : Exception
     {

@@ -9,15 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{28992E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E55FB5CD-3150-4690-8245-A92701895963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Commands", "Ncqrs\Hayman.Ncqrs.Commands\Hayman.Ncqrs.Commands.csproj", "{06998165-D331-4E21-8D38-CBE5A61BFEE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Commands", "Ncqrs\Hayman.Ncqrs.Commands\Hayman.Commands.csproj", "{06998165-D331-4E21-8D38-CBE5A61BFEE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Domain", "Ncqrs\Hayman.Ncqrs.Domain\Hayman.Ncqrs.Domain.csproj", "{ADB9913F-1453-4BB5-9870-76038CB1FFC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Domain", "Ncqrs\Hayman.Ncqrs.Domain\Hayman.Domain.csproj", "{ADB9913F-1453-4BB5-9870-76038CB1FFC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Domain.Storage", "Ncqrs\Hayman.Ncqrs.Domain.Storage\Hayman.Ncqrs.Domain.Storage.csproj", "{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Domain.Storage", "Ncqrs\Hayman.Ncqrs.Domain.Storage\Hayman.Domain.Storage.csproj", "{73C401E2-790D-4EC7-B2D6-9F33378E9CD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Events", "Ncqrs\Hayman.Ncqrs.Events\Hayman.Ncqrs.Events.csproj", "{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Events", "Ncqrs\Hayman.Ncqrs.Events\Hayman.Events.csproj", "{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Ncqrs.Service", "Ncqrs\Hayman.Ncqrs.Service\Hayman.Ncqrs.Service.csproj", "{9AFF1100-D434-4621-BF45-02F671ABAFEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Service", "Ncqrs\Hayman.Ncqrs.Service\Hayman.Service.csproj", "{9AFF1100-D434-4621-BF45-02F671ABAFEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayman.Test", "Test\Hayman.Test\Hayman.Test.csproj", "{67DC3B50-06E2-4B36-9F1B-85F2CD5BFB6C}"
 EndProject
@@ -28,72 +28,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClient", "Test\TestClient\TestClient.csproj", "{C33661D0-B3E1-4624-9268-9A2D796C8280}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 16
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://84.80.227.6:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Hayman.Events\\Hayman.Events.csproj
-		SccProjectTopLevelParentUniqueName1 = Hayman.sln
-		SccProjectName1 = Hayman.Events
-		SccLocalPath1 = Hayman.Events
-		SccProjectUniqueName2 = Hayman.Commands\\Hayman.Commands.csproj
-		SccProjectTopLevelParentUniqueName2 = Hayman.sln
-		SccProjectName2 = Hayman.Commands
-		SccLocalPath2 = Hayman.Commands
-		SccProjectUniqueName3 = Hayman.Domain\\Hayman.Domain.csproj
-		SccProjectTopLevelParentUniqueName3 = Hayman.sln
-		SccProjectName3 = Hayman.Domain
-		SccLocalPath3 = Hayman.Domain
-		SccProjectUniqueName4 = Client\\Hayman.Shell\\Hayman.Shell.csproj
-		SccProjectTopLevelParentUniqueName4 = Hayman.sln
-		SccProjectName4 = Client/Hayman.Shell
-		SccLocalPath4 = Client\\Hayman.Shell
-		SccProjectUniqueName5 = Hayman.Server\\Hayman.Server.csproj
-		SccProjectTopLevelParentUniqueName5 = Hayman.sln
-		SccProjectName5 = Hayman.Server
-		SccLocalPath5 = Hayman.Server
-		SccProjectUniqueName6 = Hayman.CommandExecutors\\Hayman.CommandExecutors.csproj
-		SccProjectTopLevelParentUniqueName6 = Hayman.sln
-		SccProjectName6 = Hayman.CommandExecutors
-		SccLocalPath6 = Hayman.CommandExecutors
-		SccProjectUniqueName7 = Hayman.CommandService\\Hayman.CommandService.csproj
-		SccProjectTopLevelParentUniqueName7 = Hayman.sln
-		SccProjectName7 = Hayman.CommandService
-		SccLocalPath7 = Hayman.CommandService
-		SccProjectUniqueName8 = Client\\Modules\\Hayman.Client.TestModule\\Hayman.Client.DebugModule.csproj
-		SccProjectTopLevelParentUniqueName8 = Hayman.sln
-		SccProjectName8 = Client/Modules/Hayman.Client.TestModule
-		SccLocalPath8 = Client\\Modules\\Hayman.Client.TestModule
-		SccProjectUniqueName9 = Services\\DomainModelService\\DomainModelService.csproj
-		SccProjectTopLevelParentUniqueName9 = Hayman.sln
-		SccProjectName9 = Services/DomainModelService
-		SccLocalPath9 = Services\\DomainModelService
-		SccProjectUniqueName10 = Tests\\Backend\\DomainTests\\DomainTests.csproj
-		SccProjectTopLevelParentUniqueName10 = Hayman.sln
-		SccProjectName10 = Tests/Backend/DomainTests
-		SccLocalPath10 = Tests\\Backend\\DomainTests
-		SccProjectUniqueName11 = Hayman.Client.Infrastructure.Presentation\\Hayman.Client.Presentation.Windows.csproj
-		SccProjectTopLevelParentUniqueName11 = Hayman.sln
-		SccProjectName11 = Hayman.Client.Infrastructure.Presentation
-		SccLocalPath11 = Hayman.Client.Infrastructure.Presentation
-		SccProjectUniqueName12 = Hayman.Client.Presentation.Widgets\\Hayman.Client.Presentation.Widgets.csproj
-		SccProjectTopLevelParentUniqueName12 = Hayman.sln
-		SccProjectName12 = Hayman.Client.Presentation.Widgets
-		SccLocalPath12 = Hayman.Client.Presentation.Widgets
-		SccProjectUniqueName13 = Hayman.Client.Infrastructure\\Hayman.Client.Infrastructure.csproj
-		SccProjectTopLevelParentUniqueName13 = Hayman.sln
-		SccProjectName13 = Hayman.Client.Infrastructure
-		SccLocalPath13 = Hayman.Client.Infrastructure
-		SccProjectUniqueName14 = Client\\Modules\\Hayman.Client.MetaModelModule\\Hayman.Client.MetaModelModule.csproj
-		SccProjectTopLevelParentUniqueName14 = Hayman.sln
-		SccProjectName14 = Client/Modules/Hayman.Client.MetaModelModule
-		SccLocalPath14 = Client\\Modules\\Hayman.Client.MetaModelModule
-		SccProjectUniqueName15 = Architecture\\Hayman.Architecture\\Hayman.Architecture.modelproj
-		SccProjectTopLevelParentUniqueName15 = Hayman.sln
-		SccProjectName15 = Architecture/Hayman.Architecture
-		SccLocalPath15 = Architecture\\Hayman.Architecture
-	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Hayman.vsmdi
 	EndGlobalSection

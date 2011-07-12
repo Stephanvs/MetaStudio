@@ -1,12 +1,12 @@
 ﻿using System;
-using Hayman.Ncqrs.Domain.Snapshotting;
+using Hayman.Domain.Snapshotting;
 using Ncqrs.Domain;
-using Hayman.Ncqrs.Events;
+using Hayman.Events;
 using System.Collections.Generic;
 using System.Linq;
 using Ncqrs.Eventing.Sourcing.Snapshotting;
 
-namespace Hayman.Ncqrs.Domain
+namespace Hayman.Domain
 {
     public class MetaModel : AggregateRootMappedByConvention, ISnapshotable<MetaModelSnapshot>
     {
@@ -133,8 +133,8 @@ namespace Hayman.Ncqrs.Domain
         {
             return new MetaModelSnapshot
             {
-                EventSourceId = EventSourceId,
-                EventSourceVersion = Version,
+				//EventSourceId = EventSourceId,
+				//Version = Version,
                 MetaModelName = metaModelName,
                 MetaItems = metaItems,
                 Deleted = deleted
@@ -143,11 +143,7 @@ namespace Hayman.Ncqrs.Domain
 
         public void RestoreFromSnapshot(MetaModelSnapshot snapshot)
         {
-            EventSourceId = snapshot.EventSourceId;
-            InitialVersion = snapshot.EventSourceVersion;
-            metaModelName = snapshot.MetaModelName;
-            metaItems = snapshot.MetaItems;
-            deleted = snapshot.Deleted;
+        	InitializeFromSnapshot(snapshot);
         }
 
         #endregion

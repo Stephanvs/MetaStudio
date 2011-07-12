@@ -1,9 +1,9 @@
 ﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
-namespace Hayman.Ncqrs.Events
+namespace Hayman.Events
 {
-	public class MetaItemBranchRemoved : SourcedEntityEvent
+	public class MetaItemBranchRemoved : SourcedEvent
 	{
         public Guid MetaItemBranchId { get; private set; }
 

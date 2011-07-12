@@ -1,9 +1,9 @@
 ﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
-namespace Hayman.Ncqrs.Events
+namespace Hayman.Events
 {
-	public class AssociationAdded : SourcedEntityEvent
+	public class AssociationAdded : SourcedEvent
 	{
         public Guid AssociationId { get; private set; }
         public Guid ItemSourceId { get; private set; }

@@ -1,10 +1,10 @@
 ﻿using System;
 using Ncqrs.Domain;
-using Hayman.Ncqrs.Events;
+using Hayman.Events;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Hayman.Ncqrs.Domain
+namespace Hayman.Domain
 {
     public class MetaItem : EntityMappedByConvention
 	{

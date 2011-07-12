@@ -108,7 +108,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Client\ReadModels\Hayman.Client.ReadModel.Blueprints\Hayman.Client.ReadModel.Blueprints.csproj">
       <Project>{90962F38-E7AB-4E23-9C24-7998E05578A6}</Project>
-      <Name>Hayman.MetaStudio.Core</Name>
+      <Name>Hayman.Client.ReadModel.Blueprints</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

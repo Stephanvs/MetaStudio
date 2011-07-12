@@ -1,9 +1,9 @@
 ﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
-namespace Hayman.Ncqrs.Events
+namespace Hayman.Events
 {
-	public class ItemAdded : SourcedEntityEvent
+	public class ItemAdded : EntitySourcedEventBase
 	{
         public Guid ItemId { get; private set; }
         public String ItemName { get; private set; }
@@ -13,5 +13,5 @@ namespace Hayman.Ncqrs.Events
             ItemId = itemId;
             ItemName = itemName;
         }
-    }
+	}
 }

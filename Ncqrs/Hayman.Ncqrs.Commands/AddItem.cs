@@ -1,7 +1,7 @@
 ﻿using System;
 using Ncqrs.Commanding;
 
-namespace Hayman.Ncqrs.Commands
+namespace Hayman.Commands
 {
 	[Serializable]
 	public class AddItem : CommandBase

@@ -1,7 +1,7 @@
 ﻿using System;
 using Ncqrs.Domain;
 
-namespace Hayman.Ncqrs.Domain
+namespace Hayman.Domain
 {
     public class Item : EntityMappedByConvention
 	{

@@ -1,9 +1,9 @@
 ﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
-namespace Hayman.Ncqrs.Events
+namespace Hayman.Events
 {
-	public class ItemRemoved : SourcedEntityEvent
+	public class ItemRemoved : EntitySourcedEventBase
 	{
         public Guid ItemId { get; private set; }
 

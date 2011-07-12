@@ -1,7 +1,7 @@
 ﻿using System;
 using Ncqrs.Commanding;
 
-namespace Hayman.Ncqrs.Commands
+namespace Hayman.Commands
 {
 	[Serializable]
     //[MapsToAggregateRootConstructor("Hayman.Domain.MetaModel, Hayman.Domain")]

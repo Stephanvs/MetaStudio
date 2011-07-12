@@ -5,17 +5,21 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}</ProjectGuid>
+    <ProjectGuid>{06998165-D331-4E21-8D38-CBE5A61BFEE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hayman.Events</RootNamespace>
-    <AssemblyName>Hayman.Events</AssemblyName>
+    <RootNamespace>Hayman.Commands</RootNamespace>
+    <AssemblyName>Hayman.Commands</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -58,6 +62,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ncqrs, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Libraries\ncqrs\Ncqrs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,20 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssociationAdded.cs" />
-    <Compile Include="AssociationRemoved.cs" />
-    <Compile Include="MetaItemBranchRemoved.cs" />
-    <Compile Include="MetaItemBranchAdded.cs" />
-    <Compile Include="ItemRemoved.cs" />
-    <Compile Include="ItemAdded.cs" />
-    <Compile Include="MetaModelAlreadyDeleted.cs" />
-    <Compile Include="MetaModelDeleted.cs" />
-    <Compile Include="MetaAssociationDeleted.cs" />
-    <Compile Include="MetaAssociationCreated.cs" />
-    <Compile Include="MetaItemRemoved.cs" />
-    <Compile Include="MetaModelRenamed.cs" />
-    <Compile Include="MetaItemAdded.cs" />
-    <Compile Include="MetaModelCreated.cs" />
+    <Compile Include="AddItem.cs" />
+    <Compile Include="AddAssociation.cs" />
+    <Compile Include="DeleteMetaModel.cs" />
+    <Compile Include="DeleteMetaAssociation.cs" />
+    <Compile Include="CreateMetaAssociation.cs" />
+    <Compile Include="AddMetaItem.cs" />
+    <Compile Include="RemoveMetaItem.cs" />
+    <Compile Include="RenameMetaModel.cs" />
+    <Compile Include="CreateMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

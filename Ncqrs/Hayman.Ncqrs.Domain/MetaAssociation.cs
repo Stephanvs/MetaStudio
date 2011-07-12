@@ -1,12 +1,12 @@
 ﻿using System;
-using Hayman.Ncqrs.Domain.Snapshotting;
+using Hayman.Domain.Snapshotting;
 using Ncqrs.Domain;
-using Hayman.Ncqrs.Events;
+using Hayman.Events;
 using System.Collections.Generic;
 using System.Linq;
 using Ncqrs.Eventing.Sourcing.Snapshotting;
 
-namespace Hayman.Ncqrs.Domain
+namespace Hayman.Domain
 {
     public class MetaAssociation : AggregateRootMappedByConvention, ISnapshotable<MetaAssociationSnapshot>
 	{
@@ -82,7 +82,7 @@ namespace Hayman.Ncqrs.Domain
 
         private void OnAssociationAdded(AssociationAdded e)
         {
-            associations.Add(new Association(this, e.EntityId, e.ItemSourceId, e.ItemTargetId, e.AssociationName));
+            associations.Add(new Association(this, e.AssociationId, e.ItemSourceId, e.ItemTargetId, e.AssociationName));
         }
 
         private void OnAssociationRemoved(AssociationRemoved e)
@@ -99,8 +99,8 @@ namespace Hayman.Ncqrs.Domain
         {
             return new MetaAssociationSnapshot
             {
-                EventSourceId = EventSourceId,
-                EventSourceVersion = Version,
+				//EventSourceId = EventSourceId,
+				//Version = Version,
                 MetaItemSourceId = metaItemSourceId,
                 MetaItemTargetId = metaItemTargetId,
                 Associations = associations,
@@ -110,12 +110,7 @@ namespace Hayman.Ncqrs.Domain
 
         public void RestoreFromSnapshot(MetaAssociationSnapshot snapshot)
         {
-            EventSourceId = snapshot.EventSourceId;
-            InitialVersion = snapshot.EventSourceVersion;
-            metaItemSourceId = snapshot.MetaItemSourceId;
-            metaItemTargetId = snapshot.MetaItemTargetId;
-            associations = snapshot.Associations;
-            deleted = snapshot.Deleted;
+        	InitializeFromSnapshot(snapshot);
         }
 
         #endregion

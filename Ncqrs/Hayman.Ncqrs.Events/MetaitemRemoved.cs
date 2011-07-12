@@ -1,10 +1,10 @@
 ﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
-namespace Hayman.Ncqrs.Events
+namespace Hayman.Events
 {
 	[Serializable]
-	public class MetaItemRemoved : SourcedEntityEvent
+	public class MetaItemRemoved : SourcedEvent
 	{
         public Guid MetaItemId { get; private set; }
 

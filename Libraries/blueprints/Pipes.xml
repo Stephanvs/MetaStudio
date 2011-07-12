@@ -1,0 +1,2773 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pipes</name>
+    </assembly>
+    <members>
+        <member name="T:de.ahzf.Pipes.PathPipe`1">
+            <summary>
+            Emits the path that the traverser has taken up to this object.
+            In other words, it uses the Path property of the previous pipe
+            to emit the transformation stages.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractPipe`2">
+            <summary>
+            An AbstractPipe provides most of the functionality that is repeated
+            in every instance of a Pipe. Any subclass of AbstractPipe should simply
+            implement MoveNext().
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IPipe`2">
+            <summary>
+            The generic interface for any Pipe implementation.
+            A Pipe takes/consumes objects of type S and returns/emits objects of type E.
+            S refers to <i>starts</i> and the E refers to <i>ends</i>.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IStartPipe`1">
+            <summary>
+            A helper interface for the IPipe&lt;S, E&gt; pipe interface
+            defining a general pipe consuming elements of type S.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IStartPipe">
+            <summary>
+            A helper interface for the IPipe pipe interface
+            defining a general pipe consuming elements.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.IStartPipe.SetSource(System.Collections.IEnumerator)">
+            <summary>
+            Set the elements emitted by the given IEnumerator as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IStartPipe.SetSourceCollection(System.Collections.IEnumerable)">
+            <summary>
+            Set the elements emitted from the given IEnumerable as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable as element source.</param>
+        </member>
+        <member name="T:de.ahzf.Pipes.IEndPipe`1">
+            <summary>
+            A helper interface for the IPipe&lt;S, E&gt; pipe interface
+            defining a general pipe emitting elements of type E.
+            </summary>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IEndPipe">
+            <summary>
+            A helper interface for the IPipe pipe interface
+            defining a general pipe emitting elements.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.IEndPipe.Path">
+            <summary>
+            Returns the path traversed to arrive at the current result of the pipe.
+            </summary> 
+            <returns>A List of all of the objects traversed for the current iterator position of the pipe.</returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.IPipe">
+            <summary>
+            A helper interface for the IPipe&lt;S, E&gt; pipe interface
+            defining a general pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`2.SetSource(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`2.SetSource(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`2.SetSourceCollection(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`2._InternalEnumerator">
+            <summary>
+            The internal enumerator of the collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`2._CurrentElement">
+            <summary>
+            The internal current element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.#ctor">
+            <summary>
+            Creates a AbstractPipe pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new AbstractPipe using the elements emitted
+            by the given IEnumerator as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+            <param name="IEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.SetSource(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.SetSource(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.de#ahzf#Pipes#IStartPipe#SetSource(System.Collections.IEnumerator)">
+            <summary>
+            Set the elements emitted by the given IEnumerator as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.SetSourceCollection(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.de#ahzf#Pipes#IStartPipe#SetSourceCollection(System.Collections.IEnumerable)">
+            <summary>
+            Set the elements emitted from the given IEnumerable as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator&lt;E&gt; that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is
+            before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.Dispose">
+            <summary>
+            Disposes this pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`2.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`2.Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`2.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`2.Path">
+            <summary>
+            Returns the transformation path to arrive at the current object
+            of the pipe. This is a list of all of the objects traversed for
+            the current iterator position of the pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.PathPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.ISideEffectPipe`3">
+            <summary>
+            This SideEffectPipe will produce a side effect which can be
+            retrieved by the SideEffect property.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+            <typeparam name="T">The type of the sideeffect.</typeparam>
+        </member>
+        <member name="P:de.ahzf.Pipes.ISideEffectPipe`3.SideEffect">
+            <summary>
+            The SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.ISideEffectPipe`4">
+            <summary>
+            This SideEffectPipe will produce two side effects which can
+            be retrieved by the SideEffect properties.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+            <typeparam name="T1">The type of the first sideeffect.</typeparam>
+            <typeparam name="T2">The type of the second sideeffect.</typeparam>
+        </member>
+        <member name="P:de.ahzf.Pipes.ISideEffectPipe`4.SideEffect1">
+            <summary>
+            The first SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.ISideEffectPipe`4.SideEffect2">
+            <summary>
+            The second SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.ISideEffectPipe`5">
+            <summary>
+            This SideEffectPipe will produce two side effects which can
+            be retrieved by the SideEffect properties.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+            <typeparam name="T1">The type of the first sideeffect.</typeparam>
+            <typeparam name="T2">The type of the second sideeffect.</typeparam>
+            <typeparam name="T2">The type of the third sideeffect.</typeparam>
+        </member>
+        <member name="P:de.ahzf.Pipes.ISideEffectPipe`5.SideEffect1">
+            <summary>
+            The first SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.ISideEffectPipe`5.SideEffect2">
+            <summary>
+            The second SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.ISideEffectPipe`5.SideEffect3">
+            <summary>
+            The third SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.HistoryEnumerator`1">
+            <summary>
+            A HistoryEnumerator wraps and behaves like a classical IEnumerator.
+            However, it will remember what was last returned out of the IEnumerator.
+            </summary>
+            <typeparam name="T">The type of the stored elements.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IHistoryEnumerator">
+            <summary>
+            A helper interface for the HistoryEnumerator&lt;T&gt; class.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.IHistoryEnumerator.Last">
+            <summary>
+            Return the last element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.HistoryEnumerator`1.#ctor(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new HistoryEnumerator based on the given myIEnumerator.
+            </summary>
+            <param name="myIEnumerator">The enumerator to be wrapped.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.HistoryEnumerator`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>True if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.HistoryEnumerator`1.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is
+            before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.HistoryEnumerator`1.Dispose">
+            <summary>
+            Dispose this enumerator.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.HistoryEnumerator`1.Current">
+            <summary>
+            Return the current element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.HistoryEnumerator`1.System#Collections#IEnumerator#Current">
+            <summary>
+            Return the current element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.HistoryEnumerator`1.Last">
+            <summary>
+            Return the last element of the internal IEnumertor&lt;T&gt;.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.HistoryEnumerator`1.de#ahzf#Pipes#IHistoryEnumerator#Last">
+            <summary>
+            Return the last element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.AndFilterPipe`1">
+            <summary>
+            The AndFilterPipe takes a collection of pipes, where E is boolean.
+            Each provided pipe is fed the same incoming S object. If all the
+            pipes emit true, then the AndFilterPipe emits the incoming S object.
+            If not, then the incoming S object is not emitted.
+            </summary>
+            <typeparam name="S">The type of the consuming and emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IFilterPipe`1">
+            <summary>
+            A FilterPipe is much like the IdentityPipe, but may or may not filter 
+            some of the messages/objects instead of emitting everything.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.AndFilterPipe`1.#ctor(de.ahzf.Pipes.IPipe{`0,System.Boolean}[])">
+            <summary>
+            Creates a new pipe based on the given pipes.
+            </summary>
+            <param name="myPipes">Multiple IPipes&lt;S, Boolean&gt;.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AndFilterPipe`1.#ctor(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe{`0,System.Boolean}})">
+            <summary>
+            Creates a new pipe based on the given pipes.
+            </summary>
+            <param name="myPipes">A collection of IPipes&lt;S, Boolean&gt;.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AndFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.CopySplitPipe`1">
+            <summary>
+            CopySplitPipe takes a number of pipes during construction.
+            Every object pulled through CopySplitPipe is copied to each of the internal pipes.
+            </summary>
+            <typeparam name="S">The type of the consuming and emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IMetaPipe">
+            <summary>
+            A MetaPipe is a pipe that "wraps" some collection of pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.CopySplitPipe`1.#ctor(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe})">
+            <summary>
+            Creates a new CopySplitPipe based on the given Pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.CopySplitPipe`1.#ctor(de.ahzf.Pipes.IPipe[])">
+            <summary>
+            Creates a new CopySplitPipe based on the given Pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.CopySplitPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.CopySplitPipe`1.Reset">
+            <summary>
+            A pipe may maintain state. Reset is used to remove state.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.CopySplitPipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.CopySplitPipe`1.Pipes">
+            <summary>
+            A MetaPipe is a pipe that "wraps" some collection of pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.CopySplitPipe`1.CopyExpandablePipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.IComparisonFilterPipe`2">
+            <summary>
+            A ComparisonFilterPipe will allow or disallow objects that pass
+            through it depending on some implemented comparison criteria.
+            </summary>
+            <typeparam name="S"></typeparam>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.IComparisonFilterPipe`2.CompareObjects(`1,`1)">
+            <summary>
+            Compares two objects.
+            </summary>
+            <param name="myLeftObject">The left object.</param>
+            <param name="myRightObject">The right object.</param>
+            <returns>A match based on the defined filter.</returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractSideEffectPipe`3">
+            <summary>
+            An AbstractSideEffectPipe provides the same functionality as the 
+            AbstractPipe, but produces a side effect which can be retrieved
+            by the SideEffect property.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+            <typeparam name="T">The type of the sideeffect.</typeparam>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractSideEffectPipe`3._SideEffect">
+            <summary>
+            The SideEffect produced by this Pipe.
+            Use this reference for operations like:
+            Interlocked.Increment(ref _SideEffect);
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractSideEffectPipe`3.#ctor">
+            <summary>
+            Creates a new AbstractSideEffectPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractSideEffectPipe`3.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new AbstractSideEffectPipe using the elements
+            emitted by the given IEnumerator as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+            <param name="IEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractSideEffectPipe`3.SideEffect">
+            <summary>
+            The SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractSideEffectPipe`4">
+            <summary>
+            An AbstractSideEffectPipe provides the same functionality as the 
+            AbstractPipe, but produces a side effect which can be retrieved
+            by the SideEffect property.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+            <typeparam name="T1">The type of the first sideeffect.</typeparam>
+            <typeparam name="T2">The type of the second sideeffect.</typeparam>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractSideEffectPipe`4._SideEffect1">
+            <summary>
+            The SideEffect produced by this Pipe.
+            Use this reference for operations like:
+            Interlocked.Increment(ref _SideEffect);
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractSideEffectPipe`4._SideEffect2">
+            <summary>
+            The SideEffect produced by this Pipe.
+            Use this reference for operations like:
+            Interlocked.Increment(ref _SideEffect);
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractSideEffectPipe`4.#ctor">
+            <summary>
+            Creates a new AbstractSideEffectPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractSideEffectPipe`4.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new AbstractSideEffectPipe using the elements
+            emitted by the given IEnumerator as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+            <param name="IEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractSideEffectPipe`4.SideEffect1">
+            <summary>
+            The first SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractSideEffectPipe`4.SideEffect2">
+            <summary>
+            The second SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractSideEffectPipe`5">
+            <summary>
+            An AbstractSideEffectPipe provides the same functionality as the 
+            AbstractPipe, but produces a side effect which can be retrieved
+            by the SideEffect property.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+            <typeparam name="T1">The type of the first sideeffect.</typeparam>
+            <typeparam name="T2">The type of the second sideeffect.</typeparam>
+            <typeparam name="T2">The type of the third sideeffect.</typeparam>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractSideEffectPipe`5._SideEffect1">
+            <summary>
+            The first SideEffect produced by this Pipe.
+            Use this reference for operations like:
+            Interlocked.Increment(ref _SideEffect);
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractSideEffectPipe`5._SideEffect2">
+            <summary>
+            The second SideEffect produced by this Pipe.
+            Use this reference for operations like:
+            Interlocked.Increment(ref _SideEffect);
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractSideEffectPipe`5._SideEffect3">
+            <summary>
+            The third SideEffect produced by this Pipe.
+            Use this reference for operations like:
+            Interlocked.Increment(ref _SideEffect);
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractSideEffectPipe`5.#ctor">
+            <summary>
+            Creates a new AbstractSideEffectPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractSideEffectPipe`5.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new AbstractSideEffectPipe using the elements
+            emitted by the given IEnumerator as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+            <param name="IEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractSideEffectPipe`5.SideEffect1">
+            <summary>
+            The first SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractSideEffectPipe`5.SideEffect2">
+            <summary>
+            The second SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractSideEffectPipe`5.SideEffect3">
+            <summary>
+            The third SideEffect produced by this Pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.SplitPipe`1">
+            <summary>
+            Converts the consuming objects to emitting objects
+            by calling a Func&lt;S, E&gt;.
+            </summary>
+            <typeparam name="S">The type of the consuming and emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.ISplitPipe`3">
+            <summary>
+            The generic interface for any Pipe implementation.
+            A Pipe takes/consumes objects of type S and returns/emits objects of type E1 and E2.
+            S refers to <i>starts</i> and the E1 and E2 refers to <i>ends</i>.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E1">The type of the first emitting objects.</typeparam>
+            <typeparam name="E2">The type of the second emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.ISplitPipe">
+            <summary>
+            A helper interface for the ISplitPipe&lt;S, E&gt; pipe interface
+            defining a general pipe.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.SplitPipe`1._InternalEnumerator">
+            <summary>
+            The internal enumerator of the collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.SplitPipe`1._CurrentElement">
+            <summary>
+            The internal current element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.SplitPipe`1.#ctor(System.Byte,System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new FuncPipe using the given Func&lt;S, E&gt;.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.SplitPipe`1.SetSource(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SplitPipe`1.SetSourceCollection(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SplitPipe`1.MoveNext(System.Byte)">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.FuncPipe`2">
+            <summary>
+            Converts the consuming objects to emitting objects
+            by calling a Func&lt;S, E&gt;.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`2.#ctor(System.Func{`0,`1},System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new FuncPipe using the given Func&lt;S, E&gt;.
+            </summary>
+            <param name="myFunc">A Func&lt;S, E&gt; converting the consuming objects into emitting objects.</param>
+            <param name="IEnumerable">An optional IEnumerable&lt;S&gt; as element source.</param>
+            <param name="IEnumerator">An optional IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`2.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.FuncPipe`3">
+            <summary>
+            Converts the consuming objects to emitting objects
+            by calling a Func&lt;S1, S2, E&gt;.
+            </summary>
+            <typeparam name="S1">The type of the consuming objects.</typeparam>
+            <typeparam name="S2">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractPipe`3">
+            <summary>
+            An AbstractPipe provides most of the functionality that is repeated
+            in every instance of a Pipe. Any subclass of AbstractPipe should simply
+            implement MoveNext().
+            </summary>
+            <typeparam name="S1">The type of the first consuming objects.</typeparam>
+            <typeparam name="S2">The type of the second consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IPipe`3">
+            <summary>
+            The generic interface for any Pipe implementation.
+            A Pipe takes/consumes objects of type S1 and S2 and returns/emits objects of type E.
+            S1 and S2 refers to <i>starts</i> and the E refers to <i>ends</i>.
+            </summary>
+            <typeparam name="S1">The type of the first consuming objects.</typeparam>
+            <typeparam name="S2">The type of the second consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`3.SetSource1(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`3.SetSource2(`1)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`3.SetSource1(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S1&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`3.SetSource2(System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S2&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`3.SetSourceCollection1(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S1&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`3.SetSourceCollection2(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S2&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`3._InternalEnumerator1">
+            <summary>
+            The internal enumerator of the first collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`3._InternalEnumerator2">
+            <summary>
+            The internal enumerator of the second collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`3._CurrentElement">
+            <summary>
+            The internal current element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.#ctor">
+            <summary>
+            Creates a new abstract pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.#ctor(System.Collections.Generic.IEnumerator{`0},System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Creates a new abstract pipe using the elements emitted
+            by the given IEnumerators as input.
+            </summary>
+            <param name="IEnumerator1">An IEnumerator&lt;S1&gt; as element source.</param>
+            <param name="IEnumerator2">An IEnumerator&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Creates a new abstract pipe using the elements emitted
+            by the given IEnumerables as input.
+            </summary>
+            <param name="IEnumerable1">An IEnumerable&lt;S1&gt; as element source.</param>
+            <param name="IEnumerable2">An IEnumerable&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.SetSource1(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.SetSource2(`1)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.SetSource1(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S1&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.SetSource2(System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S2&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.SetSourceCollection1(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S1&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.SetSourceCollection2(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S2&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator&lt;E&gt; that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.Reset">
+            <summary>
+            Sets the enumerators to their initial positions, which
+            is before the first element in the collections.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.Dispose">
+            <summary>
+            Disposes this pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`3.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`3.Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`3.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`3.Path">
+            <summary>
+            Returns the transformation path to arrive at the current object
+            of the pipe. This is a list of all of the objects traversed for
+            the current iterator position of the pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`3.#ctor(System.Func{`0,`1,`2},System.Collections.Generic.IEnumerator{`0},System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Creates a new FuncPipe using the elements emitted
+            by the given IEnumerables as input.
+            </summary>
+            <param name="Func">A Func&lt;S1, S2, E&gt; converting the consuming objects into emitting objects.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`3.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.FuncPipe`4">
+            <summary>
+            Converts the consuming objects to emitting objects
+            by calling a Func&lt;S1, S2, S3, E&gt;.
+            </summary>
+            <typeparam name="S1">The type of the consuming objects.</typeparam>
+            <typeparam name="S2">The type of the consuming objects.</typeparam>
+            <typeparam name="S3">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractPipe`4">
+            <summary>
+            An AbstractPipe provides most of the functionality that is repeated
+            in every instance of a Pipe. Any subclass of AbstractPipe should simply
+            implement MoveNext().
+            </summary>
+            <typeparam name="S1">The type of the first consuming objects.</typeparam>
+            <typeparam name="S2">The type of the second consuming objects.</typeparam>
+            <typeparam name="S3">The type of the second consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IPipe`4">
+            <summary>
+            The generic interface for any Pipe implementation.
+            A Pipe takes/consumes objects of type S1, S2 and S3 and returns/emits objects of type E.
+            S1, S2 and S3 refers to <i>starts</i> and the E refers to <i>ends</i>.
+            </summary>
+            <typeparam name="S1">The type of the first consuming objects.</typeparam>
+            <typeparam name="S2">The type of the second consuming objects.</typeparam>
+            <typeparam name="S3">The type of the third consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSource1(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSource2(`1)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSource3(`2)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSource1(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S1&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSource2(System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S2&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSource3(System.Collections.Generic.IEnumerator{`2})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S3&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSourceCollection1(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S1&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSourceCollection2(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S2&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`4.SetSourceCollection3(System.Collections.Generic.IEnumerable{`2})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S3&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`4._InternalEnumerator1">
+            <summary>
+            The internal enumerator of the first collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`4._InternalEnumerator2">
+            <summary>
+            The internal enumerator of the second collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`4._InternalEnumerator3">
+            <summary>
+            The internal enumerator of the third collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`4._CurrentElement">
+            <summary>
+            The internal current element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.#ctor">
+            <summary>
+            Creates a new abstract pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.#ctor(System.Collections.Generic.IEnumerator{`0},System.Collections.Generic.IEnumerator{`1},System.Collections.Generic.IEnumerator{`2})">
+            <summary>
+            Creates a new abstract pipe using the elements emitted
+            by the given IEnumerators as input.
+            </summary>
+            <param name="IEnumerator1">An IEnumerator&lt;S1&gt; as element source.</param>
+            <param name="IEnumerator2">An IEnumerator&lt;S2&gt; as element source.</param>
+            <param name="IEnumerator3">An IEnumerator&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerable{`1},System.Collections.Generic.IEnumerable{`2})">
+            <summary>
+            Creates a new abstract pipe using the elements emitted
+            by the given IEnumerables as input.
+            </summary>
+            <param name="IEnumerable1">An IEnumerable&lt;S1&gt; as element source.</param>
+            <param name="IEnumerable2">An IEnumerable&lt;S2&gt; as element source.</param>
+            <param name="IEnumerable3">An IEnumerable&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSource1(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSource2(`1)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSource3(`2)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSource1(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S1&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSource2(System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S2&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSource3(System.Collections.Generic.IEnumerator{`2})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S3&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSourceCollection1(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S1&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSourceCollection2(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S2&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.SetSourceCollection3(System.Collections.Generic.IEnumerable{`2})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S3&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator&lt;E&gt; that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.Reset">
+            <summary>
+            Sets the enumerators to their initial positions, which
+            is before the first element in the collections.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.Dispose">
+            <summary>
+            Disposes this pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`4.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`4.Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`4.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`4.Path">
+            <summary>
+            Returns the transformation path to arrive at the current object
+            of the pipe. This is a list of all of the objects traversed for
+            the current iterator position of the pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`4.#ctor(System.Func{`0,`1,`2,`3})">
+            <summary>
+            Creates a new FuncPipe using the elements emitted
+            by the given IEnumerables as input.
+            </summary>
+            <param name="Func">A Func&lt;S1, S2, S3, E&gt; converting the consuming objects into emitting objects.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`4.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.FuncPipe`5">
+            <summary>
+            Converts the consuming objects to emitting objects
+            by calling a Func&lt;S1, S2, S3, S4, E&gt;.
+            </summary>
+            <typeparam name="S1">The type of the consuming objects.</typeparam>
+            <typeparam name="S2">The type of the consuming objects.</typeparam>
+            <typeparam name="S3">The type of the consuming objects.</typeparam>
+            <typeparam name="S4">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractPipe`5">
+            <summary>
+            An AbstractPipe provides most of the functionality that is repeated
+            in every instance of a Pipe. Any subclass of AbstractPipe should simply
+            implement MoveNext().
+            </summary>
+            <typeparam name="S1">The type of the first consuming objects.</typeparam>
+            <typeparam name="S2">The type of the second consuming objects.</typeparam>
+            <typeparam name="S3">The type of the first consuming objects.</typeparam>
+            <typeparam name="S4">The type of the second consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.IPipe`5">
+            <summary>
+            The generic interface for any Pipe implementation.
+            A Pipe takes/consumes objects of type S1, S2 and S3 and returns/emits objects of type E.
+            S1, S2 and S3 refers to <i>starts</i> and the E refers to <i>ends</i>.
+            </summary>
+            <typeparam name="S1">The type of the first consuming objects.</typeparam>
+            <typeparam name="S2">The type of the second consuming objects.</typeparam>
+            <typeparam name="S3">The type of the third consuming objects.</typeparam>
+            <typeparam name="S4">The type of the fourth consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource1(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource2(`1)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource3(`2)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource4(`3)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource1(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S1&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource2(System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S2&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource3(System.Collections.Generic.IEnumerator{`2})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S3&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSource4(System.Collections.Generic.IEnumerator{`3})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S4&gt; as input.
+            </summary> 
+            <param name="myIEnumerator">An IEnumerator&lt;S4&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSourceCollection1(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S1&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSourceCollection2(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S2&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSourceCollection3(System.Collections.Generic.IEnumerable{`2})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S3&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.IPipe`5.SetSourceCollection4(System.Collections.Generic.IEnumerable{`3})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S4&gt; as input.
+            </summary> 
+            <param name="myIEnumerable">An IEnumerable&lt;S4&gt; as element source.</param>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`5._InternalEnumerator1">
+            <summary>
+            The internal enumerator of the first collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`5._InternalEnumerator2">
+            <summary>
+            The internal enumerator of the second collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`5._InternalEnumerator3">
+            <summary>
+            The internal enumerator of the third collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`5._InternalEnumerator4">
+            <summary>
+            The internal enumerator of the third collection.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractPipe`5._CurrentElement">
+            <summary>
+            The internal current element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.#ctor">
+            <summary>
+            Creates a new abstract pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.#ctor(System.Collections.Generic.IEnumerator{`0},System.Collections.Generic.IEnumerator{`1},System.Collections.Generic.IEnumerator{`2},System.Collections.Generic.IEnumerator{`3})">
+            <summary>
+            Creates a new abstract pipe using the elements emitted
+            by the given IEnumerators as input.
+            </summary>
+            <param name="IEnumerator1">An IEnumerator&lt;S1&gt; as element source.</param>
+            <param name="IEnumerator2">An IEnumerator&lt;S2&gt; as element source.</param>
+            <param name="IEnumerator3">An IEnumerator&lt;S3&gt; as element source.</param>
+            <param name="IEnumerator4">An IEnumerator&lt;S4&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerable{`1},System.Collections.Generic.IEnumerable{`2},System.Collections.Generic.IEnumerable{`3})">
+            <summary>
+            Creates a new abstract pipe using the elements emitted
+            by the given IEnumerables as input.
+            </summary>
+            <param name="IEnumerable1">An IEnumerable&lt;S1&gt; as element source.</param>
+            <param name="IEnumerable2">An IEnumerable&lt;S2&gt; as element source.</param>
+            <param name="IEnumerable3">An IEnumerable&lt;S3&gt; as element source.</param>
+            <param name="IEnumerable4">An IEnumerable&lt;S4&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource1(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource2(`1)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource3(`2)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource4(`3)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource1(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S1&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource2(System.Collections.Generic.IEnumerator{`1})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S2&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource3(System.Collections.Generic.IEnumerator{`2})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S3&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSource4(System.Collections.Generic.IEnumerator{`3})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S4&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S4&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSourceCollection1(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S1&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S1&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSourceCollection2(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S2&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S2&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSourceCollection3(System.Collections.Generic.IEnumerable{`2})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S3&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S3&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.SetSourceCollection4(System.Collections.Generic.IEnumerable{`3})">
+            <summary>
+            Set the elements emitted from the given IEnumerable&lt;S4&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S4&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator&lt;E&gt; that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.Reset">
+            <summary>
+            Sets the enumerators to their initial positions, which
+            is before the first element in the collections.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.Dispose">
+            <summary>
+            Disposes this pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractPipe`5.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`5.Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`5.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.AbstractPipe`5.Path">
+            <summary>
+            Returns the transformation path to arrive at the current object
+            of the pipe. This is a list of all of the objects traversed for
+            the current iterator position of the pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`5.#ctor(System.Func{`0,`1,`2,`3,`4})">
+            <summary>
+            Creates a new FuncPipe using the elements emitted
+            by the given IEnumerables as input.
+            </summary>
+            <param name="Func">A Func&lt;S1, S2, S3, S4, E&gt; converting the consuming objects into emitting objects.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncPipe`5.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.ExhaustiveMergePipe`1">
+            <summary>
+            ExhaustiveMergePipe will drain its first internal pipe, then its second,
+            so on until all internal pipes are drained.
+            </summary>
+            <typeparam name="S">The type of the consuming and emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExhaustiveMergePipe`1.#ctor(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe})">
+            <summary>
+            Creates a new ExhaustiveMergePipe based on the given Pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExhaustiveMergePipe`1.#ctor(de.ahzf.Pipes.IPipe[])">
+            <summary>
+            Creates a new ExhaustiveMergePipe based on the given Pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExhaustiveMergePipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExhaustiveMergePipe`1.Reset">
+            <summary>
+            A pipe may maintain state. Reset is used to remove state.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExhaustiveMergePipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.ExhaustiveMergePipe`1.Pipes">
+            <summary>
+            A MetaPipe is a pipe that "wraps" some collection of pipes.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.GatherPipe`1">
+            <summary>
+            GatherPipe 
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.SideEffectCapPipe`2">
+            <summary>
+            The SideEffectCapPipe will yield an E that is the side effect of
+            the provided SideEffectPipe. This is useful for when the side
+            effect of a Pipe is desired in a computational stream.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="T">The type of the sideeffect.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.#ctor">
+            <summary>
+            Creates a new SideEffectCapPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.#ctor(de.ahzf.Pipes.ISideEffectPipe{`0,System.Object,`1})">
+            <summary>
+            Creates a new SideEffectCapPipe.
+            </summary>
+            <param name="myPipeToCap">A ISideEffectCapPipe.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.SetSource(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S&gt; as input.
+            </summary>
+            <param name="myIEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.de#ahzf#Pipes#IStartPipe#SetSource(System.Collections.IEnumerator)">
+            <summary>
+            Set the elements emitted by the given IEnumerator as input.
+            </summary>
+            <param name="myIEnumerator">An IEnumerator as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.SetSourceCollection(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S&gt; as input.
+            </summary>
+            <param name="myIEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.de#ahzf#Pipes#IStartPipe#SetSourceCollection(System.Collections.IEnumerable)">
+            <summary>
+            Set the elements emitted from the given IEnumerable as input.
+            </summary>
+            <param name="myIEnumerable">An IEnumerable as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.SideEffectCapPipe`2.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.SideEffectCapPipe`2.Path">
+            <summary>
+            Returns the transformation path to arrive at the current object
+            of the pipe. This is a list of all of the objects traversed for
+            the current iterator position of the pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.GatherPipe`1.#ctor">
+            <summary>
+            Creates a new GatherPipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.MinMaxPipe`1">
+            <summary>
+            The MinMaxPipe produces two side effects which keep
+            track of the Min and Max values of S.
+            </summary>
+            <typeparam name="S">The type of the consuming and emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.MinMaxPipe`1.#ctor(`0,`0,System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            The MinMaxPipe produces two side effects which keep
+            track of the Min and Max values of S.
+            </summary>
+            <param name="Min">The initial minimum.</param>
+            <param name="Max">The initial maximum.</param>
+            <param name="IEnumerable">An optional IEnumerable&lt;Double&gt; as element source.</param>
+            <param name="IEnumerator">An optional IEnumerator&lt;Double&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.MinMaxPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.MinMaxPipe`1.ToString">
+            <summary>
+            Returns a string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.MinMaxPipe`1.Min">
+            <summary>
+            The minimum of the passed values.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.MinMaxPipe`1.Max">
+            <summary>
+            The maximum of the passed values.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.FuncFilterPipe`1">
+            <summary>
+            Filters the consuming objects by calling a Func&lt;S, Boolean&gt;.
+            </summary>
+            <typeparam name="S">The type of the consuming and emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncFilterPipe`1.#ctor(System.Func{`0,System.Boolean})">
+            <summary>
+            Creates a new FuncFilterPipe using the given Func&lt;S, E&gt;.
+            </summary>
+            <param name="FilterFunc">A Func&lt;S, Boolean&gt; filtering the consuming objects. True means filter (ignore).</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.FuncFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.GroupCountPipe`1">
+            <summary>
+            The GroupCountPipe will simply emit the incoming object, but generate a map side effect.
+            The map's keys are the objects that come into the pipe.
+            The map's values are the number of times that the key object has come into the pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.GroupCountPipe`1.#ctor">
+            <summary>
+            Creates a new GroupCountPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.GroupCountPipe`1.#ctor(System.Collections.Generic.IDictionary{`0,System.UInt64})">
+            <summary>
+            Creates a new GroupCountPipe using the given IDictionary&lt;S, UInt64&gt;.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.GroupCountPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="P:de.ahzf.Pipes.GroupCountPipe`1.SideEffect">
+            <summary>
+            The sideeffect produced by this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.IdentityPipe`1">
+            <summary>
+            The IdentityPipe is the most basic pipe.
+            It simply maps the input to the output without any processing.
+            This Pipe is useful in various test case situations.
+            </summary>
+            <typeparam name="S">The type of the elements within the pipe.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.IdentityPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.OpenStreamPipe">
+            <summary>
+            The OpenStreamPipe opens the given files
+            and returns a stream of bytes.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:de.ahzf.Pipes.OpenStreamPipe.#ctor(System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.UInt32,System.IO.FileOptions)" -->
+        <member name="M:de.ahzf.Pipes.OpenStreamPipe.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.OpenStreamPipe.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.CollectionFilterPipe`1">
+            <summary>
+            A CollectionFilterPipe will take a collection of objects and
+            a Filter.NOT_EQUAL or Filter.EQUAL argument.
+            If an incoming object is contained (or not contained) in the
+            provided collection, then it is emitted (or not emitted).
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.CollectionFilterPipe`1.#ctor(System.Collections.Generic.IEnumerable{`0},de.ahzf.Pipes.ComparisonFilter)">
+            <summary>
+            A CollectionFilterPipe will take a collection of objects and
+            a Filter.NOT_EQUAL or Filter.EQUAL argument.
+            If an incoming object is contained (or not contained) in the
+            provided collection, then it is emitted (or not emitted).
+            </summary>
+            <param name="myIEnumerable">The IEnumerable for filtering.</param>
+            <param name="myComparisonFilter">The ComparisonFilter used for filtering.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.CollectionFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.CollectionFilterPipe`1.CompareObjects(`0,`0)">
+            <summary>
+            Compares two objects.
+            </summary>
+            <param name="myLeftObject">The left object.</param>
+            <param name="myRightObject">The right object.</param>
+            <returns>A match based on the defined filter.</returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.HasNextPipe`1">
+            <summary>
+            HasNextPipe 
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.HasNextPipe`1.#ctor(de.ahzf.Pipes.IPipe)">
+            <summary>
+            Creates a new HasNextPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.HasNextPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.HasCountPipe`1">
+            <summary>
+            The pipe must emit at least min and not more than max elements.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.HasCountPipe`1.#ctor(System.Int64,System.Int64)">
+            <summary>
+            Creates a new HasCountPipe.
+            </summary>
+            <param name="Minimum">Minimal number of elements. Use -1 for no minimum.</param>
+            <param name="Maximum">Maximal number of elements. Use -1 for no maximum.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.HasCountPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.DuplicateFilterPipe`1">
+            <summary>
+            The DuplicateFilterPipe will not allow a duplicate object to pass through it.
+            This is accomplished by the Pipe maintaining an internal HashSet that is used
+            to store a history of previously seen objects.
+            Thus, the more unique objects that pass through this Pipe, the slower it
+            becomes as a log_2 index is checked for every object.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.DuplicateFilterPipe`1.#ctor">
+            <summary>
+            Creates a new DuplicateFilterPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.DuplicateFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.ToLowerPipe">
+            <summary>
+            The ToUpperPipe converts all incoming strings to lowercase.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ToLowerPipe.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.MultiEnumerator`1">
+            <summary>
+            A MultiEnumerator takes multiple IEnumerators in its constructor
+            and makes them behave like a single enumerator.
+            The order in which objects are returned from both enumerators are with
+            respect to the order of the enumerators passed into the constructor.
+            </summary>
+            <typeparam name="T">The type of the stored elements.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.MultiEnumerator`1.#ctor(System.Collections.Generic.IEnumerator{`0}[])">
+            <summary>
+            Creates a new MultiEnumerator based on the given myIEnumerators.
+            </summary>
+            <param name="myIEnumerators">The enumerators to be wrapped.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.MultiEnumerator`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerator{`0}})">
+            <summary>
+            Creates a new MultiEnumerator based on the given myIEnumerators.
+            </summary>
+            <param name="myIEnumerators">The enumerators to be wrapped.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.MultiEnumerator`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>True if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.MultiEnumerator`1.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is
+            before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.MultiEnumerator`1.Dispose">
+            <summary>
+            Dispose this enumerator.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.MultiEnumerator`1.Current">
+            <summary>
+            Return the current element of the current IEnumertor.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.MultiEnumerator`1.System#Collections#IEnumerator#Current">
+            <summary>
+            Return the current element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.RandomFilterPipe`1">
+            <summary>
+            The RandomFilterPipe filters out objects that pass through it using a biased coin.
+            For each passing object, a random number generator creates a double value between 0 and 1.
+            If the randomly generated double is less than or equal the provided bias, then the object is allowed to pass.
+            If the randomly generated double is greater than the provided bias, then the object is not allowed to pass.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.RandomFilterPipe`1.#ctor(System.Double)">
+            <summary>
+            Creates a new RandomFilterPipe.
+            </summary>
+            <param name="myBias">The bias.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.RandomFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.RandomFilterPipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.RangeFilterPipe`1">
+            <summary>
+            The RangeFilterPipe will only allow a sequential subset of its incoming
+            objects to be emitted to its output. This pipe can be provided -1 for
+            both its high and low range to denote a wildcard for high and/or low.
+            Note that -1 for both high and low is equivalent to the IdentityPipe.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.RangeFilterPipe`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new RangeFilterPipe.
+            </summary>
+            <param name="myLow">The minima.</param>
+            <param name="myHigh">The maxima.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.RangeFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.RangeFilterPipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.PipesException">
+            <summary>
+            A general pipes exception.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.PipesException.#ctor">
+            <summary>
+            A general pipes exception.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.PipesException.#ctor(System.String)">
+            <summary>
+            A general pipes exception.
+            </summary>
+            <param name="myMessage">An additional message.</param>
+        </member>
+        <member name="T:de.ahzf.Pipes.NoSuchElementException">
+            <summary>
+            No such element could be found.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.NoSuchElementException.#ctor">
+            <summary>
+            No such element could be found.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.NoSuchElementException.#ctor(System.String)">
+            <summary>
+            No such element could be found.
+            </summary>
+            <param name="myMessage">An additional message.</param>
+        </member>
+        <member name="T:de.ahzf.Pipes.IllegalStateException">
+            <summary>
+            An illegal state had been reached.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.IllegalStateException.#ctor(System.String)">
+            <summary>
+            An illegal state had been reached.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.CountPipe`1">
+            <summary>
+            The CountPipe produces a side effect that is the total
+            number of objects that have passed through it.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.CountPipe`1.#ctor(System.Int64,System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new CountPipe.
+            </summary>
+            <param name="InitialValue">An optional initial value.</param>
+            <param name="IEnumerable">An optional IEnumerable&lt;Double&gt; as element source.</param>
+            <param name="IEnumerator">An optional IEnumerator&lt;Double&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.CountPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.CountPipe`1.ToString">
+            <summary>
+            Returns a string representation of this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.AggregatorPipe`1">
+            <summary>
+            The AggregatorPipe produces a side effect that is the provided collection
+            filled with the contents of all the objects that have passed through it.
+            Before the first object is emitted from the AggregatorPipe, all of its
+            incoming objects have been aggregated into the collection.
+            The collection enumerator is used as the emitting enumerator. Thus, what
+            goes into AggregatorPipe may not be the same as what comes out of
+            AggregatorPipe.
+            For example, duplicates removed, different order to the stream, etc.
+            Finally, note that different Collections have different behaviors and
+            write/read times.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AggregatorPipe`1.#ctor(System.Collections.Generic.ICollection{`0})">
+            <summary>
+            Creates a new AggregatorPipe.
+            </summary>
+            <param name="ICollection">An optional ICollection to store the passed objects.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AggregatorPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.PipeHelper">
+            <summary>
+            PipeHelper provides a collection of static methods that are useful when dealing with Pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.PipeHelper.FillCollection``1(System.Collections.Generic.IEnumerator{``0},System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Fill the given collection with the elements emitted by the IEnumerator&lt;T&gt;.
+            </summary>
+            <typeparam name="T">The type of the emitted objects.</typeparam>
+            <param name="myIEnumerator">An IEnumerator&lt;T&gt;.</param>
+            <param name="myICollection">An ICollection&lt;T&gt;.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.PipeHelper.Counter``1(System.Collections.Generic.IEnumerator{``0})">
+            <summary>
+            Counts the elements emitted by the IEnumerator&lt;T&gt;.
+            </summary>
+            <typeparam name="T">The type of the emitted objects.</typeparam>
+            <param name="myIEnumerator">An IEnumerator&lt;T&gt;.</param>
+            <returns>The number of elements emitted by the IEnumerator&lt;T&gt;.</returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.ToUpperPipe">
+            <summary>
+            The ToUpperPipe converts all incoming strings to uppercase.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ToUpperPipe.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.ExpandableEnumerator`1">
+            <summary>
+            ExpandableEnumerator takes an IEnumerator and will emit its elements.
+            However, if an object is added to ExpandableEnumerator, then its put into
+            an internal queue. The queue has priority over the internal enumerator when
+            accessing the current element.
+            </summary>
+            <typeparam name="T">The type of the stored elements.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExpandableEnumerator`1.#ctor(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a new ExpandableEnumerator based on the given myIEnumerator.
+            </summary>
+            <param name="myIEnumerator">The enumerator to be wrapped.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExpandableEnumerator`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExpandableEnumerator`1.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is
+            before the first element in the collection and clears
+            the internal queue.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExpandableEnumerator`1.Add(`0)">
+            <summary>
+            Adds an element to the internal queue.
+            </summary>
+            <param name="myElement">The element to add.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExpandableEnumerator`1.Dispose">
+            <summary>
+            Dispose this object.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.ExpandableEnumerator`1.Current">
+            <summary>
+            Return the current element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.ExpandableEnumerator`1.System#Collections#IEnumerator#Current">
+            <summary>
+            Return the current element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.ObjectFilterPipe`1">
+            <summary>
+            The ObjectFilterPipe will either allow or disallow all objects that pass
+            through it depending on the result of the compareObject() method.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.AbstractComparisonFilterPipe`2">
+            <summary>
+            The AbstractComparisonFilterPipe provides the necessary functionality
+            that is required of most ComparisonFilterPipe implementations.
+            The compareObjects() implementation is useful for comparing two objects
+            to determine if the current object in the pipe should be filtered.
+            Depending on the type of ComparisonFilterPipe.Filter used, different
+            types of comparisons are evaluated.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.AbstractComparisonFilterPipe`2._Filter">
+            <summary>
+            The filter used for comparing two objects.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractComparisonFilterPipe`2.#ctor(de.ahzf.Pipes.ComparisonFilter)">
+            <summary>
+            Creates a new AbstractComparisonFilterPipe using the given filter.
+            </summary>
+            <param name="myFilter">The filter used for comparing two objects.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractComparisonFilterPipe`2.CompareObjects(`1,`1)">
+            <summary>
+            Compares two objects.
+            </summary>
+            <param name="myLeftObject">The left object.</param>
+            <param name="myRightObject">The right object.</param>
+            <returns>A match based on the defined filter.</returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.AbstractComparisonFilterPipe`2.ToString">
+            <summary>
+            A string representation of this filter pipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ObjectFilterPipe`1.#ctor(`0,de.ahzf.Pipes.ComparisonFilter)">
+            <summary>
+            Create a new ObjectFilterPipe.
+            </summary>
+            <param name="myObject">The Object.</param>
+            <param name="myComparisonFilter">The filter to use.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.ObjectFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.ObjectFilterPipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.FileFilterPipe">
+            <summary>
+            The FileFilterPipe scans the given directories
+            for files matching the given filters.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FileFilterPipe.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerator{System.String},System.String,System.IO.SearchOption,de.ahzf.Pipes.FileFilter)">
+            <summary>
+            Scans the given directories for files matching the given filters.
+            </summary>
+            <param name="IEnumerable">An optional IEnumerable&lt;S&gt; as element source.</param>
+            <param name="IEnumerator">An optional IEnumerator&lt;S&gt; as element source.</param>
+            <param name="SearchPattern">A simple search pattern like "*.jpg".</param>
+            <param name="SearchOption">Include or do not include subdirectories.</param>
+            <param name="FileFilter">A delegate for filtering the found files.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.FileFilterPipe.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.FileFilterPipe.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.ExtensionMethods.IEnumerableExtensions">
+            <summary>
+            A class of specialized IEnumerable extension methods.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExtensionMethods.IEnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Iterates over the given enumeration and calls the
+            given action for each item.
+            </summary>
+            <typeparam name="T">The type of the enumerated objects.</typeparam>
+            <param name="IEnumerable">A enumeration of objects of type T.</param>
+            <param name="Action">A action method to call for every item of the enumeration.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExtensionMethods.IEnumerableExtensions.MapEach``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Iterates over the given enumeration, calls the given func
+            for each item and returns it immediately.
+            </summary>
+            <typeparam name="S">The type of the enumerated objects.</typeparam>
+            <typeparam name="E">The type of the returining objects.</typeparam>
+            <param name="IEnumerable">A enumeration of objects of type T.</param>
+            <param name="Func">A mapping method to call for every item of the enumeration.</param>
+            <returns>An enumeration of mapped objects of type E</returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.ActionPipe`1">
+            <summary>
+            The ActionPipe is much like the IdentityPipe, but calls
+            an Action &lt;S&gt; on every consuming object before
+            returing them.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.ActionPipe`1.#ctor(System.Action{`0})">
+            <summary>
+            Creates a new ActionPipe using the given Action&lt;S&gt;.
+            </summary>
+            <param name="myAction">An Action&lt;S&gt; to be called on every consuming object.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.ActionPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.FutureFilterPipe`1">
+            <summary>
+            FutureFilterPipe will allow an object to pass through it if the
+            object has an output from the pipe provided in the constructor
+            of the FutureFilterPipe.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.FutureFilterPipe`1.#ctor(de.ahzf.Pipes.IPipe)">
+            <summary>
+            Creates a new FutureFilterPipe.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FutureFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.FutureFilterPipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.FileFilter">
+            <summary>
+            A delegate to filter files based on their FileInfo.
+            </summary>
+            <param name="myFileInfo">The FileInfo of a given file.</param>
+            <returns>true to filter (ignore) the file, else false.</returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.PipelineDefinition`2">
+            <summary>
+            A definition delegate for pipelines.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+            <param name="Element">A source element.</param>
+        </member>
+        <member name="T:de.ahzf.Pipes.Pipeline`2">
+            <summary>
+            A Pipeline is a linear composite of Pipes.
+            Pipeline takes a List of Pipes and joins them according to their order as specified by their location in the List.
+            It is important to ensure that the provided ordered Pipes can connect together.
+            That is, that the output of the n-1 Pipe is the same as the input to n Pipe.
+            Once all provided Pipes are composed, a Pipeline can be treated like any other Pipe.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.#ctor">
+            <summary>
+            Constructs a pipeline from the provided pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.#ctor(de.ahzf.Pipes.PipelineDefinition{`0,`1})">
+            <summary>
+            Constructs a pipeline based on the given PipelineDefinition&lt;S, E&gt;.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.#ctor(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe})">
+            <summary>
+            Constructs a pipeline from the provided pipes.
+            The ordered list determines how the pipes will be chained together.
+            When the pipes are chained together, the start of pipe n is the end of pipe n-1.
+            </summary>
+            <param name="IPipes">The ordered list of pipes to chain together into a pipeline</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.#ctor(de.ahzf.Pipes.IPipe[])">
+            <summary>
+            Constructs a pipeline from the provided pipes.
+            The ordered array determines how the pipes will be chained together.
+            When the pipes are chained together, the start of pipe n is the end of pipe n-1.
+            </summary>
+            <param name="IPipes">the ordered array of pipes to chain together into a pipeline</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.SetPipes(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe})">
+            <summary>
+            Use when extending Pipeline and setting the pipeline chain without making use of the constructor.
+            </summary>
+            <param name="IPipes">the ordered list of pipes to chain together into a pipeline.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.SetPipes(de.ahzf.Pipes.IPipe[])">
+            <summary>
+            Use when extending Pipeline and setting the pipeline chain without making use of the constructor.
+            </summary>
+            <param name="IPipes">the ordered array of pipes to chain together into a pipeline.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.SetSource(`0)">
+            <summary>
+            Set the given element as source.
+            </summary>
+            <param name="SourceElement">A single source element.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.SetSource(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerator&lt;S&gt; as input.
+            </summary>
+            <param name="IEnumerator">An IEnumerator&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.de#ahzf#Pipes#IStartPipe#SetSource(System.Collections.IEnumerator)">
+            <summary>
+            Set the elements emitted by the given IEnumerator as input.
+            </summary>
+            <param name="myIEnumerator">An IEnumerator as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.SetSourceCollection(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Set the elements emitted by the given IEnumerable&lt;S&gt; as input.
+            </summary>
+            <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.de#ahzf#Pipes#IStartPipe#SetSourceCollection(System.Collections.IEnumerable)">
+            <summary>
+            Set the elements emitted from the given IEnumerable as input.
+            </summary>
+            <param name="myIEnumerable">An IEnumerable as element source.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator&lt;E&gt; that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A IEnumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is
+            before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.Dispose">
+            <summary>
+            Disposes this pipeline.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.Pipeline`2.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.Pipeline`2.Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.Pipeline`2.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.Pipeline`2.Path">
+            <summary>
+            Returns the transformation path to arrive at the current object
+            of the pipe. This is a list of all of the objects traversed for
+            the current iterator position of the pipe.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.ComparisonFilter">
+            <summary>
+            An enum for pipe filtering purposes.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.ComparisonFilter.EQUAL">
+            <summary>
+            ==
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.ComparisonFilter.NOT_EQUAL">
+            <summary>
+            !=
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.ComparisonFilter.GREATER_THAN">
+            <summary>
+            &gt;
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.ComparisonFilter.LESS_THAN">
+            <summary>
+            &lt;
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.ComparisonFilter.GREATER_THAN_EQUAL">
+            <summary>
+            &gt;=
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.ComparisonFilter.LESS_THAN_EQUAL">
+            <summary>
+            &lt;=
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.SingleEnumerator`1">
+            <summary>
+            SingleEnumerator is an iterator that only contains one element
+            of type T. This has applications in various metapipes, where
+            single objects are manipulated at a time.
+            </summary>
+            <typeparam name="T">The type of the stored element.</typeparam>
+        </member>
+        <member name="T:de.ahzf.Pipes.ISingleEnumerator">
+            <summary>
+            A helper interface for the SingleEnumerator&lt;T&gt; class.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.ISingleEnumerator.Current">
+            <summary>
+            Return the current element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.SingleEnumerator`1.#ctor(`0)">
+            <summary>
+            Creates a new single element enumerator based on the given element.
+            </summary>
+            <param name="myElement">The element within the enumerator.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.SingleEnumerator`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>True if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.SingleEnumerator`1.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is
+            before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.SingleEnumerator`1.Dispose">
+            <summary>
+            Dispose this enumerator.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.SingleEnumerator`1.Current">
+            <summary>
+            Return the current element of the current IEnumertor&lt;T&gt;.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.SingleEnumerator`1.System#Collections#IEnumerator#Current">
+            <summary>
+            Return the current element of the internal IEnumertor.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.SingleEnumerator`1.de#ahzf#Pipes#ISingleEnumerator#Current">
+            <summary>
+            Return the current element of the internal ISingleEnumerator.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.SingleEnumerator`1.SingleEnumeratorState">
+            <summary>
+            The internal state of the SingleEnumerator&lt;T&gt;.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.SingleEnumerator`1.SingleEnumeratorState.BEFORE">
+            <summary>
+            Before the element.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.SingleEnumerator`1.SingleEnumeratorState.AT">
+            <summary>
+            At the element.
+            </summary>
+        </member>
+        <member name="F:de.ahzf.Pipes.SingleEnumerator`1.SingleEnumeratorState.BEHIND">
+            <summary>
+            Behind the element.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExtensionMethods.SplitPipeExtensions.SplitPipe``1(System.Collections.Generic.IEnumerable{``0},System.Byte)">
+            <summary>
+            The LabelFilterPipe either allows or disallows all
+            Edges that have the provided label.
+            </summary>
+            <param name="myIEnumerable">A collection of objects implementing IPropertyEdge.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.ExtensionMethods.SplitPipeExtensions.SplitPipe``1(System.Collections.Generic.IEnumerator{``0},System.Byte)">
+            <summary>
+            The LabelFilterPipe either allows or disallows all
+            Edges that have the provided label.
+            </summary>
+            <param name="myIEnumerator">A enumerator of objects implementing IPropertyEdge.</param>
+        </member>
+        <member name="T:de.ahzf.Pipes.StartPipe`1">
+            <summary>
+            StartPipe is a handy was to create a pipe out of the provided object.
+            The provided object is set as the start of the Pipe that simply returns the object or
+            If the object is an IEnumerator/IEnumerable, the objects of the object.
+            </summary>
+            <typeparam name="S">The type of the consuming object.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.StartPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.UniquePathFilterPipe`1">
+            <summary>
+            UniquePathFilterPipe will only let an object pass if the path up to
+            this point has no repeated elements. Thus, its a way to filter out
+            paths that are looping.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.UniquePathFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.BackFilterPipe`1">
+            <summary>
+            BackFilterPipe will fully process the object through its internal pipe.
+            If the internal pipe yields results, then the original object is emitted
+            from the BackFilterPipe.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.BackFilterPipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.BackFilterPipe`1.Pipes">
+            <summary>
+            A MetaPipe is a pipe that "wraps" some collection of pipes.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.OrFilterPipe`1">
+            <summary>
+            The OrFilterPipe takes a collection of pipes that emit boolean objects.
+            Each pipe in the collection is fed the same incoming S object. If one
+            of the internal pipes emits true, then the OrFilterPipe emits the S
+            object. If not, then the incoming object is not emitted.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.OrFilterPipe`1.#ctor(de.ahzf.Pipes.IPipe{`0,System.Boolean}[])">
+            <summary>
+            Creates a new pipe based on the given pipes.
+            </summary>
+            <param name="myPipes">Multiple IPipes&lt;S, Boolean&gt;.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.OrFilterPipe`1.#ctor(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe{`0,System.Boolean}})">
+            <summary>
+            Creates a new pipe based on the given pipes.
+            </summary>
+            <param name="myPipes">A collection of IPipes&lt;S, Boolean&gt;.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.OrFilterPipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.FairMergePipe`1">
+            <summary>
+            FairMergePipe will, in a round robin fashion,
+            emit the objects of its internal pipes.
+            </summary>
+            <typeparam name="S">The type of the consuming and emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.FairMergePipe`1.#ctor(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe})">
+            <summary>
+            Creates a new FairMergePipe based on the given Pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FairMergePipe`1.#ctor(de.ahzf.Pipes.IPipe[])">
+            <summary>
+            Creates a new FairMergePipe based on the given Pipes.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FairMergePipe`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="M:de.ahzf.Pipes.FairMergePipe`1.Reset">
+            <summary>
+            A pipe may maintain state. Reset is used to remove state.
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.FairMergePipe`1.ToString">
+            <summary>
+            A string representation of this pipe.
+            </summary>
+        </member>
+        <member name="P:de.ahzf.Pipes.FairMergePipe`1.Pipes">
+            <summary>
+            A MetaPipe is a pipe that "wraps" some collection of pipes.
+            </summary>
+        </member>
+        <member name="T:de.ahzf.Pipes.CharacterCountPipe">
+            <summary>
+            Returns the number of characters of a string. 
+            </summary>
+        </member>
+        <member name="M:de.ahzf.Pipes.CharacterCountPipe.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.Concurrent.AndFilterPipeConcurrent`1">
+            <summary>
+            The AndFilterPipe takes a collection of pipes, where E is boolean.
+            Each provided pipe is fed the same incoming S object concurrently.
+            If all the pipes emit true, then the AndFilterPipe emits the
+            incoming S object. If not, then the incoming S object is not emitted.
+            </summary>
+            <typeparam name="S">The type of the elements within the filter.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.Concurrent.AndFilterPipeConcurrent`1.#ctor(de.ahzf.Pipes.IPipe{`0,System.Boolean}[])">
+            <summary>
+            Creates a new pipe based on the given pipes.
+            </summary>
+            <param name="myPipes">Multiple IPipes&lt;S, Boolean&gt;.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Concurrent.AndFilterPipeConcurrent`1.#ctor(System.Collections.Generic.IEnumerable{de.ahzf.Pipes.IPipe{`0,System.Boolean}})">
+            <summary>
+            Creates a new pipe based on the given pipes.
+            </summary>
+            <param name="myPipes">A collection of IPipes&lt;S, Boolean&gt;.</param>
+        </member>
+        <member name="M:de.ahzf.Pipes.Concurrent.AndFilterPipeConcurrent`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+        <member name="T:de.ahzf.Pipes.ScatterPipe`2">
+            <summary>
+            ScatterPipe will unroll any IEnumerator/IEnumerable that is inputted into it.
+            This will only occur for one level deep. It will not unroll an IEnumerator emitted by an IEnumerator, etc.
+            </summary>
+            <typeparam name="S">The type of the consuming objects.</typeparam>
+            <typeparam name="E">The type of the emitting objects.</typeparam>
+        </member>
+        <member name="M:de.ahzf.Pipes.ScatterPipe`2.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            True if the enumerator was successfully advanced to the next
+            element; false if the enumerator has passed the end of the
+            collection.
+            </returns>
+        </member>
+    </members>
+</doc>

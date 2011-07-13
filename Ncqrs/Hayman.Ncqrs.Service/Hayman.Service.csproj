@@ -81,7 +81,7 @@
       <HintPath>..\..\Libraries\ncqrs\Ncqrs.EventBus.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.4.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Libraries\json.net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
@@ -119,6 +119,10 @@
     <ProjectReference Include="..\Hayman.Ncqrs.Commands\Hayman.Commands.csproj">
       <Project>{06998165-D331-4E21-8D38-CBE5A61BFEE7}</Project>
       <Name>Hayman.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hayman.Ncqrs.Domain\Hayman.Domain.csproj">
+      <Project>{ADB9913F-1453-4BB5-9870-76038CB1FFC4}</Project>
+      <Name>Hayman.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hayman.Ncqrs.Events\Hayman.Events.csproj">
       <Project>{4DCB1ED9-657F-4AD3-AF64-9523EA53FE65}</Project>

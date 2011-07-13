@@ -1,18 +1,29 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
 using Hayman.Client.ReadModel.Blueprints.Meta;
+using Hayman.Commands;
+using System.ServiceModel;
+using Ncqrs.CommandService.Contracts;
+using Ncqrs.CommandService;
 
 namespace TestClient
 {
 	public partial class Form1 : Form
 	{
 		private readonly Collection<Model> _models = new Collection<Model>();
+		private static ChannelFactory<ICommandWebServiceClient> _channelFactory;
 
 		public Form1()
 		{
 			InitializeComponent();
+		}
+
+		static Form1()
+		{
+			_channelFactory = new ChannelFactory<ICommandWebServiceClient>("CommandWebServiceClient");
 		}
 
 		private void btnCreateNewMetaItem_Click(object sender, EventArgs e)
@@ -188,6 +199,14 @@ namespace TestClient
 			// Update listbox with associations
 			listAssociations.DataSource = model.Associations.ToList();
 			listAssociations.ResetBindings();
+		}
+
+		private void btnNewModelCommand_Click(object sender, EventArgs e)
+		{
+			var command = new CreateMetaModel(Guid.NewGuid(), tbNewModelName.Text);
+
+			ChannelHelper.Use(_channelFactory.CreateChannel(), (client) =>
+							  client.Execute(new ExecuteRequest(command)));
 		}
 	}
 }

@@ -83,6 +83,7 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
+			this.btnNewMetaItemCommand = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -114,7 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbName.Location = new System.Drawing.Point(9, 32);
 			this.tbName.Name = "tbName";
-			this.tbName.Size = new System.Drawing.Size(769, 20);
+			this.tbName.Size = new System.Drawing.Size(953, 20);
 			this.tbName.TabIndex = 1;
 			// 
 			// listMetaItems
@@ -234,7 +235,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(12, 50);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(804, 455);
+			this.tabControl1.Size = new System.Drawing.Size(988, 455);
 			this.tabControl1.TabIndex = 12;
 			// 
 			// tabPage1
@@ -245,7 +246,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(796, 429);
+			this.tabPage1.Size = new System.Drawing.Size(980, 429);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "MetaItems";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -259,7 +260,7 @@
 			this.groupBox2.Controls.Add(this.tbName);
 			this.groupBox2.Location = new System.Drawing.Point(6, 6);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(784, 88);
+			this.groupBox2.Size = new System.Drawing.Size(968, 88);
 			this.groupBox2.TabIndex = 3;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Create MetaItem";
@@ -674,7 +675,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(713, 10);
+			this.button5.Location = new System.Drawing.Point(897, 9);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(50, 22);
 			this.button5.TabIndex = 18;
@@ -684,7 +685,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(769, 10);
+			this.button6.Location = new System.Drawing.Point(953, 9);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(47, 23);
 			this.button6.TabIndex = 19;
@@ -692,11 +693,22 @@
 			this.button6.UseVisualStyleBackColor = true;
 			this.button6.Click += new System.EventHandler(this.button6_Click);
 			// 
+			// btnNewMetaItemCommand
+			// 
+			this.btnNewMetaItemCommand.Location = new System.Drawing.Point(713, 10);
+			this.btnNewMetaItemCommand.Name = "btnNewMetaItemCommand";
+			this.btnNewMetaItemCommand.Size = new System.Drawing.Size(144, 23);
+			this.btnNewMetaItemCommand.TabIndex = 3;
+			this.btnNewMetaItemCommand.Text = "New MetaItem Command";
+			this.btnNewMetaItemCommand.UseVisualStyleBackColor = true;
+			this.btnNewMetaItemCommand.Click += new System.EventHandler(this.btnNewModelCommand_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(828, 517);
+			this.ClientSize = new System.Drawing.Size(1012, 517);
+			this.Controls.Add(this.btnNewMetaItemCommand);
 			this.Controls.Add(this.button6);
 			this.Controls.Add(this.button5);
 			this.Controls.Add(this.label10);
@@ -790,6 +802,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbViewName;
         private System.Windows.Forms.Button btnCreateView;
+		private System.Windows.Forms.Button btnNewMetaItemCommand;
 	}
 }
 

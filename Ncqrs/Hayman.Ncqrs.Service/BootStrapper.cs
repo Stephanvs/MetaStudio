@@ -40,7 +40,8 @@ namespace Hayman.Service
 
         private static IEventStore InitializeEventStore()
         {
-            var store = new MsSqlServerEventStore(Settings.Default.EventStoreConnectionString);
+            //var store = new MsSqlServerEventStore(Settings.Default.EventStoreConnectionString);
+        	var store = new InMemoryEventStore();
             return store;
         }
 

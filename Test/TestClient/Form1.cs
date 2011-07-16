@@ -203,7 +203,7 @@ namespace TestClient
 
 		private void btnNewModelCommand_Click(object sender, EventArgs e)
 		{
-			var command = new CreateMetaModel(Guid.NewGuid(), tbNewModelName.Text);
+			var command = new CreateModel(Guid.NewGuid(), tbNewModelName.Text);
 
 			ChannelHelper.Use(_channelFactory.CreateChannel(), (client) =>
 							  client.Execute(new ExecuteRequest(command)));

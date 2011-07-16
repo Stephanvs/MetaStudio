@@ -29,7 +29,7 @@ namespace Hayman.Service
 
         private static ICommandService InitializeCommandService()
         {
-            var commandAssembly = typeof(CreateMetaModel).Assembly;
+            var commandAssembly = typeof(CreateModel).Assembly;
 
             var service = new CommandService();
             service.RegisterExecutorsInAssembly(commandAssembly);

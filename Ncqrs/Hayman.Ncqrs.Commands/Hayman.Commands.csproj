@@ -82,7 +82,7 @@
     <Compile Include="AddMetaItem.cs" />
     <Compile Include="RemoveMetaItem.cs" />
     <Compile Include="RenameMetaModel.cs" />
-    <Compile Include="CreateMetaModel.cs" />
+    <Compile Include="CreateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

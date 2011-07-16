@@ -21,7 +21,7 @@ namespace Hayman.Domain
         public MetaModel(Guid metaModelId, string metaModelName)
             : base(metaModelId)
         {
-            ApplyEvent(new MetaModelCreated(metaModelId, metaModelName));
+            ApplyEvent(new ModelCreated(metaModelId, metaModelName));
         }
 
         public void Rename(string newMetaModelName)
@@ -97,7 +97,7 @@ namespace Hayman.Domain
 
         #region EventHandlers
 
-        private void OnMetaModelCreated(MetaModelCreated e)
+        private void OnMetaModelCreated(ModelCreated e)
         {
             metaModelName = e.MetaModelName;
             metaItems = new List<MetaItem>();

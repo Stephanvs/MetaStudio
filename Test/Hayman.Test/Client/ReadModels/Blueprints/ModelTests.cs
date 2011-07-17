@@ -3,7 +3,7 @@ using System.Linq;
 using Hayman.Client.ReadModel.Blueprints.Meta;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hayman.Client.ReadModel.Blueprints.Test.Domain
+namespace Hayman.MetaStudio.Core.Test.Client.ReadModels.Blueprints
 {
 	[TestClass]
 	public class ModelTests

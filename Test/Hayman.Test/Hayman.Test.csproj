@@ -48,11 +48,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\AssociationTests.cs" />
-    <Compile Include="Domain\ItemTests.cs" />
-    <Compile Include="Domain\MetaItemTests.cs" />
+    <Compile Include="Client\ReadModels\Blueprints\AssociationTests.cs" />
+    <Compile Include="Client\ReadModels\Blueprints\ItemTests.cs" />
+    <Compile Include="Client\ReadModels\Blueprints\MetaItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\ModelTests.cs" />
+    <Compile Include="Client\ReadModels\Blueprints\ModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Client\ReadModels\Hayman.Client.ReadModel.Blueprints\Hayman.Client.ReadModel.Blueprints.csproj">

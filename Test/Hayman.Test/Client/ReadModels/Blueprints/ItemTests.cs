@@ -3,10 +3,10 @@ using Hayman.Client.ReadModel.Blueprints.Meta;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Hayman.Client.ReadModel.Blueprints.Test.Domain
+namespace Hayman.MetaStudio.Core.Test.Client.ReadModels.Blueprints
 {
 	[TestClass]
-	public class MetaItemTests
+	public class ItemTests
 	{
         private Model _model;
 
@@ -17,31 +17,29 @@ namespace Hayman.Client.ReadModel.Blueprints.Test.Domain
         }
 
         [TestMethod]
-        public void CanAddMetaItem()
+        public void CanAddItem()
         {
-            const string metaItemName = "MetaItemName";
+            const string itemName = "itemName";
 
-            var metaItem = _model.AddMetaItem(metaItemName);
+            var item = _model.AddItem(itemName);
 
-            Assert.AreEqual(1, metaItem.Words.Count());
-            Assert.AreEqual(metaItem.DefaultWord, metaItem.Words.First());
-            Assert.AreEqual(metaItemName, metaItem.DefaultWord.Value);
+            Assert.AreEqual(1, item.Words.Count());
+            Assert.AreEqual(item.DefaultWord, item.Words.First());
+            Assert.AreEqual(itemName, item.DefaultWord.Value);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "Word cannot be null or empty.", AllowDerivedTypes = false)]
-        public void CannotCreateMetaItemWithEmptyWord()
+        public void CannotCreateItemWithEmptyWord()
         {
-            _model.AddMetaItem(string.Empty);
+            _model.AddItem(string.Empty);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "Word cannot be null or empty.", AllowDerivedTypes = false)]
-        public void CannotCreateMetaItemWithNoWord()
+        public void CannotCreateItemWithNoWord()
         {
-            _model.AddMetaItem(null);
+            _model.AddItem(null);
         }
-
-       
-    }
+	}
 }

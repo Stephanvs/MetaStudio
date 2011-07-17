@@ -7,11 +7,26 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 
 namespace Hayman.Service.Denormalizers
 {
-	public class ModelDenormalizer : IEventHandler<ModelCreated>
+	public class ModelDenormalizer : 
+		IEventHandler<ModelCreated>,
+		IEventHandler<ModelRenamed>
 	{
+		#region IEventHandler<ModelCreated>
+
 		public void Handle(IPublishedEvent<ModelCreated> evnt)
 		{
-			Console.WriteLine("ID: {0}, ModelId: {1}, ModelName: {2}", evnt.EventIdentifier, evnt.Payload.ModelId, evnt.Payload.ModelName);
+			Console.WriteLine("ModelId: {0}, ModelName: {1}", evnt.Payload.ModelId, evnt.Payload.ModelName);
 		}
+
+		#endregion
+
+		#region IEventHandler<ModelRenamed>
+
+		public void Handle(IPublishedEvent<ModelRenamed> evnt)
+		{
+			Console.WriteLine("ModelId: {0}, New-ModelName: {1}", evnt.Payload.ModelId, evnt.Payload.NewModelName);
+		}
+
+		#endregion
 	}
 }

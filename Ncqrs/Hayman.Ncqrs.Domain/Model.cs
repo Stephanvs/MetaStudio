@@ -22,7 +22,7 @@ namespace Hayman.Domain
             ApplyEvent(new ModelCreated(modelId, modelName));
         }
 
-        public void RenameModel(string newModelName)
+		public void RenameModel(string newModelName)
         {
             if (deleted)
             {
@@ -109,7 +109,7 @@ namespace Hayman.Domain
 
         private void OnModelRenamed(ModelRenamed e)
         {
-            modelName = e.NewMetaModelName;
+            modelName = e.NewModelName;
         }
 
         private void OnMetaItemAdded(MetaItemAdded e)

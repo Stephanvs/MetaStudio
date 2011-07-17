@@ -16,6 +16,7 @@ namespace TestClient
 	{
 		private readonly Collection<Model> _models = new Collection<Model>();
 		private static ChannelFactory<ICommandWebServiceClient> _channelFactory;
+		private static Guid modelId = Guid.NewGuid();
 
 		public Form1()
 		{
@@ -126,14 +127,14 @@ namespace TestClient
 			ddlTargetItem.ResetBindings();
 		}
 
-		private void button5_Click(object sender, EventArgs e)
+		private void exportOption_Click(object sender, EventArgs e)
 		{
 			throw new NotImplementedException();
 			//var w = new ExportForm(_models);
 			//w.Show(this);
 		}
 
-		private void button6_Click(object sender, EventArgs e)
+		private void importOption_Click(object sender, EventArgs e)
 		{
 			throw new NotImplementedException();
 			//var dlg = new OpenFileDialog() { CheckFileExists = true, DefaultExt = "xml" };
@@ -202,12 +203,28 @@ namespace TestClient
 			listAssociations.ResetBindings();
 		}
 
-		private void btnNewModelCommand_Click(object sender, EventArgs e)
+		private void btnCreateModelCommand_Click(object sender, EventArgs e)
 		{
-			var command = new CreateModel(Guid.NewGuid(), tbNewModelName.Text);
+			var command = new CreateModel(modelId, tbNewModelName.Text);
 
-			ChannelHelper.Use(_channelFactory.CreateChannel(), (client) =>
-							  client.Execute(new ExecuteRequest(command)));
+			ChannelHelper.Use(_channelFactory.CreateChannel(), client =>
+			                                                   client.Execute(new ExecuteRequest(command)));
+		}
+
+		private void btnRenameModelCommand_Click(object sender, EventArgs e)
+		{
+			var form = new RenameModelForm();
+			var dr = form.ShowDialog(this);
+
+			if (dr == DialogResult.OK)
+			{
+				var newModelName = form.tbNewModelName.Text;
+
+				var command = new RenameModel(modelId, newModelName);
+
+				ChannelHelper.Use(_channelFactory.CreateChannel(), client =>
+				                                                   client.Execute(new ExecuteRequest(command)));
+			}
 		}
 	}
 }

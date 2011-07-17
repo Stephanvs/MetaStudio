@@ -79,11 +79,14 @@
 			this.cbModels = new System.Windows.Forms.ComboBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.tbNewModelName = new System.Windows.Forms.TextBox();
-			this.button3 = new System.Windows.Forms.Button();
+			this.btnCreateModel = new System.Windows.Forms.Button();
 			this.label10 = new System.Windows.Forms.Label();
-			this.button5 = new System.Windows.Forms.Button();
-			this.button6 = new System.Windows.Forms.Button();
-			this.btnNewMetaItemCommand = new System.Windows.Forms.Button();
+			this.btnCreateMetaItemCommand = new System.Windows.Forms.Button();
+			this.btnRenameModelCommand = new System.Windows.Forms.Button();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.miFile = new System.Windows.Forms.ToolStripMenuItem();
+			this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -97,6 +100,7 @@
 			this.groupBox5.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			this.groupBox7.SuspendLayout();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -115,7 +119,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbName.Location = new System.Drawing.Point(9, 32);
 			this.tbName.Name = "tbName";
-			this.tbName.Size = new System.Drawing.Size(953, 20);
+			this.tbName.Size = new System.Drawing.Size(1062, 20);
 			this.tbName.TabIndex = 1;
 			// 
 			// listMetaItems
@@ -125,7 +129,7 @@
 			this.listMetaItems.FormattingEnabled = true;
 			this.listMetaItems.Location = new System.Drawing.Point(15, 127);
 			this.listMetaItems.Name = "listMetaItems";
-			this.listMetaItems.Size = new System.Drawing.Size(210, 290);
+			this.listMetaItems.Size = new System.Drawing.Size(210, 433);
 			this.listMetaItems.TabIndex = 2;
 			// 
 			// lblMetaItems
@@ -232,10 +236,10 @@
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.Controls.Add(this.tabPage5);
-			this.tabControl1.Location = new System.Drawing.Point(12, 50);
+			this.tabControl1.Location = new System.Drawing.Point(12, 60);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(988, 455);
+			this.tabControl1.Size = new System.Drawing.Size(1097, 609);
 			this.tabControl1.TabIndex = 12;
 			// 
 			// tabPage1
@@ -246,7 +250,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(980, 429);
+			this.tabPage1.Size = new System.Drawing.Size(1089, 583);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "MetaItems";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -260,7 +264,7 @@
 			this.groupBox2.Controls.Add(this.tbName);
 			this.groupBox2.Location = new System.Drawing.Point(6, 6);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(968, 88);
+			this.groupBox2.Size = new System.Drawing.Size(1077, 88);
 			this.groupBox2.TabIndex = 3;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Create MetaItem";
@@ -280,7 +284,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(796, 429);
+			this.tabPage2.Size = new System.Drawing.Size(1089, 583);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "MetaAssociations";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -292,7 +296,7 @@
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(796, 429);
+			this.tabPage3.Size = new System.Drawing.Size(1089, 583);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Items";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -427,7 +431,7 @@
 			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(796, 429);
+			this.tabPage4.Size = new System.Drawing.Size(1089, 583);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Associations";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -567,7 +571,7 @@
 			this.tabPage5.Location = new System.Drawing.Point(4, 22);
 			this.tabPage5.Name = "tabPage5";
 			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(796, 429);
+			this.tabPage5.Size = new System.Drawing.Size(1089, 583);
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "View(s)";
 			this.tabPage5.UseVisualStyleBackColor = true;
@@ -631,7 +635,7 @@
 			// 
 			this.cbModels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbModels.FormattingEnabled = true;
-			this.cbModels.Location = new System.Drawing.Point(140, 12);
+			this.cbModels.Location = new System.Drawing.Point(137, 33);
 			this.cbModels.Name = "cbModels";
 			this.cbModels.Size = new System.Drawing.Size(238, 21);
 			this.cbModels.TabIndex = 13;
@@ -640,7 +644,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(12, 15);
+			this.label9.Location = new System.Drawing.Point(9, 36);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(122, 13);
 			this.label9.TabIndex = 14;
@@ -648,75 +652,99 @@
 			// 
 			// tbNewModelName
 			// 
-			this.tbNewModelName.Location = new System.Drawing.Point(457, 12);
+			this.tbNewModelName.Location = new System.Drawing.Point(454, 33);
 			this.tbNewModelName.Name = "tbNewModelName";
 			this.tbNewModelName.Size = new System.Drawing.Size(148, 20);
 			this.tbNewModelName.TabIndex = 15;
 			this.tbNewModelName.Text = "Default";
 			// 
-			// button3
+			// btnCreateModel
 			// 
-			this.button3.Location = new System.Drawing.Point(611, 10);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(96, 23);
-			this.button3.TabIndex = 16;
-			this.button3.Text = "Create Model";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.btnCreateNewModel_Click);
+			this.btnCreateModel.Location = new System.Drawing.Point(608, 31);
+			this.btnCreateModel.Name = "btnCreateModel";
+			this.btnCreateModel.Size = new System.Drawing.Size(96, 23);
+			this.btnCreateModel.TabIndex = 16;
+			this.btnCreateModel.Text = "Create Model";
+			this.btnCreateModel.UseVisualStyleBackColor = true;
+			this.btnCreateModel.Click += new System.EventHandler(this.btnCreateNewModel_Click);
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(384, 15);
+			this.label10.Location = new System.Drawing.Point(381, 36);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(67, 13);
 			this.label10.TabIndex = 17;
 			this.label10.Text = "Model Name";
 			// 
-			// button5
+			// btnCreateMetaItemCommand
 			// 
-			this.button5.Location = new System.Drawing.Point(897, 9);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(50, 22);
-			this.button5.TabIndex = 18;
-			this.button5.Text = "export";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
+			this.btnCreateMetaItemCommand.Location = new System.Drawing.Point(710, 31);
+			this.btnCreateMetaItemCommand.Name = "btnCreateMetaItemCommand";
+			this.btnCreateMetaItemCommand.Size = new System.Drawing.Size(132, 23);
+			this.btnCreateMetaItemCommand.TabIndex = 3;
+			this.btnCreateMetaItemCommand.Text = "Create Model Command";
+			this.btnCreateMetaItemCommand.UseVisualStyleBackColor = true;
+			this.btnCreateMetaItemCommand.Click += new System.EventHandler(this.btnCreateModelCommand_Click);
 			// 
-			// button6
+			// btnRenameModelCommand
 			// 
-			this.button6.Location = new System.Drawing.Point(953, 9);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(47, 23);
-			this.button6.TabIndex = 19;
-			this.button6.Text = "import";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
+			this.btnRenameModelCommand.Location = new System.Drawing.Point(848, 31);
+			this.btnRenameModelCommand.Name = "btnRenameModelCommand";
+			this.btnRenameModelCommand.Size = new System.Drawing.Size(138, 23);
+			this.btnRenameModelCommand.TabIndex = 20;
+			this.btnRenameModelCommand.Text = "Rename Model Command";
+			this.btnRenameModelCommand.UseVisualStyleBackColor = true;
+			this.btnRenameModelCommand.Click += new System.EventHandler(this.btnRenameModelCommand_Click);
 			// 
-			// btnNewMetaItemCommand
+			// menuStrip1
 			// 
-			this.btnNewMetaItemCommand.Location = new System.Drawing.Point(713, 10);
-			this.btnNewMetaItemCommand.Name = "btnNewMetaItemCommand";
-			this.btnNewMetaItemCommand.Size = new System.Drawing.Size(144, 23);
-			this.btnNewMetaItemCommand.TabIndex = 3;
-			this.btnNewMetaItemCommand.Text = "New MetaItem Command";
-			this.btnNewMetaItemCommand.UseVisualStyleBackColor = true;
-			this.btnNewMetaItemCommand.Click += new System.EventHandler(this.btnNewModelCommand_Click);
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miFile});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(1121, 24);
+			this.menuStrip1.TabIndex = 21;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// miFile
+			// 
+			this.miFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importToolStripMenuItem,
+            this.exportToolStripMenuItem});
+			this.miFile.Name = "miFile";
+			this.miFile.Size = new System.Drawing.Size(37, 20);
+			this.miFile.Text = "&File";
+			// 
+			// importToolStripMenuItem
+			// 
+			this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+			this.importToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+			this.importToolStripMenuItem.Text = "Import";
+			this.importToolStripMenuItem.Click += new System.EventHandler(this.importOption_Click);
+			// 
+			// exportToolStripMenuItem
+			// 
+			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+			this.exportToolStripMenuItem.Text = "Export";
+			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportOption_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1012, 517);
-			this.Controls.Add(this.btnNewMetaItemCommand);
-			this.Controls.Add(this.button6);
-			this.Controls.Add(this.button5);
+			this.ClientSize = new System.Drawing.Size(1121, 681);
+			this.Controls.Add(this.btnRenameModelCommand);
+			this.Controls.Add(this.btnCreateMetaItemCommand);
 			this.Controls.Add(this.label10);
-			this.Controls.Add(this.button3);
+			this.Controls.Add(this.btnCreateModel);
 			this.Controls.Add(this.tbNewModelName);
 			this.Controls.Add(this.label9);
 			this.Controls.Add(this.cbModels);
 			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.menuStrip1);
+			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
 			this.Text = "MetaStudio Test Application";
 			this.groupBox1.ResumeLayout(false);
@@ -740,6 +768,8 @@
 			this.tabPage5.ResumeLayout(false);
 			this.groupBox7.ResumeLayout(false);
 			this.groupBox7.PerformLayout();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -779,7 +809,7 @@
 		private System.Windows.Forms.ComboBox cbModels;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.TextBox tbNewModelName;
-		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button btnCreateModel;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.TabPage tabPage4;
 		private System.Windows.Forms.GroupBox groupBox6;
@@ -794,15 +824,18 @@
 		private System.Windows.Forms.ComboBox ddlTargetItem;
 		private System.Windows.Forms.ComboBox ddlSourceItem;
 		private System.Windows.Forms.ListBox listAssociations;
-		private System.Windows.Forms.Button button5;
-		private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ListBox listMetaItemsForView;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbViewName;
         private System.Windows.Forms.Button btnCreateView;
-		private System.Windows.Forms.Button btnNewMetaItemCommand;
+		private System.Windows.Forms.Button btnCreateMetaItemCommand;
+		private System.Windows.Forms.Button btnRenameModelCommand;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem miFile;
+		private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
 	}
 }
 

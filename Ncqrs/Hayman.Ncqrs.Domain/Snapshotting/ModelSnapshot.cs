@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Hayman.Domain.Snapshotting
 {
-    public class MetaModelSnapshot : Snapshot
+    public class ModelSnapshot : Snapshot
     {
-        public string MetaModelName { get; set; }
+        public string ModelName { get; set; }
         public IList<MetaItem> MetaItems { get; set; }
         public bool Deleted { get; set; }
     }

@@ -4,12 +4,12 @@ using Ncqrs.Eventing.Sourcing;
 namespace Hayman.Events
 {
 	[Serializable]
-	public class MetaModelRenamed : SourcedEvent
+	public class ModelRenamed : SourcedEvent
     {
         public Guid MetaModelId { get; private set; }
         public String NewMetaModelName { get; private set; }
 
-        public MetaModelRenamed(Guid metaModelId, String newMetaModelName)
+        public ModelRenamed(Guid metaModelId, String newMetaModelName)
         {
             MetaModelId = metaModelId;
             NewMetaModelName = newMetaModelName;

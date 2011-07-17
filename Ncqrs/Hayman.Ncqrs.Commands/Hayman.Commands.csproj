@@ -74,17 +74,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddItem.cs" />
-    <Compile Include="AddAssociation.cs" />
-    <Compile Include="DeleteMetaModel.cs" />
-    <Compile Include="DeleteMetaAssociation.cs" />
-    <Compile Include="CreateMetaAssociation.cs" />
-    <Compile Include="AddMetaItem.cs" />
-    <Compile Include="RemoveMetaItem.cs" />
-    <Compile Include="RenameMetaModel.cs" />
-    <Compile Include="CreateModel.cs" />
+    <Compile Include="Items\AddItem.cs" />
+    <Compile Include="Associations\AddAssociation.cs" />
+    <Compile Include="Models\DeleteModel.cs" />
+    <Compile Include="Associations\DeleteMetaAssociation.cs" />
+    <Compile Include="Associations\CreateMetaAssociation.cs" />
+    <Compile Include="MetaItems\AddMetaItem.cs" />
+    <Compile Include="MetaItems\RemoveMetaItem.cs" />
+    <Compile Include="Models\RenameModel.cs" />
+    <Compile Include="Models\CreateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

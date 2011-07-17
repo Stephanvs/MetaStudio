@@ -2,7 +2,7 @@
 
 namespace Hayman.Domain
 {
-    public class MetaModelDeletedException : Exception
+    public class ModelDeletedException : Exception
     {
     }
 }

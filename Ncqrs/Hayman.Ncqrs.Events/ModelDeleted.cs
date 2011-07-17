@@ -1,14 +1,14 @@
-using System;
+﻿using System;
 using Ncqrs.Eventing.Sourcing;
 
 namespace Hayman.Events
 {
-    [Serializable]
-	public class MetaModelAlreadyDeleted : SourcedEvent
+	[Serializable]
+	public class ModelDeleted : SourcedEvent
     {
         public Guid MetaModelId { get; private set; }
 
-        public MetaModelAlreadyDeleted(Guid metaModelId)
+        public ModelDeleted(Guid metaModelId)
         {
             MetaModelId = metaModelId;
         }

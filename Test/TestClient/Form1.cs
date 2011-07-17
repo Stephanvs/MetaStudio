@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Hayman.Client.ReadModel.Blueprints.Meta;
 using Hayman.Commands;
 using System.ServiceModel;
+using Hayman.Commands.Models;
 using Ncqrs.CommandService.Contracts;
 using Ncqrs.CommandService;
 

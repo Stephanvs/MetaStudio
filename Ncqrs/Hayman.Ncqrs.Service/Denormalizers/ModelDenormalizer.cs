@@ -11,7 +11,7 @@ namespace Hayman.Service.Denormalizers
 	{
 		public void Handle(IPublishedEvent<ModelCreated> evnt)
 		{
-			Console.WriteLine("ID: {0}, ModelId: {1}, ModelName: {2}", evnt.EventIdentifier, evnt.Payload.MetaModelId, evnt.Payload.MetaModelName);
+			Console.WriteLine("ID: {0}, ModelId: {1}, ModelName: {2}", evnt.EventIdentifier, evnt.Payload.ModelId, evnt.Payload.ModelName);
 		}
 	}
 }

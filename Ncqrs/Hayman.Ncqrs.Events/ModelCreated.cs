@@ -6,13 +6,13 @@ namespace Hayman.Events
     [Serializable]
     public class ModelCreated : SourcedEvent
     {
-        public Guid MetaModelId { get; private set; }
-        public String MetaModelName { get; private set; }
+        public Guid ModelId { get; private set; }
+        public String ModelName { get; private set; }
 
-        public ModelCreated(Guid metaModelId, String metaModelName)
+        public ModelCreated(Guid modelId, String modelName)
         {
-            MetaModelId = metaModelId;
-            MetaModelName = metaModelName;
+            ModelId = modelId;
+            ModelName = modelName;
         }
     }
 }

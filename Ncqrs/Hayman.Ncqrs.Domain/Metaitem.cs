@@ -13,8 +13,8 @@ namespace Hayman.Domain
         private Guid metaItemBranchId;
         
 
-        public MetaItem(MetaModel metaModel, Guid metaItemId, string metaItemName, Guid metaItemBranchId)
-            : base(metaModel, metaItemId)
+        public MetaItem(Model model, Guid metaItemId, string metaItemName, Guid metaItemBranchId)
+            : base(model, metaItemId)
         {
             this.metaItemName = metaItemName;
             this.metaItemBranchId = metaItemBranchId;
@@ -22,9 +22,9 @@ namespace Hayman.Domain
 
         public void AddItem(Guid itemId, string itemName)
         {
-            if (((MetaModel)ParentAggregateRoot).IsDeleted())
+            if (((Model)ParentAggregateRoot).IsDeleted())
             {
-                throw new MetaModelDeletedException();
+                throw new ModelDeletedException();
             }
 
             if (!items.Any(i => i.EntityId == itemId))
@@ -35,9 +35,9 @@ namespace Hayman.Domain
 
         public void RemoveItem(Guid itemId)
         {
-            if (((MetaModel)ParentAggregateRoot).IsDeleted())
+            if (((Model)ParentAggregateRoot).IsDeleted())
             {
-                throw new MetaModelDeletedException();
+                throw new ModelDeletedException();
             }
 
             if (!items.Any(i => i.EntityId == itemId))
@@ -50,7 +50,7 @@ namespace Hayman.Domain
         
         private void OnItemAdded(ItemAdded e)
         {
-            items.Add(new Item((MetaModel)ParentAggregateRoot, this, e.ItemId, e.ItemName));
+            items.Add(new Item((Model)ParentAggregateRoot, this, e.ItemId, e.ItemName));
         }
 
         private void OnItemRemoved(ItemRemoved e)

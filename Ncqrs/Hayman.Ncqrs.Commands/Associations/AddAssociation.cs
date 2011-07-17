@@ -1,7 +1,7 @@
 ﻿using System;
 using Ncqrs.Commanding;
 
-namespace Hayman.Commands
+namespace Hayman.Commands.Associations
 {
 	[Serializable]
 	public class AddAssociation : CommandBase

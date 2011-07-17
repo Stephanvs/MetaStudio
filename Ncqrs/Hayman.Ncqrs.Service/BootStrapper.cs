@@ -1,4 +1,5 @@
 ﻿using Hayman.Commands;
+using Hayman.Commands.Models;
 using Ncqrs;
 using Ncqrs.Commanding;
 using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;

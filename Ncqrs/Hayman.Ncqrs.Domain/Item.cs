@@ -9,8 +9,8 @@ namespace Hayman.Domain
         private Guid itemId;
         private string itemName;
 
-        public Item(MetaModel metaModel, MetaItem metaItem, Guid itemId, string itemName)
-            : base(metaModel, itemId)
+        public Item(Model model, MetaItem metaItem, Guid itemId, string itemName)
+            : base(model, itemId)
         {
             this.metaItem = metaItem;
             this.itemId = itemId;

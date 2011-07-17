@@ -1,17 +1,17 @@
 ﻿using System;
 using Ncqrs.Commanding;
 
-namespace Hayman.Commands
+namespace Hayman.Commands.MetaItems
 {
 	[Serializable]
 	public class RemoveMetaItem : CommandBase
 	{
-        public Guid MetaModelId { get; private set; }
+        public Guid ModelId { get; private set; }
         public Guid MetaItemId { get; private set; }
 
-        public RemoveMetaItem(Guid metaModelId, Guid metaItemId)
+        public RemoveMetaItem(Guid modelId, Guid metaItemId)
         {
-            MetaModelId = metaModelId;
+            ModelId = modelId;
             MetaItemId = metaItemId;
         }
 	}

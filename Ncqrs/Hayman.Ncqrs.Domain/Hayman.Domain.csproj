@@ -80,10 +80,10 @@
     <Compile Include="MetaAssociation.cs" />
     <Compile Include="MetaAssociationDeletedException.cs" />
     <Compile Include="MetaItem.cs" />
-    <Compile Include="MetaModel.cs" />
-    <Compile Include="MetaModelDeletedException.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="ModelDeletedException.cs" />
     <Compile Include="Snapshotting\MetaAssociationSnapshot.cs" />
-    <Compile Include="Snapshotting\MetaModelSnapshot.cs" />
+    <Compile Include="Snapshotting\ModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

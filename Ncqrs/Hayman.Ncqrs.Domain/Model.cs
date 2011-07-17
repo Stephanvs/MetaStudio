@@ -8,42 +8,40 @@ using Ncqrs.Eventing.Sourcing.Snapshotting;
 
 namespace Hayman.Domain
 {
-    public class MetaModel : AggregateRootMappedByConvention, ISnapshotable<MetaModelSnapshot>
+    public class Model : AggregateRootMappedByConvention, ISnapshotable<ModelSnapshot>
     {
-        private string metaModelName;
+        private string modelName;
         private IList<MetaItem> metaItems;
         private bool deleted;
 
-        protected MetaModel()
+        protected Model() { }
+
+        public Model(Guid modelId, string modelName)
+            : base(modelId)
         {
+            ApplyEvent(new ModelCreated(modelId, modelName));
         }
 
-        public MetaModel(Guid metaModelId, string metaModelName)
-            : base(metaModelId)
-        {
-            ApplyEvent(new ModelCreated(metaModelId, metaModelName));
-        }
-
-        public void Rename(string newMetaModelName)
+        public void Rename(string newModelName)
         {
             if (deleted)
             {
-                throw new MetaModelDeletedException();
+                throw new ModelDeletedException();
             }
 
-            ApplyEvent(new MetaModelRenamed(EventSourceId, newMetaModelName));
+            ApplyEvent(new ModelRenamed(EventSourceId, newModelName));
         }
 
         public void Delete()
         {
             if (deleted)
             {
-                ApplyEvent(new MetaModelAlreadyDeleted(EventSourceId));
-                //throw new MetaModelDeletedException();
+                ApplyEvent(new ModelAlreadyDeleted(EventSourceId));
+                //throw new ModelDeletedException();
             }
             else
             {
-                ApplyEvent(new MetaModelDeleted(EventSourceId));
+                ApplyEvent(new ModelDeleted(EventSourceId));
             }
         }
 
@@ -56,7 +54,7 @@ namespace Hayman.Domain
         {
             if (deleted)
             {
-                throw new MetaModelDeletedException();
+                throw new ModelDeletedException();
             }
 
             if (!metaItems.Any(i => i.EntityId == metaItemId))
@@ -69,7 +67,7 @@ namespace Hayman.Domain
         {
             if (deleted)
             {
-                throw new MetaModelDeletedException();
+                throw new ModelDeletedException();
             }
 
             if (metaItems.Any(i => i.EntityId == metaItemId))
@@ -97,21 +95,21 @@ namespace Hayman.Domain
 
         #region EventHandlers
 
-        private void OnMetaModelCreated(ModelCreated e)
+        private void OnModelCreated(ModelCreated e)
         {
-            metaModelName = e.MetaModelName;
+            modelName = e.ModelName;
             metaItems = new List<MetaItem>();
             deleted = false;
         }
 
-        private void OnMetaModelDeleted(MetaModelDeleted e)
+        private void OnModelDeleted(ModelDeleted e)
         {
             deleted = true;
         }
 
-        private void OnMetaModelRenamed(MetaModelRenamed e)
+        private void OnModelRenamed(ModelRenamed e)
         {
-            metaModelName = e.NewMetaModelName;
+            modelName = e.NewMetaModelName;
         }
 
         private void OnMetaItemAdded(MetaItemAdded e)
@@ -127,21 +125,21 @@ namespace Hayman.Domain
 
         #endregion
 
-        #region ISnapshotable<MetaModelSnapshot>
+        #region ISnapshotable<ModelSnapshot>
 
-        public MetaModelSnapshot CreateSnapshot()
+        public ModelSnapshot CreateSnapshot()
         {
-            return new MetaModelSnapshot
+            return new ModelSnapshot
             {
 				//EventSourceId = EventSourceId,
 				//Version = Version,
-                MetaModelName = metaModelName,
+                ModelName = modelName,
                 MetaItems = metaItems,
                 Deleted = deleted
             };
         }
 
-        public void RestoreFromSnapshot(MetaModelSnapshot snapshot)
+        public void RestoreFromSnapshot(ModelSnapshot snapshot)
         {
         	InitializeFromSnapshot(snapshot);
         }

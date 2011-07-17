@@ -5,7 +5,7 @@ using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 namespace Hayman.Commands.Models
 {
 	[Serializable]
-    [MapsToAggregateRootMethod("Hayman.Domain.Model, Hayman.Domain", "Rename")]
+    [MapsToAggregateRootMethod("Hayman.Domain.Model, Hayman.Domain", "RenameModel")]
 	public class RenameModel : CommandBase
 	{
         [AggregateRootId]

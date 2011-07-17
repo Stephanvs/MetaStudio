@@ -1,12 +1,14 @@
 ﻿using System;
 using Ncqrs.Commanding;
+using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 
 namespace Hayman.Commands.MetaItems
 {
 	[Serializable]
-    //[MapsToAggregateRootConstructor("Hayman.Domain.MetaModel, Hayman.Domain")]
+    [MapsToAggregateRootMethod("Hayman.Domain.Model, Hayman.Domain", "AddMetaItem")]
 	public class AddMetaItem : CommandBase
 	{
+		[AggregateRootId]
         public Guid ModelId { get; private set; }
         public Guid MetaItemId { get; private set; }
         public string MetaItemName { get; private set; }

@@ -80,12 +80,12 @@
     <Compile Include="MetaItemBranchAdded.cs" />
     <Compile Include="ItemRemoved.cs" />
     <Compile Include="ItemAdded.cs" />
-    <Compile Include="MetaModelAlreadyDeleted.cs" />
-    <Compile Include="MetaModelDeleted.cs" />
+    <Compile Include="ModelAlreadyDeleted.cs" />
+    <Compile Include="ModelDeleted.cs" />
     <Compile Include="MetaAssociationDeleted.cs" />
     <Compile Include="MetaAssociationCreated.cs" />
     <Compile Include="MetaItemRemoved.cs" />
-    <Compile Include="MetaModelRenamed.cs" />
+    <Compile Include="ModelRenamed.cs" />
     <Compile Include="MetaItemAdded.cs" />
     <Compile Include="ModelCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

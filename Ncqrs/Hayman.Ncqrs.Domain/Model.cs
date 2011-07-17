@@ -22,7 +22,7 @@ namespace Hayman.Domain
             ApplyEvent(new ModelCreated(modelId, modelName));
         }
 
-        public void Rename(string newModelName)
+        public void RenameModel(string newModelName)
         {
             if (deleted)
             {

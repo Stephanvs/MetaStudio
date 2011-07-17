@@ -1,0 +1,11 @@
+﻿<section id="user-info">
+	<img src="@Url.Content("~/Content/img/sample_user.png")" alt="@Page.FullName">
+	<div>
+		<a href="#" title="@_("Account Settings and Profile Page")">@Page.FullName</a>
+		<em>@Page.Role</em>
+		<ul>
+			<li><a class="button-link" href="#!/user/settings" title="@_("Change your personal settings")" rel="tooltip">@_("settings")</a></li>
+			<li><a class="button-link" href="#!/signout" title="@_("Sign out")" rel="tooltip">@_("sign out")</a></li>
+		</ul>
+	</div>
+</section>

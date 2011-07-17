@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AED49F82-BFEF-4F5D-8625-12FAFD836A56}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hayman.Client.Web</RootNamespace>
+    <AssemblyName>Hayman.Client.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="i18n">
+      <HintPath>..\..\packages\i18n\i18n.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ShellController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notifications\NotificationMessage.cs" />
+    <Compile Include="Models\Notifications\NotificationType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\colors.css" />
+    <Content Include="Content\css\jquery.datatables.css" />
+    <Content Include="Content\css\jquery.datepicker.css" />
+    <Content Include="Content\css\jquery.fileinput.css" />
+    <Content Include="Content\css\jquery.fullcalendar.css" />
+    <Content Include="Content\css\jquery.nyromodal.css" />
+    <Content Include="Content\css\jquery.tipsy.css" />
+    <Content Include="Content\css\jquery.visualize.css" />
+    <Content Include="Content\css\jquery.wysiwyg.css" />
+    <Content Include="Content\css\jquery.wysiwyg.in.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\bgs\bg_aside_main.png" />
+    <Content Include="Content\img\bgs\bg_aside_nav.png" />
+    <Content Include="Content\img\bgs\bg_aside_nav_current.png" />
+    <Content Include="Content\img\bgs\bg_aside_userinfo.png" />
+    <Content Include="Content\img\bgs\bg_fixed.png" />
+    <Content Include="Content\img\bgs\bg_sidetab.png" />
+    <Content Include="Content\img\bgs\bg_sidetab_nested.png" />
+    <Content Include="Content\img\bgs\bg_wizard.png" />
+    <Content Include="Content\img\bgs\bg_wizard_nested.png" />
+    <Content Include="Content\img\btns\btn_blue.png" />
+    <Content Include="Content\img\btns\btn_blue_hover.png" />
+    <Content Include="Content\img\btns\btn_gray.png" />
+    <Content Include="Content\img\btns\btn_gray_hover.png" />
+    <Content Include="Content\img\btns\btn_green.png" />
+    <Content Include="Content\img\btns\btn_green_hover.png" />
+    <Content Include="Content\img\btns\btn_red.png" />
+    <Content Include="Content\img\btns\btn_red_hover.png" />
+    <Content Include="Content\img\icons\ajax_loading.gif" />
+    <Content Include="Content\img\icons\ajax_loading_blue.gif" />
+    <Content Include="Content\img\icons\ajax_loading_blue_nested.gif" />
+    <Content Include="Content\img\icons\ajax_loading_green.gif" />
+    <Content Include="Content\img\icons\ajax_loading_green_nested.gif" />
+    <Content Include="Content\img\icons\ajax_loading_nested.gif" />
+    <Content Include="Content\img\icons\ajax_loading_red.gif" />
+    <Content Include="Content\img\icons\ajax_loading_red_nested.gif" />
+    <Content Include="Content\img\icons\emoticon\emoticon_8ball.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_basketball.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_bomb.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_bug.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_confuse.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_cool.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_cry.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_evilgrin.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_fat.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_football.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_golf.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_grin.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_happy.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_heart.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_mad.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_neutral.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_raquet.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_red.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_rocket.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_roll.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_shuttlecock.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_slim.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_smile.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_soccer.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_surprised.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_tennis.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_tongue.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_unhappy.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_waii.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_wink.png" />
+    <Content Include="Content\img\icons\emoticon\emoticon_yell.png" />
+    <Content Include="Content\img\icons\extensions\page_access.png" />
+    <Content Include="Content\img\icons\extensions\page_cplusplus.png" />
+    <Content Include="Content\img\icons\extensions\page_csharp.png" />
+    <Content Include="Content\img\icons\extensions\page_cup.png" />
+    <Content Include="Content\img\icons\extensions\page_database.png" />
+    <Content Include="Content\img\icons\extensions\page_dvd.png" />
+    <Content Include="Content\img\icons\extensions\page_excel.png" />
+    <Content Include="Content\img\icons\extensions\page_film.png" />
+    <Content Include="Content\img\icons\extensions\page_find.png" />
+    <Content Include="Content\img\icons\extensions\page_flash.png" />
+    <Content Include="Content\img\icons\extensions\page_freehand.png" />
+    <Content Include="Content\img\icons\extensions\page_illustrator.png" />
+    <Content Include="Content\img\icons\extensions\page_music.png" />
+    <Content Include="Content\img\icons\extensions\page_office.png" />
+    <Content Include="Content\img\icons\extensions\page_pdf.png" />
+    <Content Include="Content\img\icons\extensions\page_photoshop.png" />
+    <Content Include="Content\img\icons\extensions\page_php.png" />
+    <Content Include="Content\img\icons\extensions\page_picture.png" />
+    <Content Include="Content\img\icons\extensions\page_powerpoint.png" />
+    <Content Include="Content\img\icons\extensions\page_report.png" />
+    <Content Include="Content\img\icons\extensions\page_ruby.png" />
+    <Content Include="Content\img\icons\extensions\page_swoosh.png" />
+    <Content Include="Content\img\icons\extensions\page_text.png" />
+    <Content Include="Content\img\icons\extensions\page_tux.png" />
+    <Content Include="Content\img\icons\extensions\page_visualstudio.png" />
+    <Content Include="Content\img\icons\extensions\page_white.png" />
+    <Content Include="Content\img\icons\extensions\page_word.png" />
+    <Content Include="Content\img\icons\extensions\page_wrench.png" />
+    <Content Include="Content\img\icons\extensions\page_zip.png" />
+    <Content Include="Content\img\icons\icon_accordion-hover.png" />
+    <Content Include="Content\img\icons\icon_accordion-hover_nested.png" />
+    <Content Include="Content\img\icons\icon_accordion.png" />
+    <Content Include="Content\img\icons\icon_accordion_nested.png" />
+    <Content Include="Content\img\icons\icon_breadcrumbs.png" />
+    <Content Include="Content\img\icons\icon_breadcrumbs_home.png" />
+    <Content Include="Content\img\icons\icon_calendar.png" />
+    <Content Include="Content\img\icons\icon_error.png" />
+    <Content Include="Content\img\icons\icon_event.png" />
+    <Content Include="Content\img\icons\icon_event_bomb.png" />
+    <Content Include="Content\img\icons\icon_event_log.png" />
+    <Content Include="Content\img\icons\icon_nav_articles.png" />
+    <Content Include="Content\img\icons\icon_nav_dashboard.png" />
+    <Content Include="Content\img\icons\icon_nav_events.png" />
+    <Content Include="Content\img\icons\icon_nav_gallery.png" />
+    <Content Include="Content\img\icons\icon_nav_products.png" />
+    <Content Include="Content\img\icons\icon_nav_metamodelling.png" />
+    <Content Include="Content\img\icons\icon_nav_settings.png" />
+    <Content Include="Content\img\icons\icon_notification_attention.png" />
+    <Content Include="Content\img\icons\icon_notification_error.png" />
+    <Content Include="Content\img\icons\icon_notification_information.png" />
+    <Content Include="Content\img\icons\icon_notification_note.png" />
+    <Content Include="Content\img\icons\icon_notification_success.png" />
+    <Content Include="Content\img\icons\icon_outside_link.png" />
+    <Content Include="Content\img\icons\icon_success.png" />
+    <Content Include="Content\img\icons\icon_tab.png" />
+    <Content Include="Content\img\icons\icon_table_delete.png" />
+    <Content Include="Content\img\icons\icon_table_edit.png" />
+    <Content Include="Content\img\icons\icon_table_options.png" />
+    <Content Include="Content\img\icons\icon_table_view.png" />
+    <Content Include="Content\img\icons\icon_tab_nested.png" />
+    <Content Include="Content\img\icons\list-style\icon_list_style.png" />
+    <Content Include="Content\img\icons\list-style\icon_list_style_arrow.png" />
+    <Content Include="Content\img\icons\list-style\icon_list_style_checkmark.png" />
+    <Content Include="Content\img\icons\list-style\icon_list_style_cross.png" />
+    <Content Include="Content\img\jquery\back_disabled.png" />
+    <Content Include="Content\img\jquery\back_enabled.png" />
+    <Content Include="Content\img\jquery\forward_disabled.png" />
+    <Content Include="Content\img\jquery\forward_enabled.png" />
+    <Content Include="Content\img\jquery\jquery.wysiwyg.gif" />
+    <Content Include="Content\img\jquery\sort_asc.png" />
+    <Content Include="Content\img\jquery\sort_asc_disabled.png" />
+    <Content Include="Content\img\jquery\sort_both.png" />
+    <Content Include="Content\img\jquery\sort_desc.png" />
+    <Content Include="Content\img\jquery\sort_desc_disabled.png" />
+    <Content Include="Content\img\jquery\tooltip.gif" />
+    <Content Include="Content\img\jquery\visualize_tooltip.png" />
+    <Content Include="Content\img\sample_image.jpg" />
+    <Content Include="Content\img\sample_image_large.jpg" />
+    <Content Include="Content\img\sample_logo.png" />
+    <Content Include="Content\img\sample_user.png" />
+    <Content Include="Content\img\widgets\widget_add.png" />
+    <Content Include="Content\img\widgets\widget_decrease.png" />
+    <Content Include="Content\img\widgets\widget_increase.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery\jquery-1.6.1-vsdoc.js" />
+    <Content Include="Scripts\jquery\jquery-1.6.1.js" />
+    <Content Include="Scripts\jquery\jquery-1.6.1.min.js" />
+    <Content Include="Scripts\libs\ajaxify-html5.js" />
+    <Content Include="Scripts\libs\amplify-vsdoc.js" />
+    <Content Include="Scripts\libs\amplify.min.js" />
+    <Content Include="Scripts\libs\history.adapter.jquery.js" />
+    <Content Include="Scripts\libs\history.html4.js" />
+    <Content Include="Scripts\libs\history.js" />
+    <Content Include="Scripts\jquery\excanvas.js" />
+    <Content Include="Scripts\jquery\jquery.datatables.js" />
+    <Content Include="Scripts\jquery\jquery.datepicker.js" />
+    <Content Include="Scripts\jquery\jquery.fileinput.js" />
+    <Content Include="Scripts\jquery\jquery.fullcalendar.min.js" />
+    <Content Include="Scripts\jquery\jquery.nyromodal.js" />
+    <Content Include="Scripts\jquery\jquery.tipsy.js" />
+    <Content Include="Scripts\jquery\jquery.visualize.js" />
+    <Content Include="Scripts\jquery\jquery.visualize.tooltip.js" />
+    <Content Include="Scripts\jquery\jquery.wysiwyg.js" />
+    <Content Include="Scripts\libs\json2.js" />
+    <Content Include="Scripts\libs\modernizr-1.7.min.js" />
+    <Content Include="Scripts\libs\selectivizr.js" />
+    <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\shell.core.js" />
+    <Content Include="Scripts\shell.init.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partial\_NotificationMessage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shell\Home.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shell\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partial\_UserInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partial\_ClearFix.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partial\_MainNavigation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partial\_Sidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\Dashboard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MetaModelling\MetaModelling.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partial\temp.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>32760</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:32760/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:32760/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

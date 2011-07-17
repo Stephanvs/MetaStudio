@@ -1,0 +1,10 @@
+﻿@model Hayman.Client.Web.Models.Notifications.NotificationMessage
+
+<!-- Notification -->
+<div class="notification @(Model.Type.ToString().ToLower())">
+	<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
+	<p>
+		<strong>@Model.Type.ToString()</strong>&nbsp;
+		@Model.Body</p>
+</div>
+<!-- /Notification -->

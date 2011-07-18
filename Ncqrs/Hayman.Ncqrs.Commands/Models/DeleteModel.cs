@@ -11,8 +11,9 @@ namespace Hayman.Commands.Models
         [AggregateRootId]
         public Guid ModelId { get; private set; }
 
-        public DeleteModel(Guid modelId)
-        {
+        public DeleteModel(Guid modelId) 
+			: base(modelId)
+		{
             ModelId = modelId;
         }
 	}

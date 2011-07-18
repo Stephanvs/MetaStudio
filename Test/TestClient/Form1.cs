@@ -9,6 +9,7 @@ using System.ServiceModel;
 using Hayman.Commands.Models;
 using Ncqrs.CommandService.Contracts;
 using Ncqrs.CommandService;
+using Ncqrs.Commanding;
 
 namespace TestClient
 {
@@ -207,8 +208,7 @@ namespace TestClient
 		{
 			var command = new CreateModel(modelId, tbNewModelName.Text);
 
-			ChannelHelper.Use(_channelFactory.CreateChannel(), client =>
-			                                                   client.Execute(new ExecuteRequest(command)));
+			ExecuteCommand(command);
 		}
 
 		private void btnRenameModelCommand_Click(object sender, EventArgs e)
@@ -219,12 +219,29 @@ namespace TestClient
 			if (dr == DialogResult.OK)
 			{
 				var newModelName = form.tbNewModelName.Text;
+				var _modelId = Guid.Parse(form.tbModelId.Text);
 
-				var command = new RenameModel(modelId, newModelName);
+				var command = new RenameModel
+				{
+					ModelId = _modelId, 
+					NewModelName = newModelName
+				};
 
-				ChannelHelper.Use(_channelFactory.CreateChannel(), client =>
-				                                                   client.Execute(new ExecuteRequest(command)));
+				ExecuteCommand(command);
 			}
+		}
+
+		private void btnDeleteModelCommand_Click(object sender, EventArgs e)
+		{
+			var command = new DeleteModel(modelId);
+
+			ExecuteCommand(command);
+		}
+
+		private static void ExecuteCommand(CommandBase command)
+		{
+			ChannelHelper.Use(_channelFactory.CreateChannel(), client =>
+			                                                   client.Execute(new ExecuteRequest(command)));
 		}
 	}
 }

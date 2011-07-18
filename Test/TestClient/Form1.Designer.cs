@@ -87,6 +87,7 @@
 			this.miFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnDeleteModelCommand = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -730,11 +731,22 @@
 			this.exportToolStripMenuItem.Text = "Export";
 			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportOption_Click);
 			// 
+			// btnDeleteModelCommand
+			// 
+			this.btnDeleteModelCommand.Location = new System.Drawing.Point(992, 30);
+			this.btnDeleteModelCommand.Name = "btnDeleteModelCommand";
+			this.btnDeleteModelCommand.Size = new System.Drawing.Size(75, 23);
+			this.btnDeleteModelCommand.TabIndex = 22;
+			this.btnDeleteModelCommand.Text = "Del Model";
+			this.btnDeleteModelCommand.UseVisualStyleBackColor = true;
+			this.btnDeleteModelCommand.Click += new System.EventHandler(this.btnDeleteModelCommand_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1121, 681);
+			this.Controls.Add(this.btnDeleteModelCommand);
 			this.Controls.Add(this.btnRenameModelCommand);
 			this.Controls.Add(this.btnCreateMetaItemCommand);
 			this.Controls.Add(this.label10);
@@ -836,6 +848,7 @@
 		private System.Windows.Forms.ToolStripMenuItem miFile;
 		private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+		private System.Windows.Forms.Button btnDeleteModelCommand;
 	}
 }
 

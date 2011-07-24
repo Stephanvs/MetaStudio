@@ -221,11 +221,7 @@ namespace TestClient
 				var newModelName = form.tbNewModelName.Text;
 				var _modelId = Guid.Parse(form.tbModelId.Text);
 
-				var command = new RenameModel
-				{
-					ModelId = _modelId, 
-					NewModelName = newModelName
-				};
+				var command = new RenameModel(_modelId, newModelName);
 
 				ExecuteCommand(command);
 			}

@@ -65,6 +65,12 @@
     <StartupObject>Hayman.Service.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\Libraries\CastleWindsor\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\Libraries\CastleWindsor\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="Ncqrs">
       <HintPath>..\..\Libraries\ncqrs\Ncqrs.dll</HintPath>
     </Reference>
@@ -77,14 +83,14 @@
     <Reference Include="Ncqrs.Config.StructureMap">
       <HintPath>..\..\Libraries\ncqrs\Ncqrs.Config.StructureMap.dll</HintPath>
     </Reference>
+    <Reference Include="Ncqrs.Config.Windsor">
+      <HintPath>..\..\Libraries\ncqrs\Ncqrs.Config.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="Ncqrs.EventBus">
       <HintPath>..\..\Libraries\ncqrs\Ncqrs.EventBus.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Libraries\json.net\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

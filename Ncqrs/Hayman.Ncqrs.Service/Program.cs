@@ -19,7 +19,7 @@ namespace Hayman.Service
 			var bus = new InProcessEventBus(true);
 			bus.RegisterAllHandlersInAssembly(typeof(Program).Assembly);
 			var buffer = new InMemoryBufferedBrowsableElementStore(GetBrowsableEventStore(), 20 /*magic number faund in ThresholedFetchPolicy*/);
-			var pipeline = new Pipeline("Default", new EventBusProcessor(bus), buffer, new ThresholdedFetchPolicy(10, 20));
+			var pipeline = Pipeline.Create("Default", new EventBusProcessor(bus), buffer /*, new ThresholdedFetchPolicy(10, 20)*/ );
 
 			BootStrapper.BootUp(buffer);
 			var commandServiceHost = new ServiceHost(typeof(CommandWebService));

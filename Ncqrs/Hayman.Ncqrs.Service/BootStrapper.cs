@@ -12,6 +12,7 @@ using Ncqrs.EventBus;
 using Ncqrs.Eventing.ServiceModel.Bus;
 using Ncqrs.Eventing.Sourcing.Snapshotting;
 using Ncqrs.Eventing.Storage;
+using Ncqrs.Eventing.Storage.RavenDB;
 using Ncqrs.Eventing.Storage.SQL;
 
 namespace Hayman.Service
@@ -21,8 +22,8 @@ namespace Hayman.Service
         public static void BootUp(InMemoryBufferedBrowsableElementStore buffer)
         {
 			var connectionString = ConfigurationManager.ConnectionStrings["EventStore"].ConnectionString;
-        	var dsa = new InMemoryEventStore();
-			//var dsa = new MsSqlServerEventStore(connectionString);
+        	//var dsa = new InMemoryEventStore();
+        	var dsa = new RavenDBEventStore("http://localhost:8080/");
 
 			//Assembly asm = Assembly.LoadFrom("Domain.dll");
 			IWindsorContainer container = new WindsorContainer();

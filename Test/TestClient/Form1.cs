@@ -219,9 +219,9 @@ namespace TestClient
 			if (dr == DialogResult.OK)
 			{
 				var newModelName = form.tbNewModelName.Text;
-				var _modelId = Guid.Parse(form.tbModelId.Text);
+				//var _modelId = Guid.Parse(form.tbModelId.Text);
 
-				var command = new RenameModel(_modelId, newModelName);
+				var command = new RenameModel(modelId, newModelName);
 
 				ExecuteCommand(command);
 			}

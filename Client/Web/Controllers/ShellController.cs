@@ -6,7 +6,7 @@ namespace Hayman.Client.Web.Controllers
 	{
 		public ActionResult Home()
 		{
-			return View();
+			return View("~/Views/Shell.cshtml");
 		}
 
 		public ActionResult Dashboard()

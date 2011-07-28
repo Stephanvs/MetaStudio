@@ -75,8 +75,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Notifications\NotificationMessage.cs" />
-    <Compile Include="Models\Notifications\NotificationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -234,12 +232,9 @@
     <Content Include="Scripts\jquery\jquery-1.6.1-vsdoc.js" />
     <Content Include="Scripts\jquery\jquery-1.6.1.js" />
     <Content Include="Scripts\jquery\jquery-1.6.1.min.js" />
-    <Content Include="Scripts\libs\ajaxify-html5.js" />
+    <Content Include="Scripts\jquery\jquery.tmpl.js" />
     <Content Include="Scripts\libs\amplify-vsdoc.js" />
     <Content Include="Scripts\libs\amplify.min.js" />
-    <Content Include="Scripts\libs\history.adapter.jquery.js" />
-    <Content Include="Scripts\libs\history.html4.js" />
-    <Content Include="Scripts\libs\history.js" />
     <Content Include="Scripts\jquery\excanvas.js" />
     <Content Include="Scripts\jquery\jquery.datatables.js" />
     <Content Include="Scripts\jquery\jquery.datepicker.js" />
@@ -251,6 +246,8 @@
     <Content Include="Scripts\jquery\jquery.visualize.tooltip.js" />
     <Content Include="Scripts\jquery\jquery.wysiwyg.js" />
     <Content Include="Scripts\libs\json2.js" />
+    <Content Include="Scripts\libs\knockout-1.2.1.debug.js" />
+    <Content Include="Scripts\libs\knockout-1.2.1.js" />
     <Content Include="Scripts\libs\modernizr-1.7.min.js" />
     <Content Include="Scripts\libs\selectivizr.js" />
     <Content Include="Scripts\login.js" />
@@ -268,41 +265,25 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Partial\_NotificationMessage.cshtml" />
+    <Content Include="Views\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shell\Home.cshtml" />
+    <Content Include="Views\_ClearFix.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shell\Login.cshtml" />
+    <Content Include="Views\temp.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Partial\_UserInfo.cshtml" />
+    <Content Include="Views\Shell.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Partial\_ClearFix.cshtml" />
+    <Content Include="Views\_Bootstrapper.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Partial\_MainNavigation.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Partial\_Sidebar.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Dashboard\Dashboard.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\MetaModelling\MetaModelling.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Partial\temp.cshtml" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

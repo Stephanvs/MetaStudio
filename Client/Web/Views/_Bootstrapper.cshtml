@@ -1,1 +1,62 @@
-﻿@RenderBody()
+﻿<!DOCTYPE html>
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]--> 
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]--> 
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]--> 
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content=""> 
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title>@ViewBag.Title</title>
+
+	<!-- CSS Styles -->
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/style.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/colors.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.tipsy.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.wysiwyg.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datatables.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.nyromodal.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datepicker.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.fileinput.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.fullcalendar.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.visualize.css")" type="text/css">
+
+	<!-- Google WebFonts --> 
+	<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+
+@RenderBody()
+
+
+</body>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript">	!window.jQuery && document.write(unescape('%3Cscript src="@Url.Content("~/Scripts/jquery/jquery-1.6.1.min.js")"%3E%3C/script%3E'))</script>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/libs/selectivizr.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.nyromodal.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.tipsy.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.wysiwyg.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.datatables.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.datepicker.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.fileinput.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.fullcalendar.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/excanvas.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.visualize.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.visualize.tooltip.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.tmpl.js")"></script>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/libs/knockout-1.2.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/libs/json2.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/libs/amplify.min.js")"></script>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/shell.init.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/shell.core.js")"></script>
+
+</html>

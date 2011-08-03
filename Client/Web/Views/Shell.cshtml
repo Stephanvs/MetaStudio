@@ -1,274 +1,217 @@
-﻿<!DOCTYPE html>
-<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]--> 
-<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]--> 
-<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]--> 
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+﻿<!-- Fixed Layout Wrapper -->
+<div class="fixed-wraper">
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="description" content=""> 
-	<meta name="author" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Aside Block -->
+<section role="navigation">
 
-	<title>@ViewBag.Title</title>
-
-	<!-- CSS Styles -->
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/style.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/colors.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.tipsy.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.wysiwyg.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datatables.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.nyromodal.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datepicker.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.fileinput.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.fullcalendar.css")" type="text/css">
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.visualize.css")" type="text/css">
-
-	<!-- Google WebFonts --> 
-	<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
-</head>
-
-<body>
-	
-	<!-- Fixed Layout Wrapper -->
-	<div class="fixed-wraper">
-
-	<!-- Aside Block -->
-	<section role="navigation">
-
-		<!-- Header with logo and headline -->
-		<header>
-			<a id="logolink" title="@_("Hayman Insights")"></a>
-			<h1>@_("Headline")</h1>
-		</header>
-		<!-- /Header with logo and headline -->
+	<!-- Header with logo and headline -->
+	<header>
+		<a id="logolink" title="@_("Hayman Insights")"></a>
+		<h1>@_("Headline")</h1>
+	</header>
+	<!-- /Header with logo and headline -->
 		
-		<!-- User Info -->
-		<section id="user-info">
-			<img src="@Url.Content("~/Content/img/sample_user.png")" alt="todo">
-			<div>
-				<a href="" title="@_("Account Settings and Profile Page")">Vincent Chase</a>
-				<em>Information Architect</em>
-				<ul>
-					<li><a class="button-link" href="" title="@_("Change your personal settings")" rel="tooltip">@_("settings")</a></li>
-					<li><a class="button-link" href="" title="@_("Sign out")" rel="tooltip">@_("sign out")</a></li>
-				</ul>
-			</div>
-		</section>
-		<!--/ User Info -->
-		
-		<!-- Main Navigation -->
-		<nav id="main-nav">
-			<!-- Use class .no-submenu to open link instead of a sub menu-->
-			<!-- Use class .current to open submenu on page load -->
+	<!-- User Info -->
+	<section id="user-info">
+		<img src="@Url.Content("~/Content/img/sample_user.png")" alt="todo">
+		<div>
+			<a href="" title="@_("Account Settings and Profile Page")">Vincent Chase</a>
+			<em>Information Architect</em>
 			<ul>
-				<li>
-					<a href="" title="@_("Go here to get an overview of your tasks")" class="dashboard current">@_("Dashboard")</a>
-					<ul>
-						<li class="current"><a href="" title="@_("Overview")">@_("Overview")</a></li>
-						<li class=""><a href="" title="@_("Inbox")">@_("Inbox")</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="" title="@_("Meta Modelling")" class="metamodelling no-submenu">@_("Meta Modelling")</a>
-				</li>
-				<li>
-					<a href="" title="@_("Models")" class="metamodelling">@_("Models")</a>
-					<ul>
-						<li><a href="">test</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="" title="@_("Settings")" class="settings no-submenu">@_("Settings")</a>
-				</li>
-				<li>
-					<a href="" title="@_("Debug")" class="no-submenu">@_("Debugging")</a>
-					<span title="You have 3 new tasks">3</span>
-				</li>
+				<li><a class="button-link" href="" title="@_("Change your personal settings")" rel="tooltip">@_("settings")</a></li>
+				<li><a class="button-link" href="" title="@_("Sign out")" rel="tooltip">@_("sign out")</a></li>
 			</ul>
-		</nav>
-		<!-- /Main Navigation -->
-		
-		<!-- Sidebar -->
-		@*<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
-			<h2>Nested Section</h2>
-			<p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Maec enas id augue ac metu aliquam.</p>
-			<p>Sed pharetra placerat est suscipit sagittis. Phasellus <a href="#">aliquam</a> males uada blandit. Donec adipiscing sem erat.</p>
-		</section>
-		
-		<section class="sidebar">
-			<h2>Paragraph with Separator</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus.</p>
-			<p class="separator">Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis.</p>
-			<p class="separator">Phasellus aliquam malesuada blandit. Donec adipiscing sem erat.</p>
-			<a class="button-link" href="#" title="This is my title!">read more</a>
-		</section>
-		
-		<section class="sidebar">
-			<img src="@Url.Content("~/Content/img/sample_image.jpg")" alt="Sample Image">
-			<h2>Lorem Ipsum Header</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus. Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis. Phasellus aliquam malesuada blandit. Donec adipiscing sem erat.</p>
-			<a class="button-link" href="#" title="This is my title!">super long read more link</a>
-		</section>
-		
-		<section class="sidebar separator">
-			<h2>Section with Separator</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus. Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis.</p>
-			<ul>
-				<li><strong>Sed pharetra placerat</strong></li>
-				<li><em>Phasellus aliquam malesuada</em></li>
-				<li>Maecenas id augue</li>
-				<li>Consectetur <a href="#">adipiscing</a> elit</li>
-				<li>Lorem ipsum dolor</li>
-			</ul>
-		</section>
-		*@
-		<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
-			<h4>Debug information</h4>
-			<p><strong>Version</strong><em>1.0.0.0</em></p>
-		</section>
-		<!-- /Sidebar -->
-
-	</section>
-	<!-- /Aside Block -->
-	
-	<!-- Main Content -->
-	<section role="main">
-
-		<div data-bind="text: data">
 		</div>
+	</section>
+	<!--/ User Info -->
+		
+	<!-- Main Navigation -->
+	<nav id="main-nav">
+		<!-- Use class .no-submenu to open link instead of a sub menu-->
+		<!-- Use class .current to open submenu on page load -->
+		<ul>
+			<li>
+				<a href="" title="@_("Go here to get an overview of your tasks")" class="dashboard current">@_("Dashboard")</a>
+				<ul>
+					<li class="current"><a href="" title="@_("Overview")">@_("Overview")</a></li>
+					<li class=""><a href="" title="@_("Inbox")">@_("Inbox")</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="" title="@_("Meta Modelling")" class="metamodelling" data-bind="css: { 'no-submenu': vm.menuModelList.length == 0 }">@_("Meta Modelling")</a>
+				<ul data-bind="template: { name: 'menuModelTemplate', foreach: menuModelList }">
+					<script id="menuModelTemplate" type="text/html">
+						<li id="${modelId}"><a data-bind="click: function() { vm.menuChangeSelectedModel($data); } ">${modelName}</a></li>
+					</script>
+				</ul>
+			</li>
+			<li>
+				<a href="" title="@_("Models")" class="metamodelling">@_("Models")</a>
+				<ul>
+					<li><a href="">test</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="" title="@_("Settings")" class="settings no-submenu">@_("Settings")</a>
+			</li>
+			<li>
+				<a href="" title="@_("Debug")" class="no-submenu">@_("Debugging")</a>
+				<span title="You have 3 new tasks">3</span>
+			</li>
+		</ul>
+	</nav>
+	<!-- /Main Navigation -->
+		
+	<!-- Sidebar -->
+	@*<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
+		<h2>Nested Section</h2>
+		<p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Maec enas id augue ac metu aliquam.</p>
+		<p>Sed pharetra placerat est suscipit sagittis. Phasellus <a href="#">aliquam</a> males uada blandit. Donec adipiscing sem erat.</p>
+	</section>
+		
+	<section class="sidebar">
+		<h2>Paragraph with Separator</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus.</p>
+		<p class="separator">Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis.</p>
+		<p class="separator">Phasellus aliquam malesuada blandit. Donec adipiscing sem erat.</p>
+		<a class="button-link" href="#" title="This is my title!">read more</a>
+	</section>
+		
+	<section class="sidebar">
+		<img src="@Url.Content("~/Content/img/sample_image.jpg")" alt="Sample Image">
+		<h2>Lorem Ipsum Header</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus. Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis. Phasellus aliquam malesuada blandit. Donec adipiscing sem erat.</p>
+		<a class="button-link" href="#" title="This is my title!">super long read more link</a>
+	</section>
+		
+	<section class="sidebar separator">
+		<h2>Section with Separator</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus. Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis.</p>
+		<ul>
+			<li><strong>Sed pharetra placerat</strong></li>
+			<li><em>Phasellus aliquam malesuada</em></li>
+			<li>Maecenas id augue</li>
+			<li>Consectetur <a href="#">adipiscing</a> elit</li>
+			<li>Lorem ipsum dolor</li>
+		</ul>
+	</section>
+	*@
+	<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
+		<p>empty</p>
+	</section>
+	<!-- /Sidebar -->
+
+</section>
+<!-- /Aside Block -->
+	
+<!-- Main Content -->
+<section role="main">
+
+	<div data-bind="text: data">
+	</div>
 
 
 
 @*		<article class="full-block clearfix">
-			<header>
-				<h2>Dashboard</h2>
-			</header>
+		<header>
+			<h2>Dashboard</h2>
+		</header>
 			
-			<!-- Notification -->
-			<div class="notification success">
-				<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-				<p>
-					<strong>Success notification</strong> Lorem ipsum dolor sit amet, consectetur adipiscing
-					elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
-			</div>
-			<!-- /Notification -->
-			<!-- Notification -->
-			<div class="notification information">
-				<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-				<p>
-					<strong>Information notification</strong> Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
-			</div>
-			<!-- /Notification -->
-			<!-- Notification -->
-			<div class="notification attention">
-				<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-				<p>
-					<strong>Attention notification</strong> Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
-			</div>
-			<!-- /Notification -->
-			<!-- Notification -->
-			<div class="notification note">
-				<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-				<p>
-					<strong>Note</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-					vulputate, sapien quis fermentum luctus, libero.</p>
-			</div>
-			<!-- /Notification -->
-		</article>
+		<!-- Notification -->
+		<div class="notification success">
+			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
+			<p>
+				<strong>Success notification</strong> Lorem ipsum dolor sit amet, consectetur adipiscing
+				elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
+		</div>
+		<!-- /Notification -->
+		<!-- Notification -->
+		<div class="notification information">
+			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
+			<p>
+				<strong>Information notification</strong> Lorem ipsum dolor sit amet, consectetur
+				adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
+		</div>
+		<!-- /Notification -->
+		<!-- Notification -->
+		<div class="notification attention">
+			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
+			<p>
+				<strong>Attention notification</strong> Lorem ipsum dolor sit amet, consectetur
+				adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
+		</div>
+		<!-- /Notification -->
+		<!-- Notification -->
+		<div class="notification note">
+			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
+			<p>
+				<strong>Note</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+				vulputate, sapien quis fermentum luctus, libero.</p>
+		</div>
+		<!-- /Notification -->
+	</article>
 
-		<article class="full-block clearfix">
-			<header>
-				<h2>Meta Modelling</h2>
+	<article class="full-block clearfix">
+		<header>
+			<h2>Meta Modelling</h2>
 
-				<nav>
-					<ul class="tab-switch">
-						<li><a rel="tooltip" title="Edit">Edit</a></li>
-						<li><a rel="tooltip" title="Default View" class="default-tab current">Graph</a></li>
-					</ul>
-				</nav>
-			</header>
+			<nav>
+				<ul class="tab-switch">
+					<li><a rel="tooltip" title="Edit">Edit</a></li>
+					<li><a rel="tooltip" title="Default View" class="default-tab current">Graph</a></li>
+				</ul>
+			</nav>
+		</header>
 				
-			<div class="tab default-tab sidetabs">
-				<!-- Side Tab Navigation -->
-				<nav class="sidetab-switch">
-					<ul>
-						<li><a href="" class="default-sidetab">Model One</a></li>
-						<li><a href="">Model Two</a></li>
-						<li><a href="">Sample Model</a></li>
-						<li><a href="">Business</a></li>
-						<li><a href="">Shared Model</a></li>
-						<li><a href="">Another one...</a></li>
-					</ul>
-					<p>Click here to add a model.</p>
-				</nav>
-				<!-- /Side Tab Navigation -->
+		<div class="tab default-tab sidetabs">
+			<!-- Side Tab Navigation -->
+			<nav class="sidetab-switch">
+				<ul>
+					<li><a href="" class="default-sidetab">Model One</a></li>
+					<li><a href="">Model Two</a></li>
+					<li><a href="">Sample Model</a></li>
+					<li><a href="">Business</a></li>
+					<li><a href="">Shared Model</a></li>
+					<li><a href="">Another one...</a></li>
+				</ul>
+				<p>Click here to add a model.</p>
+			</nav>
+			<!-- /Side Tab Navigation -->
 						
-				<!-- Side Tab Content #sidetab1 -->
-				<div class="sidetab default-sidetab">
-					<h3>Topic</h3>
-					<p>TabPage 1</p>
-				</div>
-				<!-- /Side Tab Content #sidetab1 -->
-						
-				<!-- Side Tab Content #sidetab2 -->
-				<div class="sidetab">
-					<h3>Topic</h3>
-					<p>TabPage 2</p>
-				</div>
-				<!-- /Side Tab Content #sidetab2 -->
-						
-				<!-- Side Tab Content #sidetab3 -->
-				<div class="sidetab">
-					<h3>Topic</h3>
-					<p>TabPage 3</p>
-				</div>
-				<!-- /Side Tab Content #sidetab3 -->
-						
+			<!-- Side Tab Content #sidetab1 -->
+			<div class="sidetab default-sidetab">
+				<h3>Topic</h3>
+				<p>TabPage 1</p>
 			</div>
-
-			<div class="tab">
-				<p>Edit View</p>
+			<!-- /Side Tab Content #sidetab1 -->
+						
+			<!-- Side Tab Content #sidetab2 -->
+			<div class="sidetab">
+				<h3>Topic</h3>
+				<p>TabPage 2</p>
 			</div>
+			<!-- /Side Tab Content #sidetab2 -->
+						
+			<!-- Side Tab Content #sidetab3 -->
+			<div class="sidetab">
+				<h3>Topic</h3>
+				<p>TabPage 3</p>
+			</div>
+			<!-- /Side Tab Content #sidetab3 -->
+						
+		</div>
 
-		</article>
+		<div class="tab">
+			<p>Edit View</p>
+		</div>
+
+	</article>
 *@
 
-	</section>
-	<!-- /Main Content -->
+	<section class="debug-info"><p><strong>Version</strong><em data-bind="text: vm.debug.version"></em></p></section>
+
+</section>
+<!-- /Main Content -->
 	
-	</div>
-	<!-- /Fixed Layout Wrapper -->
-
-</body>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script type="text/javascript">	!window.jQuery && document.write(unescape('%3Cscript src="@Url.Content("~/Scripts/jquery/jquery-1.6.1.min.js")"%3E%3C/script%3E'))</script>
-
-<script type="text/javascript" src="@Url.Content("~/Scripts/libs/selectivizr.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.nyromodal.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.tipsy.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.wysiwyg.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.datatables.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.datepicker.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.fileinput.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.fullcalendar.min.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/excanvas.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.visualize.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.visualize.tooltip.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.tmpl.js")"></script>
-
-<script type="text/javascript" src="@Url.Content("~/Scripts/libs/knockout-1.2.1.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/libs/json2.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/libs/amplify.min.js")"></script>
-
-<script type="text/javascript" src="@Url.Content("~/Scripts/shell.init.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/shell.core.js")"></script>
-
-@#IF DEBUG
-	var debug = true;
-@#ENDIF
-
-</html>
+</div>
+<!-- /Fixed Layout Wrapper -->

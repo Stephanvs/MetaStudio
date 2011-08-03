@@ -17,12 +17,28 @@
 });
 
 
-(function ($) {
 
-	var vm = {
-		data: ko.observableArray([ 'hello', 'world', '!' ])
-	};
+var vm = {
+	data: ko.observableArray(['Content', 'Goes', 'Here', '!']),
 
-	ko.applyBindings(vm);
+	menuModelList: ko.observableArray([{
+		modelId: ko.observable("30038808-E817-4554-AF82-9EF6733D3F8C"),
+		modelName: ko.observable("Default")
+	},
+	{
+		modelId: ko.observable("74E23EEC-106C-42B5-88F6-9E9F5165B8CB"),
+		modelName: ko.observable("Sample Model 1")
+	}]),
 
-})(jQuery);
+	menuSelectedModelId: ko.observable("30038808-E817-4554-AF82-9EF6733D3F8C"),
+
+	menuChangeSelectedModel: function (data) {
+		this.menuSelectedModelId(data.modelId());
+	},
+
+	debug: {
+		version: ko.observable("0.0.0.1")
+	}
+};
+
+ko.applyBindings(vm);

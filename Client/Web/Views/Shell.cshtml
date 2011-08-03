@@ -38,17 +38,14 @@
 				</ul>
 			</li>
 			<li>
-				<a href="" title="@_("Meta Modelling")" class="metamodelling" data-bind="css: { 'no-submenu': vm.menuModelList.length == 0 }">@_("Meta Modelling")</a>
-				<ul data-bind="template: { name: 'menuModelTemplate', foreach: menuModelList }">
+				<a href="" title="@_("Meta Modelling")" class="metamodelling">@_("Meta Modelling")</a>
+			</li>
+			<li>
+				<a href="" title="@_("Models")" class="metamodelling" data-bind="css: { 'no-submenu': vm.modelList.length == 0 }">@_("Models")</a>
+				<ul data-bind="template: { name: 'menuModelTemplate', foreach: vm.modelList }">
 					<script id="menuModelTemplate" type="text/html">
 						<li id="${modelId}"><a data-bind="click: function() { vm.menuChangeSelectedModel($data); } ">${modelName}</a></li>
 					</script>
-				</ul>
-			</li>
-			<li>
-				<a href="" title="@_("Models")" class="metamodelling">@_("Models")</a>
-				<ul>
-					<li><a href="">test</a></li>
 				</ul>
 			</li>
 			<li>
@@ -61,44 +58,6 @@
 		</ul>
 	</nav>
 	<!-- /Main Navigation -->
-		
-	<!-- Sidebar -->
-	@*<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
-		<h2>Nested Section</h2>
-		<p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Maec enas id augue ac metu aliquam.</p>
-		<p>Sed pharetra placerat est suscipit sagittis. Phasellus <a href="#">aliquam</a> males uada blandit. Donec adipiscing sem erat.</p>
-	</section>
-		
-	<section class="sidebar">
-		<h2>Paragraph with Separator</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus.</p>
-		<p class="separator">Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis.</p>
-		<p class="separator">Phasellus aliquam malesuada blandit. Donec adipiscing sem erat.</p>
-		<a class="button-link" href="#" title="This is my title!">read more</a>
-	</section>
-		
-	<section class="sidebar">
-		<img src="@Url.Content("~/Content/img/sample_image.jpg")" alt="Sample Image">
-		<h2>Lorem Ipsum Header</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus. Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis. Phasellus aliquam malesuada blandit. Donec adipiscing sem erat.</p>
-		<a class="button-link" href="#" title="This is my title!">super long read more link</a>
-	</section>
-		
-	<section class="sidebar separator">
-		<h2>Section with Separator</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et dignissim metus. Maecenas id augue ac metus tempus aliquam. Sed pharetra placerat est suscipit sagittis.</p>
-		<ul>
-			<li><strong>Sed pharetra placerat</strong></li>
-			<li><em>Phasellus aliquam malesuada</em></li>
-			<li>Maecenas id augue</li>
-			<li>Consectetur <a href="#">adipiscing</a> elit</li>
-			<li>Lorem ipsum dolor</li>
-		</ul>
-	</section>
-	*@
-	<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
-		<p>empty</p>
-	</section>
 	<!-- /Sidebar -->
 
 </section>
@@ -106,50 +65,6 @@
 	
 <!-- Main Content -->
 <section role="main">
-
-	<div data-bind="text: data">
-	</div>
-
-
-
-@*		<article class="full-block clearfix">
-		<header>
-			<h2>Dashboard</h2>
-		</header>
-			
-		<!-- Notification -->
-		<div class="notification success">
-			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-			<p>
-				<strong>Success notification</strong> Lorem ipsum dolor sit amet, consectetur adipiscing
-				elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
-		</div>
-		<!-- /Notification -->
-		<!-- Notification -->
-		<div class="notification information">
-			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-			<p>
-				<strong>Information notification</strong> Lorem ipsum dolor sit amet, consectetur
-				adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
-		</div>
-		<!-- /Notification -->
-		<!-- Notification -->
-		<div class="notification attention">
-			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-			<p>
-				<strong>Attention notification</strong> Lorem ipsum dolor sit amet, consectetur
-				adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.</p>
-		</div>
-		<!-- /Notification -->
-		<!-- Notification -->
-		<div class="notification note">
-			<a href="" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
-			<p>
-				<strong>Note</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-				vulputate, sapien quis fermentum luctus, libero.</p>
-		</div>
-		<!-- /Notification -->
-	</article>
 
 	<article class="full-block clearfix">
 		<header>
@@ -166,15 +81,19 @@
 		<div class="tab default-tab sidetabs">
 			<!-- Side Tab Navigation -->
 			<nav class="sidetab-switch">
-				<ul>
-					<li><a href="" class="default-sidetab">Model One</a></li>
-					<li><a href="">Model Two</a></li>
-					<li><a href="">Sample Model</a></li>
+				<ul data-bind="template: { name: 'modelSideTab', foreach: vm.modelList }">
+				<script id="modelSideTab" type="text/html">
+					<li><a id="${ modelId }" data-bind="css: { 'current': $data.modelId() == vm.metaModellingSelectedModelId() }, click: function() { vm.metaModellingChangeSelectedModelId($data); }">${ modelName }</a></li>
+				</script>
+					
+					
+@*					<li><a href="">Model Two</a></li>
+					<li><a href="" class="default-sidetab current">Sample Model</a></li>
 					<li><a href="">Business</a></li>
 					<li><a href="">Shared Model</a></li>
 					<li><a href="">Another one...</a></li>
-				</ul>
-				<p>Click here to add a model.</p>
+*@				</ul>
+				<p><button class="green">Create new model</button></p>
 			</nav>
 			<!-- /Side Tab Navigation -->
 						
@@ -185,7 +104,7 @@
 			</div>
 			<!-- /Side Tab Content #sidetab1 -->
 						
-			<!-- Side Tab Content #sidetab2 -->
+			@*<!-- Side Tab Content #sidetab2 -->
 			<div class="sidetab">
 				<h3>Topic</h3>
 				<p>TabPage 2</p>
@@ -197,16 +116,15 @@
 				<h3>Topic</h3>
 				<p>TabPage 3</p>
 			</div>
-			<!-- /Side Tab Content #sidetab3 -->
+			<!-- /Side Tab Content #sidetab3 -->*@
 						
 		</div>
 
-		<div class="tab">
+		@*<div class="tab">
 			<p>Edit View</p>
-		</div>
+		</div>*@
 
 	</article>
-*@
 
 	<section class="debug-info"><p><strong>Version</strong><em data-bind="text: vm.debug.version"></em></p></section>
 

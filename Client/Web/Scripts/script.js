@@ -20,8 +20,7 @@ $(function () {
 			$(this).parents('form').find('input:checkbox').attr('checked', $(this).is(':checked'));
 		});
 
-	// IE7 doesn't support :disabled
-	$('.ie7').find(':disabled').addClass('disabled');
+	
 
 	// Widget Close Button
 	$('.close-widget').click(
@@ -38,15 +37,15 @@ $(function () {
 		$(this).toggleClass('active').next().slideToggle(); // Toggle clicked menu
 		$(document).click(function () { // Hide menu when clicked outside of it
 			$('.table-switch').slideUp();
-			$('.toggle-table-switch').removeClass('active')
+			$('.toggle-table-switch').removeClass('active');
 		});
 		return false;
 	});
 
 	// Image actions
 	$('.image-frame').hover(
-		function() { $(this).find('.image-actions').css('display', 'none').fadeIn('fast').css('display', 'block'); }, // Show actions menu
-		function() { $(this).find('.image-actions').fadeOut(100); } // Hide actions menu
+		function () { $(this).find('.image-actions').css('display', 'none').fadeIn('fast').css('display', 'block'); }, // Show actions menu
+		function () { $(this).find('.image-actions').fadeOut(100); } // Hide actions menu
 	);
 
 	// Tickets

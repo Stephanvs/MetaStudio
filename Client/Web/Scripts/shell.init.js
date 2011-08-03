@@ -11,10 +11,16 @@
 	// IE7 doesn't support :disabled
 	$('.ie7').find(':disabled').addClass('disabled');
 
-//	$('#main-nav li a.no-submenu, #main-nav li li a').click(function () {
-//		window.location.href = (this.href); // Open link instead of a sub menu
-//		return false;
-//	});
+	$('.close-notification').live('click', function () {
+		$(this).parents('.notification').fadeOut('normal');
+	});
+
+	$('.dlg-create-model').nyroModal();
+
+	//	$('#main-nav li a.no-submenu, #main-nav li li a').click(function () {
+	//		window.location.href = (this.href); // Open link instead of a sub menu
+	//		return false;
+	//	});
 
 	// jQuery Tipsy
 	$('[rel=tooltip], #main-nav span, .loader').tipsy({ gravity: 's', fade: true }); // Tooltip Gravity Orientation: n | w | e | s
@@ -46,9 +52,7 @@ var vm = {
 
 	metaModellingSelectedModelId: ko.observable("30038808-E817-4554-AF82-9EF6733D3F8C"),
 
-	debug: {
-		version: ko.observable("0.0.0.1")
-	}
+	notifications: ko.observableArray([{ type: "information", title: "Information", message: "Welcome to Hayman MetaStudio" }])
 };
 
 ko.applyBindings(vm);

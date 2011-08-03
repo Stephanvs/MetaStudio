@@ -44,7 +44,7 @@
 				<a href="" title="@_("Models")" class="metamodelling" data-bind="css: { 'no-submenu': vm.modelList.length == 0 }">@_("Models")</a>
 				<ul data-bind="template: { name: 'menuModelTemplate', foreach: vm.modelList }">
 					<script id="menuModelTemplate" type="text/html">
-						<li id="${modelId}"><a data-bind="click: function() { vm.menuChangeSelectedModel($data); } ">${modelName}</a></li>
+						<li><a href="#${modelId}" data-bind="click: function() { vm.menuChangeSelectedModel($data); } ">${modelName}</a></li>
 					</script>
 				</ul>
 			</li>
@@ -66,6 +66,15 @@
 <!-- Main Content -->
 <section role="main">
 
+	<section role="main-notification-container" data-bind="template: { name: 'main_notification_template', foreach: vm.notifications }">
+		<script id="main_notification_template" type="text/html">
+			<div class="notification ${type}">
+				<a rel="tooltip" class="close-notification" href="#" original-title="Hide Notification">x</a>
+				<p><strong>${title}</strong>&nbsp;${message}</p>
+			</div>
+		</script>
+	</section>
+
 	<article class="full-block clearfix">
 		<header>
 			<h2>Meta Modelling</h2>
@@ -81,9 +90,9 @@
 		<div class="tab default-tab sidetabs">
 			<!-- Side Tab Navigation -->
 			<nav class="sidetab-switch">
-				<ul data-bind="template: { name: 'modelSideTab', foreach: vm.modelList }">
+				<ul data-bind="template: { name: 'modelSideTab', foreach: vm.modelList() }">
 				<script id="modelSideTab" type="text/html">
-					<li><a id="${ modelId }" data-bind="css: { 'current': $data.modelId() == vm.metaModellingSelectedModelId() }, click: function() { vm.metaModellingChangeSelectedModelId($data); }">${ modelName }</a></li>
+					<li><a href="#${ modelId }" data-bind="css: { 'current': $data.modelId() == vm.metaModellingSelectedModelId() }, click: function() { vm.metaModellingChangeSelectedModelId($data); }">${ modelName }</a></li>
 				</script>
 					
 					
@@ -93,7 +102,7 @@
 					<li><a href="">Shared Model</a></li>
 					<li><a href="">Another one...</a></li>
 *@				</ul>
-				<p><button class="green">Create new model</button></p>
+				<p><button class="btn-create-model blue">Create new model</button></p>
 			</nav>
 			<!-- /Side Tab Navigation -->
 						
@@ -126,10 +135,17 @@
 
 	</article>
 
-	<section class="debug-info"><p><strong>Version</strong><em data-bind="text: vm.debug.version"></em></p></section>
-
 </section>
 <!-- /Main Content -->
 	
 </div>
 <!-- /Fixed Layout Wrapper -->
+
+
+<!-- DIALOG WINDOWS -->
+<div id="dlg-create-model" class="modal">
+	<label for="tbNewModelName">@_("Enter the name for the new model")</label><br/>
+	<input type="text" id="tbNewModelName" class="small" /><br/>
+	<button class="green">@_("Create Model")</button>
+	<button class="red">@_("Cancel")</button>
+</div>
